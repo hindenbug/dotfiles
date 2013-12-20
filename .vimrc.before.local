@@ -1,0 +1,61 @@
+"==============================================================
+" VUNDLE STUFF
+"==============================================================
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+"==============================================================
+
+
+" load indent file for the current filetype
+set nocompatible      " We're running Vim, not Vi!
+syntax on             " Enable syntax highlighting
+
+filetype plugin indent on
+
+set nospell
+set autoindent
+set smartindent
+set copyindent     " copy the previous indentation on autoindenting
+set nowritebackup
+set noswapfile
+set nobackup
+set guioptions+=LlRrb
+set guioptions-=LlRrb
+set guioptions-=T
+set hidden
+set t_Co=256
+set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+set sidescrolloff=15
+set sidescroll=0
+set cursorline
+set encoding=utf-8
+set shiftround     " use multiple of shiftwidth when indenting with '<' and '>'
+set hlsearch       " highlight search terms
+set incsearch      " show search matches as you type
+
+" (Hopefully) removes the delay when hitting esc in insert mode
+set noesckeys
+set ttimeout
+set ttimeoutlen=1
+set ttyfast
+
+set visualbell t_vb=    " Turn off flashing
+set showmode            " Show mode I'm in
+set showcmd             " Show command I'm typing
+
+let mapleader=","
+"
+" Command line completion:
+"
+set wildchar=<TAB>      " Character to start command line completion
+set wildmenu            " Enhanced command line completion mode
+" First list the possible completions.
+" Then complete to longest matching string.
+" Finally start cycling between completions (starts wildmenu mode).
+set wildmode=list,longest,full
+
+let g:spf13_no_autochdir = 1
+let g:LargeFile=5
