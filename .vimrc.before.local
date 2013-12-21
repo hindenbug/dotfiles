@@ -4,8 +4,18 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+"set rtp+=~/.vim/bundle/vundle/
+"call vundle#rc()
+"
+if has('vim_starting')
+   set nocompatible               " Be iMproved
+   :set runtimepath+=~/.vim/bundle/neobundle.vim/
+ endif
+
+ call neobundle#rc(expand('~/.vim/bundle/'))
+
+ " Let NeoBundle manage NeoBundle
+ NeoBundleFetch 'Shougo/neobundle.vim'
 "==============================================================
 
 
@@ -46,16 +56,19 @@ set visualbell t_vb=    " Turn off flashing
 set showmode            " Show mode I'm in
 set showcmd             " Show command I'm typing
 
-let mapleader=","
-"
 " Command line completion:
-"
 set wildchar=<TAB>      " Character to start command line completion
 set wildmenu            " Enhanced command line completion mode
+
 " First list the possible completions.
 " Then complete to longest matching string.
 " Finally start cycling between completions (starts wildmenu mode).
 set wildmode=list,longest,full
 
+let mapleader=","
 let g:spf13_no_autochdir = 1
 let g:LargeFile=5
+let spf13_no_views=1
+let spf13_no_backups=1
+let g:ruby_path = system('echo $HOME/.rbenv/shims')
+

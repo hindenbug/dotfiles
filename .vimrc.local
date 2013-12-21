@@ -1,16 +1,9 @@
-let spf13_no_views=1
-let spf13_no_backups=1
-let g:spf13_bundle_groups=['general', 'neocomplcache', 'programming', 'ruby', 'python', 'javascript', 'html', 'misc']
-
 let g:indent_guides_enable_on_vim_startup = 0
-let g:neocomplcache_disable_auto_complete = 1
-let g:neocomplcache_enable_at_startup = 0
-
 
 "==================================================================================================
 " THEME SETTINGS
 "==================================================================================================
-colorscheme grb256
+colorscheme peaksea
 
 
 " =================================================================================================
@@ -162,30 +155,3 @@ map <Leader>n :call RenameFile()<cr>
 
 
 
-"==================================================================================================
-" UNBUNDLE STUFF
-"==================================================================================================
-UnBundle 'spf13/vim-autoclose'
-UnBundle 'spf13/PIV'
-UnBundle 'arnaud-lb/vim-php-namespace'
-UnBundle 'derekwyatt/vim-sbt'
-UnBundle 'derekwyatt/vim-scala'
-
-"Haskell
-UnBundle 'travitch/hasksyn'
-UnBundle 'dag/vim2hs'
-UnBundle 'Twinside/vim-haskellConceal'
-UnBundle 'lukerandall/haskellmode-vim'
-UnBundle 'ujihisa/neco-ghc'
-UnBundle 'eagletmt/ghcmod-vim'
-UnBundle 'Shougo/vimproc'
-UnBundle 'adinapoli/cumino'
-UnBundle 'bitc/vim-hdevtools'
-UnBundle 'jnwhiteh/vim-golang'
-UnBundle 'spf13/vim-gocode'
-
-"Python
-UnBundle 'klen/python-mode'
-UnBundle 'python.vim'
-UnBundle 'python_match.vim'
-UnBundle 'pythoncomplete'
