@@ -1,6 +1,6 @@
 [user]
-  name  = railsaholic
-  email = <email>
+  name = railsaholic
+  email = manoj.mk27@gmail.com
 
 [color]
   ui = auto
@@ -17,6 +17,16 @@
   new = green
 
 [alias]
+  br = branch
+  ci = commit
+  co = checkout
+  df = diff
+  g = grep -I
+  lg = log -p
+  pp = !"echo 'Pull'; git pull; echo 'Push'; git push"     
+  rb = rbranch
+  rv = review
+  st = status
 
 [format] 
   pretty = format:%C(yellow)%h%Creset %Cgreen(%cr) %Cred%d%Creset- %C(blue)%s %C(magenta)[%an]
@@ -58,6 +68,7 @@
   algorithm = patience
 
 [rerere]
+  # Remember my merges
   # http://gitfu.wordpress.com/2008/04/20/git-rerere-rereremember-what-you-did-last-time/
   enabled = true
 
