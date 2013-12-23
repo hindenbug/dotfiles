@@ -74,15 +74,9 @@ command! Qall qall
 " Disable Ex mode
 map Q <Nop>
 
-" Better? completion on command line
-set wildmenu
-" What to do when I press 'wildchar'. Worth tweaking to see what feels right.
-set wildmode=list:full
-
 " Let's be reasonable, shall we?
 nmap k gk
 nmap j gj
-
 
 " Jump to the next row on long lines
 map <Down> gj
@@ -109,6 +103,8 @@ nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
 inoremap <C-s> <esc>:w<cr>a
 nnoremap <C-s> :w<cr>a
+
+nnoremap ; :
 
 "==================================================================================================
 " FORMATTING
@@ -153,5 +149,35 @@ function! RenameFile()
 endfunction
 map <Leader>n :call RenameFile()<cr>
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  GET RID OF NERD TREE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Toggle Vexplore with Ctrl-E
+function! ToggleVExplorer()
+  if exists("t:expl_buf_num")
+    let expl_win_num = bufwinnr(t:expl_buf_num)
+    if expl_win_num != -1
+      let cur_win_nr = winnr()
+      exec expl_win_num . 'wincmd w'
+      close
+      exec cur_win_nr . 'wincmd w'
+      unlet t:expl_buf_num
+    else
+      unlet t:expl_buf_num
+    endif
+  else
+    exec '1wincmd w'
+    Vexplore
+    let t:expl_buf_num = bufnr("%")
+  endif
+endfunction
+map <silent> <C-E> :call ToggleVExplorer()<CR>
 
+" Hit enter in the file browser to open the selected
+" file with :vsplit to the right of the browser.
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+
+" Default to tree mode
+let g:netrw_liststyle=3

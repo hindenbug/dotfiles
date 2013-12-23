@@ -1,12 +1,11 @@
-if !exists('g:spf13_bundle_groups')
-  let g:spf13_bundle_groups=[]
-endif
-
+let g:spf13_bundle_groups=[]
 
 NeoBundle 'tpope/vim-rake'
 NeoBundle 'kien/rainbow_parentheses.vim'
+NeoBundle "kien/ctrlp.vim"
 
 " All your bundles here " Ruby, Rails, Rake...
+
 NeoBundle 'tpope/vim-rails'
 NeoBundle "ecomba/vim-ruby-refactoring"
 NeoBundle "vim-ruby/vim-ruby.git"
@@ -14,10 +13,11 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'thoughtbot/vim-rspec'
 NeoBundle 'slim-template/vim-slim'
 NeoBundle 'quanganhdo/grb256'
+NeoBundle 'rstacruz/sparkup'
 
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'spf13/vim-preview'
-NeoBundle 'amirh/HTML-AutoCloseTag'
+"NeoBundle 'amirh/HTML-AutoCloseTag'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'tpope/vim-haml'
 NeoBundle 'othree/html5.vim'
@@ -29,27 +29,19 @@ NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'Shougo/neocomplete.vim.git'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'honza/vim-snippets'
-NeoBundle 'scrooloose/nerdcommenter'
 
-NeoBundle 'scrooloose/nerdtree'
+" NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'spf13/vim-colors'
-NeoBundle 'spf13/vim-autoclose'
 NeoBundle 'vim-scripts/sessionman.vim'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'bling/vim-bufferline'
 NeoBundle 'godlygeek/csapprox'
-NeoBundle 'jistr/vim-nerdtree-tabs'
+" NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'mbbill/undotree'
 NeoBundle 'myusuf3/numbers.vim'
-if !exists('g:spf13_no_views')
-  NeoBundle 'vim-scripts/restore_view.vim'
-endif
 NeoBundle 'mhinz/vim-signify'
-
-
 NeoBundle 'ervandew/supertab'
 NeoBundle 'tpope/vim-commentary'
-"Bundle 'troydm/shellasync.vim'
 
 " Git related...
 NeoBundle "gregsexton/gitv"
@@ -70,7 +62,6 @@ NeoBundle "terryma/vim-multiple-cursors"
 
 " General vim improvements
 "NeoBundle "MarcWeber/vim-addon-mw-utils.git"
-NeoBundle "kien/ctrlp.vim"
 NeoBundle "majutsushi/tagbar.git"
 NeoBundle "mattn/webapi-vim.git"
 NeoBundle "rking/ag.vim"
@@ -81,7 +72,6 @@ NeoBundle "sjl/gundo.vim"
 "NeoBundle "tomtom/tlib_vim.git"
 
 
-NeoBundle "tpope/vim-endwise.git"
 NeoBundle "tpope/vim-ragtag"
 NeoBundle "tpope/vim-repeat.git"
 NeoBundle "tpope/vim-surround.git"
@@ -92,31 +82,30 @@ NeoBundle "vim-scripts/lastpos.vim"
 NeoBundle "vim-scripts/sudo.vim"
 
 " Text objects
-NeoBundle "austintaylor/vim-indentobject"
-NeoBundle "bootleq/vim-textobj-rubysymbol"
-NeoBundle "coderifous/textobj-word-column.vim"
-NeoBundle "kana/vim-textobj-datetime"
-NeoBundle "kana/vim-textobj-entire"
-NeoBundle "kana/vim-textobj-function"
-NeoBundle "kana/vim-textobj-user"
-NeoBundle "lucapette/vim-textobj-underscore"
-NeoBundle "nathanaelkane/vim-indent-guides"
-NeoBundle "nelstrom/vim-textobj-rubyblock"
-NeoBundle "thinca/vim-textobj-function-javascript"
-NeoBundle "vim-scripts/argtextobj.vim"
+"NeoBundle "austintaylor/vim-indentobject"
+"NeoBundle "bootleq/vim-textobj-rubysymbol"
+"NeoBundle "coderifous/textobj-word-column.vim"
+"NeoBundle "kana/vim-textobj-datetime"
+"NeoBundle "kana/vim-textobj-entire"
+"NeoBundle "kana/vim-textobj-function"
+"NeoBundle "kana/vim-textobj-user"
+"NeoBundle "lucapette/vim-textobj-underscore"
+"NeoBundle "nathanaelkane/vim-indent-guides"
+"NeoBundle "nelstrom/vim-textobj-rubyblock"
+"NeoBundle "thinca/vim-textobj-function-javascript"
+"NeoBundle "vim-scripts/argtextobj.vim"
 
 
 " Cosmetics, color scheme, Powerline...
 NeoBundle "chrisbra/color_highlight.git"
-"NeoBundle "skwp/vim-colors-solarized"
+""NeoBundle "skwp/vim-colors-solarized"
 NeoBundle "bogado/file-line.git"
 NeoBundle 'flazz/vim-colorschemes'
 NeoBundle "nelstrom/vim-visual-star-search"
 NeoBundle "itspriddle/vim-jquery.git"
 NeoBundle 'tpope/vim-rbenv.git'
 NeoBundle 'vim-scripts/TagHighlight.git'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'zhaocai/GoldenView.Vim'
+"NeoBundle 'zhaocai/GoldenView.Vim'
 
 " Clojure
 NeoBundle 'tpope/vim-foreplay'

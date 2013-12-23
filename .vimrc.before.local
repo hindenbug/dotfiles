@@ -74,25 +74,31 @@ set wildmenu            " Enhanced command line completion mode
 " Finally start cycling between completions (starts wildmenu mode).
 set wildmode=list,longest,full
 
+" Ignore these directories
+set wildignore+=*/tmp/*,*/vendor/**,*.so,*.swp,*.zip
+
 " Tabs, spaces, wrapping
 set formatoptions+=tcrqnb
 set formatoptions-=o
-
 set ignorecase
 set smartcase
 set showmatch
 set gdefault
-
 set scrolloff=3
 set sidescroll=1
 set sidescrolloff=10
-
 set virtualedit+=block
 
+let g:netrw_list_hide= '.*\.swp$'
 let mapleader=","
 let g:spf13_no_autochdir = 1
 let g:LargeFile=5
 let spf13_no_views=1
 let spf13_no_backups=1
 let g:ruby_path = system('echo $HOME/.rbenv/shims')
+
+" Set no max file limit
+let g:ctrlp_max_files = 0
+" Search from current directory instead of project root
+let g:ctrlp_working_path_mode = 0
 
