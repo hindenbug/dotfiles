@@ -40,3 +40,7 @@ link/.ssh/id_*
 link/.ssh/known_hosts
 *LOCAL*
 bundle/
+*.swp
+tmp/
+.DS_Store
+*.vimrc
