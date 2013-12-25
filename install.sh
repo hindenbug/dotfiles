@@ -52,12 +52,12 @@ fi
 
 if [ ! -d "bundle/vundle" ]; then
   echo "Then, we install Vundle (https://github.com/gmarik/vundle)."
-  git clone https://github.com/gmarik/vundle.git bundle/vundle
+  git clone https://github.com/gmarik/vundle.git vim/bundle/vundle
 fi
 
 if [ ! -d "bundle/neobundle.vim" ]; then
   echo "Then, we install NeoBundle."
-  git clone https://github.com/Shougo/neobundle.vim bundle/neobundle.vim
+  git clone https://github.com/Shougo/neobundle.vim vim/bundle/neobundle.vim
 fi
 
 echo "There you are! Enjoy!"
