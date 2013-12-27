@@ -38,10 +38,6 @@ let maplocalleader = "\\"
 syntax on             " Enable syntax highlighting
 filetype plugin indent on
 
-if $TERM_PROGRAM == 'iTerm.app'
-  set term=linux
-endif
-
 set scrolloff=0    " Set 5 lines to the cursor - when moving vertically
 set mouse=a
 set autoread
@@ -63,11 +59,9 @@ if has('persistent_undo')
   set undolevels=1000         " Maximum number of changes that can be undone
   set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
 endif
-"highlight clear SignColumn      " SignColumn should match oackground
-"highlight clear LineNr          " Current line number row will have same background color in relative mode
 
-set splitright                  " Puts new vsplit windows to the right of the current
-set splitbelow                  " Puts new split windows to the bottom of the current
+set splitright     " Puts new vsplit windows to the right of the current
+set splitbelow     " Puts new split windows to the bottom of the current
 set encoding=utf-8 " Use the only sane encoding choice
 set modelines=2    " Check 2 lines of files for commands
 set autoindent     " Continue previous line's indent by default
@@ -80,9 +74,7 @@ set backspace=indent,eol,start " Sane edge case behavior for Backspace key
 set relativenumber " Use relative line numbering
 set number
 set laststatus=2   " Show a status line for all windows always
-set matchtime=3    " Auto-highlight '%' match for 0.3s
 set showbreak=↪    " Use this character to indicate wrapping
-set autowrite      " Write modified files on certain commands
 set shiftround     " Round indents to multiple of shiftwidth
 set title          " Update the (terminal) window title
 set linebreak      " Break lines at opportune characters
@@ -106,7 +98,8 @@ set incsearch      " show search matches as you type
 " (Hopefully) removes the delay when hitting esc in insert mode
 set noesckeys
 set ttimeout
-set ttimeoutlen=1
+set ttimeoutlen=0
+set timeoutlen=1000
 set visualbell t_vb=    " Turn off flashing
 
 " Command line completion:
@@ -177,9 +170,6 @@ map <Leader>= <C-w>=
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
-if has("gui_running")
-endif
-
 " =================================================================================================
 " Ruby stuff
 " =================================================================================================
@@ -194,7 +184,6 @@ augroup myfiletypes
   autocmd!
   " autoindent with two spaces, always expand tabs
   autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-  autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
   autocmd FileType * set ai sw=2 sts=2 ts=2 et
   autocmd FileType python,html,xml,markdown set ai sw=4 sts=4 et
   "autocmd User Rails set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
@@ -233,9 +222,6 @@ nmap <C-e> :NERDTreeToggle<CR>
 "noremap <down> <nop>
 "noremap <right> <nop>
 
-" Yank from current cursor position to end of line
-map Y y$
-
 " :W is bound to :w.
 command! W :w
 
@@ -250,11 +236,8 @@ nmap <leader>wq :w!<cr>:Bclose<cr>
 " bind L to grep word under cursor
 nnoremap L :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-nmap <Leader>bi :source ~/.vimrc<cr>:BundleInstall<cr>
-map <Leader>gs :Gstatus<CR>
+nmap <Leader>bi :source ~/.vimrc<cr>:NeoBundleInstall<cr>
 map <Leader>rs :vsp <C-r>#<cr><C-w>w
-map <Leader>ss ds)i <esc>:w<cr>
-map <Leader>w <C-w>w
 nmap <space> i_<esc>r
 
 "Edit another file in the same directory as the current file
@@ -296,27 +279,11 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-" Bubbling lines
-"nmap <C-Up> [e
-"nmap <C-Down> ]e
-"vmap <C-Up> [egv
-"vmap <C-Down> ]egv
-
-
 " format the entire file
 nmap <leader>fef ggVG=
 
-" Open new buffers
-nmap <leader>s<left>   :leftabove  vnew<cr>
-nmap <leader>s<right>  :rightbelow vnew<cr>
-nmap <leader>s<up>     :leftabove  new<cr>
-nmap <leader>s<down>   :rightbelow new<cr>
-
 " Tab between buffers
 noremap <tab> <c-w><c-w>
-
-nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
-
 inoremap <C-s> <esc>:w<cr>a
 nnoremap <C-s> :w<cr>a
 
@@ -349,9 +316,6 @@ au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
 au BufNewFile,BufRead *.txt setlocal wrap
 au BufNewFile,BufRead *.txt setlocal lbr
 
-" Turn on spell-checking in markdown and text.
-au BufRead,BufNewFile *.md,*.txt setlocal spell
-
 " Automatic formatting
 autocmd BufWritePre *.rb :%s/\s\+$//e
 autocmd BufWritePre *.haml :%s/\s\+$//e
@@ -359,9 +323,7 @@ autocmd BufWritePre *.html :%s/\s\+$//e
 autocmd BufWritePre *.scss :%s/\s\+$//e
 autocmd BufWritePre *.slim :%s/\s\+$//e
 
-
 au BufNewFile * set noeol
-
 " No show command
 autocmd VimEnter * set nosc
 
@@ -379,9 +341,8 @@ function! RenameFile()
 endfunction
 map <Leader>n :call RenameFile()<cr>
 
-
 set list lcs=tab:\|\
-
+set nocompatible
 au BufNewFile,BufReadPost *.html setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 au BufNewFile,BufReadPost *.slim setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
