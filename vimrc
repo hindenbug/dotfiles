@@ -35,13 +35,11 @@ let maplocalleader = "\\"
 
 
 " load indent file for the current filetype
-set nocompatible      " We're running Vim, not Vi!
 syntax on             " Enable syntax highlighting
-
 filetype plugin indent on
 
-if !has('gui')
-  "set term=$TERM          " Make arrow and other keys work
+if $TERM_PROGRAM == 'iTerm.app'
+  set term=linux
 endif
 
 set scrolloff=0    " Set 5 lines to the cursor - when moving vertically
@@ -57,8 +55,6 @@ set noeol
 set numberwidth=3
 set winwidth=83
 set textwidth=100
-"set foldlevelstart=0
-"set foldmethod=syntax
 set ofu=syntaxcomplete#Complete
 set clipboard+=unnamed
 set history=1000
@@ -150,6 +146,8 @@ let NERDTreeDirArrows = 1
 
 " Search from current directory instead of project root
 let g:ctrlp_working_path_mode = 0
+" Set no max file limit
+let g:ctrlp_max_files = 0
 let g:indentobject_meaningful_indentation = ["haml", "sass", "python", "yaml", "markdown", "ruby"]
 let g:indent_guides_enable_on_vim_startup = 0
 let g:rubycomplete_buffer_loading = 0
@@ -157,28 +155,21 @@ let g:rubycomplete_classes_in_global = 1
 let g:LargeFile=5
 let g:ruby_path = system('echo $HOME/.rbenv/shims')
 
-" Broken down into easily includeable segments
-"set statusline=%<%f\                     " Filename
-" set statusline+=%w%h%m%r                 " Options
-" set statusline+=%{fugitive#statusline()} " Git Hotness
-" set statusline+=\ [%{&ff}/%Y]            " Filetype
-" set statusline+=\ [%{getcwd()}]          " Current dir
-" set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
-
 set lazyredraw
 
-" Set no max file limit
-let g:ctrlp_max_files = 0
 let g:airline_left_sep='›'  " Slightly fancier than '>'
 let g:airline_right_sep='‹' " Slightly fancier than '<'
-"let g:Powerline_symbols='fancy'
-"let g:Powerline_theme='skwp'
-"let g:Powerline_colorscheme='skwp'
 let g:airline_powerline_fonts = 1
-
 let g:airline_enable_branch     = 1
 let g:airline_enable_syntastic  = 1
 let g:airline_theme             = 'powerlineish'
+"let g:airline_left_sep          = '⮀'
+let g:airline_left_alt_sep      = '⮁'
+":let g:airline_right_sep         = '⮂'
+"let g:airline_right_alt_sep     = '⮃'
+let g:airline_branch_prefix     = '⭠'
+let g:airline_readonly_symbol   = '⭤'
+let g:airline_linecolumn_prefix = '⭡'
 
 " Adjust viewports to the same size
 map <Leader>= <C-w>=
@@ -235,7 +226,6 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 
 nmap <C-e> :NERDTreeToggle<CR>
 " Keep NERDTree window fixed between multiple toggles
-set winfixwidth
 
 " stop arrow keys.
 "noremap <left> <nop>
@@ -245,12 +235,6 @@ set winfixwidth
 
 " Yank from current cursor position to end of line
 map Y y$
-
-" clear highlight after search
-noremap <silent><Leader>/ :nohls<CR>
-
-" better ESC
-inoremap <C-k> <Esc>
 
 " :W is bound to :w.
 command! W :w
@@ -331,9 +315,6 @@ nmap <leader>s<down>   :rightbelow new<cr>
 " Tab between buffers
 noremap <tab> <c-w><c-w>
 
-" Switch between last two buffers
-nnoremap <leader><leader> <C-^>
-
 nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
 inoremap <C-s> <esc>:w<cr>a
@@ -341,21 +322,11 @@ nnoremap <C-s> :w<cr>a
 
 nnoremap ; :
 
-" Easy buffer navigation
-noremap <leader>bp :bprevious<cr>
-noremap <leader>bn :bnext<cr>
-
-
-nmap <leader># :call NERDComment(0, "invert")<cr>
-vmap <leader># :call NERDComment(0, "invert")<cr>
-
-
 "==================================================================================================
 " FORMATTING
 "==================================================================================================
 
 " Remove trailing whitespace on save for ruby files.
-au BufWritePre *.rb :%s/\s\+$//e
 autocmd BufWritePre * :%s/\s\+$//e
 
 " Save when losing focus
@@ -384,9 +355,9 @@ au BufRead,BufNewFile *.md,*.txt setlocal spell
 " Automatic formatting
 autocmd BufWritePre *.rb :%s/\s\+$//e
 autocmd BufWritePre *.haml :%s/\s\+$//e
-"autocmd BufWritePre *.html :%s/\s\+$//e
+autocmd BufWritePre *.html :%s/\s\+$//e
 autocmd BufWritePre *.scss :%s/\s\+$//e
-"autocmd BufWritePre *.slim :%s/\s\+$//e
+autocmd BufWritePre *.slim :%s/\s\+$//e
 
 
 au BufNewFile * set noeol
@@ -414,5 +385,3 @@ set list lcs=tab:\|\
 au BufNewFile,BufReadPost *.html setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 au BufNewFile,BufReadPost *.slim setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-
-
