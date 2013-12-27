@@ -1,17 +1,12 @@
 "General
-NeoBundle 'editorconfig/editorconfig-vim'
-NeoBundle 'tsaleh/vim-align'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-speeddating'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'maxbrunsfeld/vim-yankstack'
-NeoBundle 'tpope/vim-eunuch'
 NeoBundle 'Shougo/neocomplete.vim.git'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'honza/vim-snippets'
-NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'Spaceghost/vim-matchit'
 NeoBundle 'vim-scripts/scratch.vim'
 NeoBundle 'terryma/vim-multiple-cursors'
@@ -29,15 +24,12 @@ NeoBundle "tpope/vim-ragtag"
 NeoBundle "vim-scripts/AnsiEsc.vim.git"
 NeoBundle "vim-scripts/AutoTag.git"
 NeoBundle "vim-scripts/lastpos.vim"
-NeoBundle "vim-scripts/sudo.vim"
-NeoBundle 'sjl/splice.vim'
 NeoBundle 'vim-scripts/YankRing.vim'
 NeoBundle 'michaeljsmith/vim-indent-object'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'rking/ag.vim'
 
-"NeoBundle "austintaylor/vim-indentobject"
 "NeoBundle "bootleq/vim-textobj-rubysymbol"
 "NeoBundle "coderifous/textobj-word-column.vim"
 "NeoBundle "kana/vim-textobj-datetime"
@@ -46,12 +38,8 @@ NeoBundle 'rking/ag.vim'
 "NeoBundle "kana/vim-textobj-user"
 "NeoBundle "lucapette/vim-textobj-underscore"
 "NeoBundle "nathanaelkane/vim-indent-guides"
-"NeoBundle "nelstrom/vim-textobj-rubyblock"
 "NeoBundle "thinca/vim-textobj-function-javascript"
 "NeoBundle "vim-scripts/argtextobj.vim"
-
-NeoBundle 'matthias-guenther/hammer.vim'
-nmap <leader>p :Hammer<cr>
 
 NeoBundle 'troydm/easybuffer.vim'
 nmap <leader>be :EasyBufferToggle<enter>
@@ -80,13 +68,10 @@ NeoBundle 'sjl/badwolf'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'chriskempson/base16-vim'
-"NeoBundle 'Elive/vim-colorscheme-elive'
 NeoBundle 'zeis/vim-kolor'
 NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundle 'kien/ctrlp.vim'
-
-"Indent
-"NeoBundle 'Yggdroot/indentLine'
+NeoBundle 'vim-scripts/Reindent'
 
 "OS
 NeoBundle 'zaiste/tmux.vim'
@@ -111,7 +96,6 @@ NeoBundle 'slim-template/vim-slim'
 
 "CSS
 NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'wavded/vim-stylus'
 
 
 " Git related...
@@ -149,7 +133,6 @@ let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['ruby'], 'passive_filetypes': ['html', 'css', 'slim'] }
 
-NeoBundle 'vim-scripts/Reindent'
 
 
 NeoBundleCheck
