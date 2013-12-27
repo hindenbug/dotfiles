@@ -1,159 +1,155 @@
 "General
-  NeoBundle 'editorconfig/editorconfig-vim'
-  NeoBundle 'tsaleh/vim-align'
-  NeoBundle 'tpope/vim-endwise'
-  NeoBundle 'tpope/vim-repeat'
-  NeoBundle 'tpope/vim-speeddating'
-  NeoBundle 'tpope/vim-surround'
-  NeoBundle 'tpope/vim-unimpaired'
-  NeoBundle 'maxbrunsfeld/vim-yankstack'
-  NeoBundle 'tpope/vim-eunuch'
-  NeoBundle 'Shougo/neocomplete.vim.git'
-  NeoBundle 'Shougo/neosnippet'
-  NeoBundle 'honza/vim-snippets'
-  NeoBundle 'kana/vim-textobj-user'
-  NeoBundle 'Spaceghost/vim-matchit'
-  NeoBundle 'vim-scripts/scratch.vim'
-  NeoBundle 'terryma/vim-multiple-cursors'
-  NeoBundle "AndrewRadev/splitjoin.vim"
-	NeoBundle "Raimondi/delimitMate"
-	NeoBundle "godlygeek/tabular"
-	NeoBundle "skwp/vim-easymotion"
-	NeoBundle "tomtom/tcomment_vim.git"
-	NeoBundle "tpope/vim-bundler"
-	NeoBundle "vim-scripts/camelcasemotion.git"
-	"NeoBundle "MarcWeber/vim-addon-mw-utils.git"
-	NeoBundle "mattn/webapi-vim.git"
-	NeoBundle "sjbach/lusty.git"
-	NeoBundle "sjl/gundo.vim"
-	"NeoBundle "skwp/greplace.vim"
-	"NeoBundle "tomtom/tlib_vim.git"
-	NeoBundle "tpope/vim-ragtag"
-	NeoBundle "vim-scripts/AnsiEsc.vim.git"
-	NeoBundle "vim-scripts/AutoTag.git"
-	NeoBundle "vim-scripts/lastpos.vim"
-	NeoBundle "vim-scripts/sudo.vim"
-  NeoBundle 'sjl/splice.vim'
-  NeoBundle 'vim-scripts/YankRing.vim'
-  NeoBundle 'michaeljsmith/vim-indent-object'
-  NeoBundle 'scrooloose/nerdcommenter'
-  NeoBundle 'scrooloose/nerdtree'
-  NeoBundle 'rking/ag.vim'
+NeoBundle 'editorconfig/editorconfig-vim'
+NeoBundle 'tsaleh/vim-align'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-speeddating'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-unimpaired'
+NeoBundle 'maxbrunsfeld/vim-yankstack'
+NeoBundle 'tpope/vim-eunuch'
+NeoBundle 'Shougo/neocomplete.vim.git'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'honza/vim-snippets'
+NeoBundle 'kana/vim-textobj-user'
+NeoBundle 'Spaceghost/vim-matchit'
+NeoBundle 'vim-scripts/scratch.vim'
+NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle "AndrewRadev/splitjoin.vim"
+NeoBundle "Raimondi/delimitMate"
+NeoBundle "godlygeek/tabular"
+NeoBundle "skwp/vim-easymotion"
+NeoBundle "tomtom/tcomment_vim.git"
+NeoBundle "tpope/vim-bundler"
+NeoBundle "vim-scripts/camelcasemotion.git"
+NeoBundle "mattn/webapi-vim.git"
+NeoBundle "sjbach/lusty.git"
+NeoBundle "sjl/gundo.vim"
+NeoBundle "tpope/vim-ragtag"
+NeoBundle "vim-scripts/AnsiEsc.vim.git"
+NeoBundle "vim-scripts/AutoTag.git"
+NeoBundle "vim-scripts/lastpos.vim"
+NeoBundle "vim-scripts/sudo.vim"
+NeoBundle 'sjl/splice.vim'
+NeoBundle 'vim-scripts/YankRing.vim'
+NeoBundle 'michaeljsmith/vim-indent-object'
+NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'rking/ag.vim'
 
-  "NeoBundle "austintaylor/vim-indentobject"
-	"NeoBundle "bootleq/vim-textobj-rubysymbol"
-	"NeoBundle "coderifous/textobj-word-column.vim"
-	"NeoBundle "kana/vim-textobj-datetime"
-	"NeoBundle "kana/vim-textobj-entire"
-	"NeoBundle "kana/vim-textobj-function"
-	"NeoBundle "kana/vim-textobj-user"
-	"NeoBundle "lucapette/vim-textobj-underscore"
-	"NeoBundle "nathanaelkane/vim-indent-guides"
-	"NeoBundle "nelstrom/vim-textobj-rubyblock"
-	"NeoBundle "thinca/vim-textobj-function-javascript"
-	"NeoBundle "vim-scripts/argtextobj.vim"
+"NeoBundle "austintaylor/vim-indentobject"
+"NeoBundle "bootleq/vim-textobj-rubysymbol"
+"NeoBundle "coderifous/textobj-word-column.vim"
+"NeoBundle "kana/vim-textobj-datetime"
+"NeoBundle "kana/vim-textobj-entire"
+"NeoBundle "kana/vim-textobj-function"
+"NeoBundle "kana/vim-textobj-user"
+"NeoBundle "lucapette/vim-textobj-underscore"
+"NeoBundle "nathanaelkane/vim-indent-guides"
+"NeoBundle "nelstrom/vim-textobj-rubyblock"
+"NeoBundle "thinca/vim-textobj-function-javascript"
+"NeoBundle "vim-scripts/argtextobj.vim"
 
-  NeoBundle 'matthias-guenther/hammer.vim'
-  nmap <leader>p :Hammer<cr>
+NeoBundle 'matthias-guenther/hammer.vim'
+nmap <leader>p :Hammer<cr>
 
-  NeoBundle 'troydm/easybuffer.vim'
-  nmap <leader>be :EasyBufferToggle<enter>
+NeoBundle 'troydm/easybuffer.vim'
+nmap <leader>be :EasyBufferToggle<enter>
 
 
 "Fancy
-	NeoBundle 'bling/vim-airline'
-	NeoBundle "chrisbra/color_highlight.git"
-	NeoBundle "bogado/file-line.git"
-	NeoBundle 'flazz/vim-colorschemes'
-	NeoBundle "nelstrom/vim-visual-star-search"
-	NeoBundle "itspriddle/vim-jquery.git"
-	NeoBundle 'tpope/vim-rbenv.git'
-	NeoBundle 'vim-scripts/TagHighlight.git'
-	"NeoBundle 'zhaocai/GoldenView.Vim'
-	NeoBundle 'altercation/vim-colors-solarized'
-	NeoBundle 'quanganhdo/grb256'
-	NeoBundle 'spf13/vim-colors'
-	NeoBundle 'bling/vim-bufferline'
-	NeoBundle 'jistr/vim-nerdtree-tabs'
-	NeoBundle 'mbbill/undotree'
-	NeoBundle 'myusuf3/numbers.vim'
-	NeoBundle 'mhinz/vim-signify'
-	NeoBundle 'ervandew/supertab'
-	NeoBundle 'tpope/vim-commentary'
-	NeoBundle 'sjl/badwolf'
-  NeoBundle 'tomasr/molokai'
-  NeoBundle 'zaiste/Atom'
-  NeoBundle 'w0ng/vim-hybrid'
-  NeoBundle 'chriskempson/base16-vim'
-  NeoBundle 'Elive/vim-colorscheme-elive'
-  NeoBundle 'zeis/vim-kolor'
-  NeoBundle 'kien/rainbow_parentheses.vim'
-  NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'bling/vim-airline'
+NeoBundle "chrisbra/color_highlight.git"
+NeoBundle "bogado/file-line.git"
+NeoBundle 'flazz/vim-colorschemes'
+NeoBundle "nelstrom/vim-visual-star-search"
+NeoBundle "itspriddle/vim-jquery.git"
+NeoBundle 'tpope/vim-rbenv.git'
+NeoBundle 'vim-scripts/TagHighlight.git'
+"NeoBundle 'zhaocai/GoldenView.Vim'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'quanganhdo/grb256'
+"NeoBundle 'bling/vim-bufferline'
+NeoBundle 'jistr/vim-nerdtree-tabs'
+NeoBundle 'mbbill/undotree'
+NeoBundle 'myusuf3/numbers.vim'
+NeoBundle 'mhinz/vim-signify'
+NeoBundle 'ervandew/supertab'
+NeoBundle 'tpope/vim-commentary'
+NeoBundle 'sjl/badwolf'
+NeoBundle 'tomasr/molokai'
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'chriskempson/base16-vim'
+"NeoBundle 'Elive/vim-colorscheme-elive'
+NeoBundle 'zeis/vim-kolor'
+NeoBundle 'kien/rainbow_parentheses.vim'
+NeoBundle 'kien/ctrlp.vim'
 
 "Indent
-  "NeoBundle 'Yggdroot/indentLine'
+"NeoBundle 'Yggdroot/indentLine'
 
 "OS
-  NeoBundle 'zaiste/tmux.vim'
+NeoBundle 'zaiste/tmux.vim'
+NeoBundle 'edkolev/tmuxline.vim'
 
 " Ruby, Rails, Rake...
-  NeoBundle 'tpope/vim-rake'
-	NeoBundle 'vim-ruby/vim-ruby'
- 	NeoBundle 'tpope/vim-rails'
- 	NeoBundle 'nelstrom/vim-textobj-rubyblock'
- 	NeoBundle 'ecomba/vim-ruby-refactoring'
-  NeoBundle 'thoughtbot/vim-rspec'
+NeoBundle 'tpope/vim-rake'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'nelstrom/vim-textobj-rubyblock'
+NeoBundle 'ecomba/vim-ruby-refactoring'
+NeoBundle 'thoughtbot/vim-rspec'
 
 
 "HTML
-  NeoBundle 'tpope/vim-markdown'
-	NeoBundle 'tpope/vim-haml'
-  NeoBundle 'juvenn/mustache.vim'
-  NeoBundle 'amirh/HTML-AutoCloseTag'
-  NeoBundle 'othree/html5.vim'
-  NeoBundle 'slim-template/vim-slim'
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'tpope/vim-haml'
+NeoBundle 'juvenn/mustache.vim'
+NeoBundle 'amirh/HTML-AutoCloseTag'
+NeoBundle 'othree/html5.vim'
+NeoBundle 'slim-template/vim-slim'
 
 "CSS
-  NeoBundle 'hail2u/vim-css3-syntax'
-  NeoBundle 'wavded/vim-stylus'
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'wavded/vim-stylus'
 
 
 " Git related...
-	NeoBundle "gregsexton/gitv"
-	NeoBundle "mattn/gist-vim"
-	NeoBundle "tpope/vim-git"
-	NeoBundle 'tpope/vim-fugitive'
+NeoBundle "gregsexton/gitv"
+NeoBundle "mattn/gist-vim"
+NeoBundle "tpope/vim-git"
+NeoBundle 'tpope/vim-fugitive'
 
 "JS
-	NeoBundle 'elzr/vim-json'
-	NeoBundle 'pangloss/vim-javascript'
-	NeoBundle 'briancollins/vim-jst'
-	NeoBundle 'kchmck/vim-coffee-script'
-  NeoBundle 'alfredodeza/jacinto.vim'
+NeoBundle 'elzr/vim-json'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'briancollins/vim-jst'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'alfredodeza/jacinto.vim'
 
 
 " Clojure
-	NeoBundle 'tpope/vim-foreplay'
-	NeoBundle 'tpope/vim-classpath'
-	NeoBundle 'guns/vim-clojure-static'
-	NeoBundle 'tpope/vim-fireplace'
+NeoBundle 'tpope/vim-foreplay'
+NeoBundle 'tpope/vim-classpath'
+NeoBundle 'guns/vim-clojure-static'
+NeoBundle 'tpope/vim-fireplace'
 
 "Python
-	"NeoBundle 'klen/python-mode'
- 	"NeoBundle 'python.vim'
- 	"NeoBundle 'python_match.vim'
-  "NeoBundle 'pythoncomplete'
+"NeoBundle 'klen/python-mode'
+"NeoBundle 'python.vim'
+"NeoBundle 'python_match.vim'
+"NeoBundle 'pythoncomplete'
 
 "Coding
-  NeoBundle 'majutsushi/tagbar'
-    nmap <leader>t :TagbarToggle<CR>
+NeoBundle 'majutsushi/tagbar'
+nmap <leader>t :TagbarToggle<CR>
 
-  NeoBundle 'scrooloose/syntastic'
-    let g:syntastic_enable_signs=1
-    let g:syntastic_auto_loc_list=1
-    let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['ruby'], 'passive_filetypes': ['html', 'css', 'slim'] }
+NeoBundle 'scrooloose/syntastic'
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['ruby'], 'passive_filetypes': ['html', 'css', 'slim'] }
 
-  NeoBundle 'vim-scripts/Reindent'
+NeoBundle 'vim-scripts/Reindent'
 
 
 NeoBundleCheck

@@ -27,8 +27,8 @@ endif
 "==================================================================================================
 " THEME SETTINGS
 "==================================================================================================
-colorscheme molokai
-
+colorscheme badwolf
+set background=dark
 
 let mapleader = ","
 let maplocalleader = "\\"
@@ -51,7 +51,7 @@ set binary
 set cinoptions=:0,(s,u0,U1,g0,t0
 set completeopt=menuone,preview
 set list
-set listchars=tab:▸\ ,extends:❯,precedes:❮,trail:␣
+set listchars=tab:▸\ ,extends:❯,precedes:❮,trail:·
 set notimeout
 set noeol
 set numberwidth=3
@@ -67,11 +67,11 @@ if has('persistent_undo')
   set undolevels=1000         " Maximum number of changes that can be undone
   set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
 endif
-highlight clear SignColumn      " SignColumn should match background
-highlight clear LineNr          " Current line number row will have same background color in relative mode
+"highlight clear SignColumn      " SignColumn should match oackground
+"highlight clear LineNr          " Current line number row will have same background color in relative mode
+
 set splitright                  " Puts new vsplit windows to the right of the current
 set splitbelow                  " Puts new split windows to the bottom of the current
-set background=dark
 set encoding=utf-8 " Use the only sane encoding choice
 set modelines=2    " Check 2 lines of files for commands
 set autoindent     " Continue previous line's indent by default
@@ -139,45 +139,46 @@ set sidescrolloff=10
 set virtualedit+=block
 set nofsync
 
-let g:LargeFile=5
-let g:ruby_path = system('echo $HOME/.rbenv/shims')
+" Auto open nerd tree on startup
+let g:nerdtree_tabs_open_on_gui_startup = 0
+" Focus in the main content window
+let g:nerdtree_tabs_focus_on_files = 1
 
-" Set no max file limit
-let g:ctrlp_max_files = 0
+" Make nerdtree look nice
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
 
 " Search from current directory instead of project root
 let g:ctrlp_working_path_mode = 0
 let g:indentobject_meaningful_indentation = ["haml", "sass", "python", "yaml", "markdown", "ruby"]
 let g:indent_guides_enable_on_vim_startup = 0
-let g:airline_left_sep='›'  " Slightly fancier than '>'
-let g:airline_right_sep='‹' " Slightly fancier than '<'
-
 let g:rubycomplete_buffer_loading = 0
 let g:rubycomplete_classes_in_global = 1
+let g:LargeFile=5
+let g:ruby_path = system('echo $HOME/.rbenv/shims')
 
-
-let g:airline_powerline_fonts = 1
 " Broken down into easily includeable segments
-set statusline=%<%f\                     " Filename
-set statusline+=%w%h%m%r                 " Options
-set statusline+=%{fugitive#statusline()} " Git Hotness
-set statusline+=\ [%{&ff}/%Y]            " Filetype
-set statusline+=\ [%{getcwd()}]          " Current dir
-set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+"set statusline=%<%f\                     " Filename
+" set statusline+=%w%h%m%r                 " Options
+" set statusline+=%{fugitive#statusline()} " Git Hotness
+" set statusline+=\ [%{&ff}/%Y]            " Filetype
+" set statusline+=\ [%{getcwd()}]          " Current dir
+" set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 
 set lazyredraw
+
+" Set no max file limit
+let g:ctrlp_max_files = 0
+let g:airline_left_sep='›'  " Slightly fancier than '>'
+let g:airline_right_sep='‹' " Slightly fancier than '<'
+"let g:Powerline_symbols='fancy'
+"let g:Powerline_theme='skwp'
+"let g:Powerline_colorscheme='skwp'
+let g:airline_powerline_fonts = 1
 
 let g:airline_enable_branch     = 1
 let g:airline_enable_syntastic  = 1
 let g:airline_theme             = 'powerlineish'
-" vim-powerline symbols
-let g:airline_left_sep          = '⮀'
-let g:airline_left_alt_sep      = '⮁'
-let g:airline_right_sep         = '⮂'
-let g:airline_right_alt_sep     = '⮃'
-let g:airline_branch_prefix     = '⭠'
-let g:airline_readonly_symbol   = '⭤'
-let g:airline_linecolumn_prefix = '⭡'
 
 " Adjust viewports to the same size
 map <Leader>= <C-w>=
@@ -185,6 +186,8 @@ map <Leader>= <C-w>=
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
+if has("gui_running")
+endif
 
 " =================================================================================================
 " Ruby stuff
