@@ -5,7 +5,6 @@ NeoBundle 'tpope/vim-speeddating'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'Shougo/neocomplete.vim.git'
-NeoBundle 'Shougo/neosnippet'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'Spaceghost/vim-matchit'
 NeoBundle 'vim-scripts/scratch.vim'
@@ -44,7 +43,6 @@ NeoBundle 'rking/ag.vim'
 NeoBundle 'troydm/easybuffer.vim'
 nmap <leader>be :EasyBufferToggle<enter>
 
-
 "Fancy
 NeoBundle 'bling/vim-airline'
 NeoBundle "chrisbra/color_highlight.git"
@@ -65,10 +63,7 @@ NeoBundle 'mhinz/vim-signify'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'sjl/badwolf'
-NeoBundle 'tomasr/molokai'
 NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'chriskempson/base16-vim'
-NeoBundle 'zeis/vim-kolor'
 NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'vim-scripts/Reindent'
@@ -89,13 +84,13 @@ NeoBundle 'thoughtbot/vim-rspec'
 "HTML
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'tpope/vim-haml'
-NeoBundle 'juvenn/mustache.vim'
 NeoBundle 'amirh/HTML-AutoCloseTag'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'slim-template/vim-slim'
 
 "CSS
 NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'ap/vim-css-color'
 
 
 " Git related...
@@ -107,7 +102,6 @@ NeoBundle 'tpope/vim-fugitive'
 "JS
 NeoBundle 'elzr/vim-json'
 NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'briancollins/vim-jst'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'alfredodeza/jacinto.vim'
 
@@ -126,13 +120,6 @@ NeoBundle 'tpope/vim-fireplace'
 
 "Coding
 NeoBundle 'majutsushi/tagbar'
-nmap <leader>t :TagbarToggle<CR>
 
 NeoBundle 'scrooloose/syntastic'
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=1
-let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['ruby'], 'passive_filetypes': ['html', 'css', 'slim'] }
-
-
-
 NeoBundleCheck

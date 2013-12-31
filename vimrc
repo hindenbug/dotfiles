@@ -128,6 +128,11 @@ set sidescrolloff=10
 set virtualedit+=block
 set nofsync
 
+
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['ruby'], 'passive_filetypes': ['html', 'css', 'slim'] }
+
 " Auto open nerd tree on startup
 let g:nerdtree_tabs_open_on_gui_startup = 0
 " Focus in the main content window
@@ -143,7 +148,7 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_max_files = 0
 let g:indentobject_meaningful_indentation = ["haml", "sass", "python", "yaml", "markdown", "ruby"]
 let g:indent_guides_enable_on_vim_startup = 0
-let g:rubycomplete_buffer_loading = 0
+let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
 let g:LargeFile=5
 let g:ruby_path = system('echo $HOME/.rbenv/shims')
@@ -152,13 +157,8 @@ set lazyredraw
 
 let g:airline_left_sep='›'  " Slightly fancier than '>'
 let g:airline_right_sep='‹' " Slightly fancier than '<'
-let g:airline_powerline_fonts = 1
-let g:airline_enable_branch     = 1
-let g:airline_enable_syntastic  = 1
 let g:airline_theme             = 'powerlineish'
-"let g:airline_left_sep          = '⮀'
-let g:airline_left_alt_sep      = '⮁'
-":let g:airline_right_sep         = '⮂'
+" let g:airline_left_alt_sep      = '⮁'
 "let g:airline_right_alt_sep     = '⮃'
 let g:airline_branch_prefix     = '⭠'
 let g:airline_readonly_symbol   = '⭤'
@@ -289,6 +289,7 @@ nnoremap <C-s> :w<cr>a
 
 nnoremap ; :
 
+nmap <leader>t :TagbarToggle<CR>
 "==================================================================================================
 " FORMATTING
 "==================================================================================================
@@ -304,8 +305,8 @@ autocmd! BufWritePost vimrc source ~/.vimrc
 
 augroup trailing
     au!
-    au InsertEnter * :set listchars-=trail:␣
-    au InsertLeave * :set listchars+=trail:␣
+    au InsertEnter * :set listchars-=trail:·
+    au InsertLeave * :set listchars+=trail:·
 augroup END
 
 
