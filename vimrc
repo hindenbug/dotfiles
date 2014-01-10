@@ -43,7 +43,7 @@ set mouse=a
 set autoread
 set binary
 set cinoptions=:0,(s,u0,U1,g0,t0
-set completeopt=menuone,preview
+"set completeopt=menuone,preview
 set list
 set listchars=tab:▸\ ,extends:❯,precedes:❮,trail:·
 set notimeout
@@ -51,9 +51,10 @@ set noeol
 set numberwidth=3
 set winwidth=83
 set textwidth=100
-set ofu=syntaxcomplete#Complete
+"set ofu=syntaxcomplete#Complete
 set clipboard+=unnamed
 set history=1000
+
 if has('persistent_undo')
   set undofile                " So is persistent undo ...
   set undolevels=1000         " Maximum number of changes that can be undone
@@ -72,7 +73,7 @@ set cursorline     " Highlight the entire line the cursor is on
 set ttyfast        " Assume a fast terminal connection
 set backspace=indent,eol,start " Sane edge case behavior for Backspace key
 set relativenumber " Use relative line numbering
-set number
+"set number
 set laststatus=2   " Show a status line for all windows always
 set showbreak=↪    " Use this character to indicate wrapping
 set shiftround     " Round indents to multiple of shiftwidth
@@ -98,8 +99,7 @@ set incsearch      " show search matches as you type
 " (Hopefully) removes the delay when hitting esc in insert mode
 set noesckeys
 set ttimeout
-set ttimeoutlen=0
-set timeoutlen=1000
+set ttimeoutlen=100
 set visualbell t_vb=    " Turn off flashing
 
 " Command line completion:
@@ -121,48 +121,39 @@ set formatoptions-=o
 set ignorecase
 set smartcase
 set showmatch
-set gdefault
+"set gdefault
 set scrolloff=3
 set sidescroll=1
 set sidescrolloff=10
-set virtualedit+=block
-set nofsync
+"set virtualedit+=block
+set ttyfast
+set lazyredraw
+"set nofsync
+set re=1
 
+" let g:syntastic_enable_signs=1
+" let g:syntastic_auto_loc_list=1
+" let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['ruby'], 'passive_filetypes': ['html', 'css', 'slim'] }
 
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=1
-let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['ruby'], 'passive_filetypes': ['html', 'css', 'slim'] }
-
-" Auto open nerd tree on startup
-let g:nerdtree_tabs_open_on_gui_startup = 0
-" Focus in the main content window
-let g:nerdtree_tabs_focus_on_files = 1
+let g:nerdtree_tabs_open_on_gui_startup = 0  " Auto open nerd tree on startup
+let g:nerdtree_tabs_focus_on_files = 1       " Focus in the main content window
 
 " Make nerdtree look nice
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
-" Search from current directory instead of project root
-let g:ctrlp_working_path_mode = 0
-" Set no max file limit
-let g:ctrlp_max_files = 0
-let g:indentobject_meaningful_indentation = ["haml", "sass", "python", "yaml", "markdown", "ruby"]
+let g:ctrlp_working_path_mode = 0  " Search from current directory instead of project root
+let g:ctrlp_max_files = 0          " Set no max file limit
+
+"let g:indentobject_meaningful_indentation = ["haml", "sass", "python", "yaml", "markdown", "ruby"]
 let g:indent_guides_enable_on_vim_startup = 0
-let g:rubycomplete_buffer_loading = 1
-let g:rubycomplete_classes_in_global = 1
+"let g:rubycomplete_buffer_loading = 1
+"let g:rubycomplete_classes_in_global = 1
 let g:LargeFile=5
 let g:ruby_path = system('echo $HOME/.rbenv/shims')
 
-set lazyredraw
-
-let g:airline_left_sep='›'  " Slightly fancier than '>'
-let g:airline_right_sep='‹' " Slightly fancier than '<'
-let g:airline_theme             = 'powerlineish'
-" let g:airline_left_alt_sep      = '⮁'
-"let g:airline_right_alt_sep     = '⮃'
-let g:airline_branch_prefix     = '⭠'
-let g:airline_readonly_symbol   = '⭤'
-let g:airline_linecolumn_prefix = '⭡'
+let g:calendar_google_calendar = 1
+let g:calendar_google_task = 1
 
 " Adjust viewports to the same size
 map <Leader>= <C-w>=
@@ -170,24 +161,51 @@ map <Leader>= <C-w>=
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
-" =================================================================================================
-" Ruby stuff
-" =================================================================================================
+if has("gui_running")
+    set guioptions=egmrt
+    set guioptions-=r
+    set guifont=Monaco\ for\ Powerline
+endif
 
-augroup myfiletypes
-  autocmd!
-  autocmd FileType slim,coffee,ruby,eruby,yaml set ai sw=2 sts=2 et
-augroup END
+" =================================================================================================
+" FORMATTING
+" =================================================================================================
 
 augroup myfiletypes
   " Clear old autocmds in group
   autocmd!
-  " autoindent with two spaces, always expand tabs
-  autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-  autocmd FileType * set ai sw=2 sts=2 ts=2 et
+  autocmd FileType slim,coffee,ruby,eruby,yaml set ai sw=2 sts=2 et
   autocmd FileType python,html,xml,markdown set ai sw=4 sts=4 et
-  "autocmd User Rails set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+
+  " autoindent with two spaces, always expand tabs
+  "autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+  autocmd FileType * set ai sw=2 sts=2 ts=2 et
 augroup END
+
+
+" When vimrc is edited, reload it
+"autocmd! BufWritePost vimrc source ~/.vimrc
+
+augroup trailing
+    au!
+    au InsertEnter * :set listchars-=trail:·
+    au InsertLeave * :set listchars+=trail:·
+augroup END
+
+"Format xml files
+"au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
+autocmd BufNewFile,BufRead *.slim set syntax=slim
+
+" When loading text files, wrap them and don't split up words.
+"au BufNewFile,BufRead *.txt setlocal wrap
+"au BufNewFile,BufRead *.txt setlocal lbr
+
+" Automatic formatting
+autocmd BufWritePre * :%s/\s\+$//e
+
+au BufNewFile * set noeol
+" No show command
+"autocmd VimEnter * set nosc
 
 
 " ==================================================================================================
@@ -231,7 +249,7 @@ cnoremap <c-e> <end>
 
 " Fast saving and closing current buffer without closing windows displaying the
 " buffer
-nmap <leader>wq :w!<cr>:Bclose<cr>
+"nmap <leader>wq :w!<cr>:Bclose<cr>
 
 " bind L to grep word under cursor
 nnoremap L :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
@@ -245,10 +263,6 @@ nmap <space> i_<esc>r
 map <Leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
 map <Leader>s :split <C-R>=expand("%:p:h") . '/'<CR>
 map <Leader>v :vnew <C-R>=expand("%:p:h") . '/'<CR>
-
-map <C-s> <esc>:w<CR>
-imap <C-s> <esc>:w<CR>
-map <C-t> <esc>:tabnew<CR>
 
 " Emacs-like beginning and end of line.
 imap <c-e> <c-o>$
@@ -282,53 +296,13 @@ vnoremap k gk
 " format the entire file
 nmap <leader>fef ggVG=
 
-" Tab between buffers
-noremap <tab> <c-w><c-w>
-inoremap <C-s> <esc>:w<cr>a
-nnoremap <C-s> :w<cr>a
-
 nnoremap ; :
 
-nmap <leader>t :TagbarToggle<CR>
 "==================================================================================================
 " FORMATTING
 "==================================================================================================
 
-" Remove trailing whitespace on save for ruby files.
-autocmd BufWritePre * :%s/\s\+$//e
-
-" Save when losing focus
-au FocusLost    * :silent! wall
-"
-" When vimrc is edited, reload it
-autocmd! BufWritePost vimrc source ~/.vimrc
-
-augroup trailing
-    au!
-    au InsertEnter * :set listchars-=trail:·
-    au InsertLeave * :set listchars+=trail:·
-augroup END
-
-
-"Format xml files
-au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
-
-" When loading text files, wrap them and don't split up words.
-au BufNewFile,BufRead *.txt setlocal wrap
-au BufNewFile,BufRead *.txt setlocal lbr
-
-" Automatic formatting
-autocmd BufWritePre *.rb :%s/\s\+$//e
-autocmd BufWritePre *.haml :%s/\s\+$//e
-autocmd BufWritePre *.html :%s/\s\+$//e
-autocmd BufWritePre *.scss :%s/\s\+$//e
-autocmd BufWritePre *.slim :%s/\s\+$//e
-
-au BufNewFile * set noeol
-" No show command
-autocmd VimEnter * set nosc
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RENAME CURRENT FILE (thanks Gary Bernhardt)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! RenameFile()
@@ -342,8 +316,65 @@ function! RenameFile()
 endfunction
 map <Leader>n :call RenameFile()<cr>
 
-set list lcs=tab:\|\
 set nocompatible
-au BufNewFile,BufReadPost *.html setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-au BufNewFile,BufReadPost *.slim setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+
+
+let g:lightline = {
+      \ 'colorscheme': 'powerline',
+      \ 'mode_map': { 'c': 'NORMAL' },
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+      \ },
+      \ 'component_function': {
+      \   'modified': 'MyModified',
+      \   'readonly': 'MyReadonly',
+      \   'fugitive': 'MyFugitive',
+      \   'filename': 'MyFilename',
+      \   'fileformat': 'MyFileformat',
+      \   'filetype': 'MyFiletype',
+      \   'fileencoding': 'MyFileencoding',
+      \   'mode': 'MyMode',
+      \ },
+      \ 'separator': { 'left': '⮀', 'right': '⮂' },
+      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+      \ }
+
+function! MyModified()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! MyReadonly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '⭤' : ''
+endfunction
+
+function! MyFilename()
+  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \  &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' != MyModified() ? ' ' . MyModified() : '')
+endfunction
+
+function! MyFugitive()
+  if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
+    let _ = fugitive#head()
+    return strlen(_) ? '⭠ '._ : ''
+  endif
+  return ''
+endfunction
+
+function! MyFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+
+function! MyFileencoding()
+  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction
+
+function! MyMode()
+  return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction

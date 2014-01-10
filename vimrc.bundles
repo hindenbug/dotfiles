@@ -7,14 +7,14 @@ NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'Shougo/neocomplete.vim.git'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'Spaceghost/vim-matchit'
-NeoBundle 'vim-scripts/scratch.vim'
+"NeoBundle 'vim-scripts/scratch.vim'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle "AndrewRadev/splitjoin.vim"
 NeoBundle "Raimondi/delimitMate"
 NeoBundle "godlygeek/tabular"
 NeoBundle "skwp/vim-easymotion"
 NeoBundle "tomtom/tcomment_vim.git"
-NeoBundle "tpope/vim-bundler"
+"NeoBundle "tpope/vim-bundler"
 NeoBundle "vim-scripts/camelcasemotion.git"
 NeoBundle "mattn/webapi-vim.git"
 NeoBundle "sjbach/lusty.git"
@@ -44,16 +44,17 @@ NeoBundle 'troydm/easybuffer.vim'
 nmap <leader>be :EasyBufferToggle<enter>
 
 "Fancy
-NeoBundle 'bling/vim-airline'
-NeoBundle "chrisbra/color_highlight.git"
+NeoBundle 'itchyny/lightline.vim'
+"NeoBundle 'bling/vim-airline'
+"NeoBundle "chrisbra/color_highlight.git"
 NeoBundle "bogado/file-line.git"
-NeoBundle 'flazz/vim-colorschemes'
-NeoBundle "nelstrom/vim-visual-star-search"
+"NeoBundle 'flazz/vim-colorschemes'
+"NeoBundle "nelstrom/vim-visual-star-search"
 NeoBundle "itspriddle/vim-jquery.git"
-NeoBundle 'tpope/vim-rbenv.git'
+"NeoBundle 'tpope/vim-rbenv.git'
 NeoBundle 'vim-scripts/TagHighlight.git'
 "NeoBundle 'zhaocai/GoldenView.Vim'
-NeoBundle 'altercation/vim-colors-solarized'
+"NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'quanganhdo/grb256'
 "NeoBundle 'bling/vim-bufferline'
 NeoBundle 'jistr/vim-nerdtree-tabs'
@@ -67,6 +68,7 @@ NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'vim-scripts/Reindent'
+NeoBundle 'itchyny/calendar.vim'
 
 "OS
 NeoBundle 'zaiste/tmux.vim'
@@ -80,7 +82,6 @@ NeoBundle 'nelstrom/vim-textobj-rubyblock'
 NeoBundle 'ecomba/vim-ruby-refactoring'
 NeoBundle 'thoughtbot/vim-rspec'
 
-
 "HTML
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'tpope/vim-haml'
@@ -89,8 +90,8 @@ NeoBundle 'othree/html5.vim'
 NeoBundle 'slim-template/vim-slim'
 
 "CSS
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'ap/vim-css-color'
+"NeoBundle 'hail2u/vim-css3-syntax'
+"NeoBundle 'ap/vim-css-color'
 
 
 " Git related...
@@ -107,10 +108,10 @@ NeoBundle 'alfredodeza/jacinto.vim'
 
 
 " Clojure
-NeoBundle 'tpope/vim-foreplay'
 NeoBundle 'tpope/vim-classpath'
 NeoBundle 'guns/vim-clojure-static'
 NeoBundle 'tpope/vim-fireplace'
+NeoBundle 'kovisoft/paredit'
 
 "Python
 "NeoBundle 'klen/python-mode'
@@ -120,6 +121,6 @@ NeoBundle 'tpope/vim-fireplace'
 
 "Coding
 NeoBundle 'majutsushi/tagbar'
-
 NeoBundle 'scrooloose/syntastic'
+
 NeoBundleCheck
