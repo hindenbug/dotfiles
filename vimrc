@@ -1,6 +1,7 @@
 set nocompatible
 filetype on
 filetype off
+set encoding=utf-8 " Use the only sane encoding choice
 
 " Load external configuration before anything else
 "==============================================================
@@ -38,7 +39,6 @@ let maplocalleader = "\\"
 syntax on             " Enable syntax highlighting
 filetype plugin indent on
 
-set scrolloff=0    " Set 5 lines to the cursor - when moving vertically
 set mouse=a
 set autoread
 set binary
@@ -63,7 +63,6 @@ endif
 
 set splitright     " Puts new vsplit windows to the right of the current
 set splitbelow     " Puts new split windows to the bottom of the current
-set encoding=utf-8 " Use the only sane encoding choice
 set modelines=2    " Check 2 lines of files for commands
 set autoindent     " Continue previous line's indent by default
 set showmode       " Show mode in last line
@@ -86,13 +85,11 @@ set nowritebackup
 set noswapfile
 set nobackup
 set guioptions+=LlRrb
-set guioptions-=LlRrb
 set guioptions-=T
 set t_Co=256
 set scrolloff=8    "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=0
-set shiftround     " use multiple of shiftwidth when indenting with '<' and '>'
 set hlsearch       " highlight search terms
 set incsearch      " show search matches as you type
 
@@ -122,18 +119,9 @@ set ignorecase
 set smartcase
 set showmatch
 "set gdefault
-set scrolloff=3
-set sidescroll=1
-set sidescrolloff=10
 "set virtualedit+=block
-set ttyfast
 set lazyredraw
 "set nofsync
-set re=1
-
-" let g:syntastic_enable_signs=1
-" let g:syntastic_auto_loc_list=1
-" let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['ruby'], 'passive_filetypes': ['html', 'css', 'slim'] }
 
 let g:nerdtree_tabs_open_on_gui_startup = 0  " Auto open nerd tree on startup
 let g:nerdtree_tabs_focus_on_files = 1       " Focus in the main content window
@@ -174,7 +162,7 @@ endif
 augroup myfiletypes
   " Clear old autocmds in group
   autocmd!
-  autocmd FileType slim,coffee,ruby,eruby,yaml set ai sw=2 sts=2 et
+  "autocmd FileType slim,coffee,ruby,eruby,yaml set ai sw=2 sts=2 et
   autocmd FileType python,html,xml,markdown set ai sw=4 sts=4 et
 
   " autoindent with two spaces, always expand tabs
@@ -340,11 +328,11 @@ let g:lightline = {
       \ }
 
 function! MyModified()
-  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+  return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
 endfunction
 
 function! MyReadonly()
-  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '⭤' : ''
+  return &ft !~? 'help' && &readonly ? '⭤' : ''
 endfunction
 
 function! MyFilename()
@@ -361,6 +349,12 @@ function! MyFugitive()
     return strlen(_) ? '⭠ '._ : ''
   endif
   return ''
+endfunction
+
+function! MyFilename()
+  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+       \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
+       \ ('' != MyModified() ? ' ' . MyModified() : '')
 endfunction
 
 function! MyFileformat()
