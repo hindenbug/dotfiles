@@ -72,7 +72,7 @@ set cursorline     " Highlight the entire line the cursor is on
 set ttyfast        " Assume a fast terminal connection
 set backspace=indent,eol,start " Sane edge case behavior for Backspace key
 set relativenumber " Use relative line numbering
-"set number
+set number
 set laststatus=2   " Show a status line for all windows always
 set showbreak=↪    " Use this character to indicate wrapping
 set shiftround     " Round indents to multiple of shiftwidth
@@ -96,7 +96,11 @@ set incsearch      " show search matches as you type
 " (Hopefully) removes the delay when hitting esc in insert mode
 set noesckeys
 set ttimeout
-set ttimeoutlen=100
+"set ttimeoutlen=100
+""set timeoutlen=100
+"set ttimeoutlen=0
+set ttimeoutlen=1
+set timeoutlen=100
 set visualbell t_vb=    " Turn off flashing
 
 " Command line completion:
@@ -142,6 +146,7 @@ let g:ruby_path = system('echo $HOME/.rbenv/shims')
 
 let g:calendar_google_calendar = 1
 let g:calendar_google_task = 1
+let g:gitgutter_enabled = 1
 
 " Adjust viewports to the same size
 map <Leader>= <C-w>=
@@ -162,23 +167,23 @@ endif
 augroup myfiletypes
   " Clear old autocmds in group
   autocmd!
-  "autocmd FileType slim,coffee,ruby,eruby,yaml set ai sw=2 sts=2 et
+  autocmd FileType slim,coffee,ruby,eruby,yaml set ai sw=2 sts=2 et
   autocmd FileType python,html,xml,markdown set ai sw=4 sts=4 et
 
   " autoindent with two spaces, always expand tabs
   "autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-  autocmd FileType * set ai sw=2 sts=2 ts=2 et
+  "autocmd FileType * set ai sw=2 sts=2 ts=2 et
 augroup END
 
 
 " When vimrc is edited, reload it
 "autocmd! BufWritePost vimrc source ~/.vimrc
 
-augroup trailing
-    au!
-    au InsertEnter * :set listchars-=trail:·
-    au InsertLeave * :set listchars+=trail:·
-augroup END
+" augroup trailing
+"     au!
+"     au InsertEnter * :set listchars-=trail:·
+"     au InsertLeave * :set listchars+=trail:·
+" augroup END
 
 "Format xml files
 "au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
@@ -369,6 +374,51 @@ function! MyFileencoding()
   return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
 endfunction
 
+
 function! MyMode()
-  return winwidth(0) > 60 ? lightline#mode() : ''
+  let fname = expand('%:t')
+  return fname == '__Tagbar__' ? 'Tagbar' :
+        \ fname == 'ControlP' ? 'CtrlP' :
+        \ fname == '__Gundo__' ? 'Gundo' :
+        \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
+        \ fname =~ 'NERD_tree' ? 'NERDTree' :
+        \ &ft == 'unite' ? 'Unite' :
+        \ &ft == 'vimfiler' ? 'VimFiler' :
+        \ &ft == 'vimshell' ? 'VimShell' :
+        \ winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
+
+
+function! CtrlPMark()
+  if expand('%:t') =~ 'ControlP'
+    call lightline#link('iR'[g:lightline.ctrlp_regex])
+    return lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
+          \ , g:lightline.ctrlp_next], 0)
+  else
+    return ''
+  endif
+endfunction
+
+let g:ctrlp_status_func = {
+  \ 'main': 'CtrlPStatusFunc_1',
+  \ 'prog': 'CtrlPStatusFunc_2',
+  \ }
+
+function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
+  let g:lightline.ctrlp_regex = a:regex
+  let g:lightline.ctrlp_prev = a:prev
+  let g:lightline.ctrlp_item = a:item
+  let g:lightline.ctrlp_next = a:next
+  return lightline#statusline(0)
+endfunction
+
+function! CtrlPStatusFunc_2(str)
+  return lightline#statusline(0)
+endfunction
+
+
+" function! MyMode()
+"   return winwidth(0) > 60 ? lightline#mode() : ''
+" endfunction
+"
+

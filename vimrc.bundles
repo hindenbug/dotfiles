@@ -59,7 +59,7 @@ NeoBundle 'quanganhdo/grb256'
 NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'mbbill/undotree'
 NeoBundle 'myusuf3/numbers.vim'
-NeoBundle 'mhinz/vim-signify'
+"NeoBundle 'mhinz/vim-signify'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'w0ng/vim-hybrid'
@@ -92,6 +92,7 @@ NeoBundle "gregsexton/gitv"
 "NeoBundle "mattn/gist-vim"
 NeoBundle "tpope/vim-git"
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'airblade/vim-gitgutter'
 
 "JS
 NeoBundle 'elzr/vim-json'
