@@ -144,8 +144,8 @@ let g:indent_guides_enable_on_vim_startup = 0
 let g:LargeFile=5
 let g:ruby_path = system('echo $HOME/.rbenv/shims')
 
-let g:calendar_google_calendar = 1
-let g:calendar_google_task = 1
+"let g:calendar_google_calendar = 1
+"let g:calendar_google_task = 1
 let g:gitgutter_enabled = 1
 
 " Adjust viewports to the same size
