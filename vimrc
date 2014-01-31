@@ -69,6 +69,7 @@ set showmode       " Show mode in last line
 set showcmd        " Show visual selection size in last line
 set hidden         " Don't unload abandoned buffers
 set cursorline     " Highlight the entire line the cursor is on
+hi CursorLine term=bold cterm=bold guibg=Grey40 ctermfg=grey
 set ttyfast        " Assume a fast terminal connection
 set backspace=indent,eol,start " Sane edge case behavior for Backspace key
 set relativenumber " Use relative line numbering
@@ -115,20 +116,22 @@ set wildmode=list,longest,full
 set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc,tmp,*.scssc
 set wildmenu            " Enhanced command line completion mode
 
-
 " Tabs, spaces, wrapping
 set formatoptions+=tcrqnb
 set formatoptions-=o
 set ignorecase
 set smartcase
 set showmatch
-"set gdefault
-"set virtualedit+=block
 set lazyredraw
-"set nofsync
+set iskeyword-=_
 
 let g:nerdtree_tabs_open_on_gui_startup = 0  " Auto open nerd tree on startup
 let g:nerdtree_tabs_focus_on_files = 1       " Focus in the main content window
+
+let g:syntastic_check_on_open=0
+let g:syntastic_echo_current_error=0
+let g:syntastic_auto_jump=0
+let g:syntastic_auto_loc_list=0
 
 " Make nerdtree look nice
 let NERDTreeMinimalUI = 1
@@ -155,29 +158,27 @@ map <Leader>= <C-w>=
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 if has("gui_running")
-    set guioptions=egmrt
-    set guioptions-=r
     set guifont=Monaco\ for\ Powerline
+    set guioptions-=T " no toolbar
+    set guioptions-=m " no menus
+    set guioptions-=r " no scrollbar on the right
+    set guioptions-=R " no scrollbar on the right
+    set guioptions-=l " no scrollbar on the left
+    set guioptions-=b " no scrollbar on the bottom
+    set guioptions=aiA
+    set mouse=v
 endif
 
 " =================================================================================================
 " FORMATTING
 " =================================================================================================
 
-augroup myfiletypes
-  " Clear old autocmds in group
-  autocmd!
-  autocmd FileType slim,coffee,ruby,eruby,yaml set ai sw=2 sts=2 et
-  autocmd FileType python,html,xml,markdown set ai sw=4 sts=4 et
-
-  " autoindent with two spaces, always expand tabs
-  "autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-  "autocmd FileType * set ai sw=2 sts=2 ts=2 et
-augroup END
-
-
-" When vimrc is edited, reload it
-"autocmd! BufWritePost vimrc source ~/.vimrc
+"autocmd!
+autocmd FileType ruby,haml,slim,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
+autocmd FileType python set sw=4 sts=4 et
+autocmd BufRead *.md set ai formatoptions=tcroqn2 comments=n:&gt;
+autocmd BufRead *.markdown set ai formatoptions=tcroqn2 comments=n:&gt;
+autocmd BufWritePre * :%s/\s\+$//e " strip trailing whitespace
 
 " augroup trailing
 "     au!
@@ -189,16 +190,7 @@ augroup END
 "au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
 autocmd BufNewFile,BufRead *.slim set syntax=slim
 
-" When loading text files, wrap them and don't split up words.
-"au BufNewFile,BufRead *.txt setlocal wrap
-"au BufNewFile,BufRead *.txt setlocal lbr
-
-" Automatic formatting
-autocmd BufWritePre * :%s/\s\+$//e
-
 au BufNewFile * set noeol
-" No show command
-"autocmd VimEnter * set nosc
 
 
 " ==================================================================================================
