@@ -18,7 +18,6 @@ endif
  NeoBundleFetch 'Shougo/neobundle.vim'
 "==============================================================
 
-
 " Bundle Config
 if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
