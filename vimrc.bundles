@@ -4,34 +4,32 @@ NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-speeddating'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'Shougo/neocomplete.vim.git'
+"NeoBundle 'Shougo/neocomplete.vim.git'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'Spaceghost/vim-matchit'
-"NeoBundle 'vim-scripts/scratch.vim'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle "Raimondi/delimitMate"
 NeoBundle "godlygeek/tabular"
 NeoBundle "skwp/vim-easymotion"
 NeoBundle "tomtom/tcomment_vim.git"
-"NeoBundle "tpope/vim-bundler"
-"NeoBundld "mattn/webapi-vim.git"
+NeoBundle "tpope/vim-bundler"
+"NeoBundle "mattn/webapi-vim.git"
 NeoBundle "sjbach/lusty.git"
 NeoBundle "tpope/vim-ragtag"
 NeoBundle "vim-scripts/AnsiEsc.vim.git"
 NeoBundle "vim-scripts/AutoTag.git"
-NeoBundle "vim-scripts/lastpos.vim"
 NeoBundle 'vim-scripts/YankRing.vim'
 NeoBundle 'michaeljsmith/vim-indent-object'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'rking/ag.vim'
 
-NeoBundle "bootleq/vim-textobj-rubysymbol"
-NeoBundle "coderifous/textobj-word-column.vim"
-NeoBundle "kana/vim-textobj-datetime"
-NeoBundle "kana/vim-textobj-entire"
-NeoBundle "kana/vim-textobj-function"
-NeoBundle "kana/vim-textobj-user"
-NeoBundle "lucapette/vim-textobj-underscore"
+"NeoBundle "bootleq/vim-textobj-rubysymbol"
+"NeoBundle "coderifous/textobj-word-column.vim"
+"NeoBundle "kana/vim-textobj-datetime"
+"NeoBundle "kana/vim-textobj-entire"
+"NeoBundle "kana/vim-textobj-function"
+"NeoBundle "kana/vim-textobj-user"
+"NeoBundle "lucapette/vim-textobj-underscore"
 "NeoBundle "nathanaelkane/vim-indent-guides"
 "NeoBundle "thinca/vim-textobj-function-javascript"
 "NeoBundle "vim-scripts/argtextobj.vim"
@@ -51,12 +49,13 @@ NeoBundle "itspriddle/vim-jquery.git"
 NeoBundle 'quanganhdo/grb256'
 "NeoBundle 'bling/vim-bufferline'
 NeoBundle 'myusuf3/numbers.vim'
-"NeoBundle 'mhinz/vim-signify'
+NeoBundle 'mhinz/vim-signify'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'vim-scripts/Reindent'
 NeoBundle 'itchyny/calendar.vim'
+NeoBundle 'chriskempson/base16-vim'
 
 "OS
 NeoBundle 'zaiste/tmux.vim'
@@ -66,7 +65,7 @@ NeoBundle 'edkolev/tmuxline.vim'
 NeoBundle 'tpope/vim-rake'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'tpope/vim-rails'
-NeoBundle 'nelstrom/vim-textobj-rubyblock'
+"NeoBundle 'nelstrom/vim-textobj-rubyblock'
 NeoBundle 'ecomba/vim-ruby-refactoring'
 NeoBundle 'thoughtbot/vim-rspec'
 
