@@ -1,6 +1,4 @@
 set nocompatible
-filetype on
-filetype off
 set encoding=utf-8 " Use the only sane encoding choice
 
 " Load external configuration before anything else
@@ -23,6 +21,9 @@ if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif
 
+" load indent file for the current filetype
+syntax on             " Enable syntax highlighting
+filetype plugin indent on
 
 "==================================================================================================
 " THEME SETTINGS
@@ -32,11 +33,6 @@ set background=dark
 let base16colorspace=256  " Access colors present in 256 colorspace
 let mapleader = ","
 let maplocalleader = "\\"
-
-
-" load indent file for the current filetype
-syntax on             " Enable syntax highlighting
-filetype plugin indent on
 
 set mouse=a
 set autoread
