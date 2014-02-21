@@ -58,8 +58,8 @@ NeoBundle 'itchyny/calendar.vim'
 NeoBundle 'chriskempson/base16-vim'
 
 "OS
-NeoBundle 'zaiste/tmux.vim'
-NeoBundle 'edkolev/tmuxline.vim'
+"NeoBundle 'zaiste/tmux.vim'
+"NeoBundle 'edkolev/tmuxline.vim'
 
 " Ruby, Rails, Rake...
 NeoBundle 'tpope/vim-rake'

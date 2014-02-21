@@ -64,7 +64,7 @@ set showmode       " Show mode in last line
 set showcmd        " Show visual selection size in last line
 set hidden         " Don't unload abandoned buffers
 set cursorline     " Highlight the entire line the cursor is on
-"hi CursorLine term=bold cterm=bold guibg=Grey40 ctermfg=grey
+hi CursorLine term=bold cterm=bold guibg=Grey40 ctermfg=grey
 set ttyfast        " Assume a fast terminal connection
 set backspace=indent,eol,start " Sane edge case behavior for Backspace key
 set relativenumber " Use relative line numbering
@@ -92,8 +92,8 @@ set incsearch      " show search matches as you type
 " (Hopefully) removes the delay when hitting esc in insert mode
 set noesckeys
 set ttimeout
-set ttimeoutlen=1
-set timeoutlen=200
+set ttimeoutlen=-1
+set timeoutlen=1000
 set visualbell t_vb=    " Turn off flashing
 
 " Command line completion:
