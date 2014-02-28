@@ -17,6 +17,12 @@ create_symlinks () {
     ln -sfn $INSTALLDIR/dotfiles/vimrc.bundles ~/.vimrc.bundles
   fi
 
+  if [ ! -f ~/.gitconfig ]; then
+    echo "Now, we will create ~/.gitconfig and ~/.gitconfig"
+    ln -sfn $INSTALLDIR/dotfiles/gitconfig
+  fi
+
+
 }
 
 which git > /dev/null
