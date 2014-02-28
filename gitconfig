@@ -1,6 +1,5 @@
 [user]
   name = railsaholic
-  email = manoj.mk27@gmail.com
 
 [color]
   ui = auto
@@ -22,14 +21,16 @@
   co = checkout
   df = diff
   g = grep -I
-  lg = log -p
-  pp = !"echo 'Pull'; git pull; echo 'Push'; git push"     
   rb = rbranch
   rv = review
   st = status
+  f = fetch
+  st = status
+  conflicts = !git ls-files -u | cut -f 2 | sort -u
 
-[format] 
-  pretty = format:%C(yellow)%h%Creset %Cgreen(%cr) %Cred%d%Creset- %C(blue)%s %C(magenta)[%an]
+[format]
+  #pretty = format:%C(yellow)%h%Creset %Cgreen(%cr) %Cred%d%Creset- %C(blue)%s %C(magenta)[%an]
+  pretty = format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%cr) %C(bold magenta)[%aN]%Creset
 
 [mergetool]
   prompt = false
@@ -48,6 +49,7 @@
 
 [branch]
   autosetupmerge = true
+  autosetuprebase = always
 
 [push]
   # 'git push' will push the current branch to its tracking branch
@@ -74,3 +76,8 @@
 
 [include]
   path = .gitconfig.user
+
+[color "status"]
+  added = green
+  modified = red
+  untracked = blue
