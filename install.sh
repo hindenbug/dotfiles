@@ -19,7 +19,7 @@ create_symlinks () {
 
   if [ ! -f ~/.gitconfig ]; then
     echo "Now, we will create ~/.gitconfig and ~/.gitconfig"
-    ln -sfn $INSTALLDIR/dotfiles/gitconfig
+    ln -sfn $INSTALLDIR/dotfiles/gitconfig ~/.gitconfig
   fi
 
 
