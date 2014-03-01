@@ -31,11 +31,7 @@ NeoBundle 'rking/ag.vim'
 "NeoBundle "kana/vim-textobj-user"
 "NeoBundle "lucapette/vim-textobj-underscore"
 "NeoBundle "nathanaelkane/vim-indent-guides"
-"NeoBundle "thinca/vim-textobj-function-javascript"
 "NeoBundle "vim-scripts/argtextobj.vim"
-
-"NeoBundle 'troydm/easybuffer.vim'
-"nmap <leader>be :EasyBufferToggle<enter>
 
 "Fancy
 NeoBundle 'itchyny/lightline.vim'
