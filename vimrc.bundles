@@ -50,7 +50,7 @@ NeoBundle 'ervandew/supertab'
 NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'vim-scripts/Reindent'
-NeoBundle 'itchyny/calendar.vim'
+"NeoBundle 'itchyny/calendar.vim'
 NeoBundle 'chriskempson/base16-vim'
 
 "OS
