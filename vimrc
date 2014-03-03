@@ -161,7 +161,7 @@ if has("gui_running")
     set mouse=v
 endif
 
-if ! has('gui_running')
+if !has('gui_running')
     set ttimeoutlen=10
     augroup FastEscape
         autocmd!
