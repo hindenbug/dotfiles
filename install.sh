@@ -22,6 +22,20 @@ create_symlinks () {
     ln -sfn $INSTALLDIR/dotfiles/gitconfig ~/.gitconfig
   fi
 
+  if [ ! -f ~/.ctags ]; then
+    echo "Now, we will create ~/.ctags"
+    ln -sfn $INSTALLDIR/dotfiles/ctags ~/.ctags
+  fi
+
+  if [ ! -f ~/.inputrc ]; then
+    echo "Now, we will create ~/.inputrc"
+    ln -sfn $INSTALLDIR/dotfiles/inputrc ~/.inputrc
+  fi
+
+  if [ ! -f ~/.gemrc ]; then
+    echo "Now, we will create ~/.gemrc"
+    ln -sfn $INSTALLDIR/dotfiles/gemrc ~/.gemrc
+  fi
 
 }
 
