@@ -52,6 +52,7 @@ NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'vim-scripts/Reindent'
 "NeoBundle 'itchyny/calendar.vim'
 NeoBundle 'chriskempson/base16-vim'
+NeoBundle 'Lokaltog/vim-powerline'
 
 "OS
 "NeoBundle 'zaiste/tmux.vim'

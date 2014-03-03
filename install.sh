@@ -37,6 +37,13 @@ create_symlinks () {
     ln -sfn $INSTALLDIR/dotfiles/gemrc ~/.gemrc
   fi
 
+  if [ ! -f ~/.agignore ]; then
+    echo "Now, we will create ~/.agignore"
+    ln -sfn $INSTALLDIR/dotfiles/agignore ~/.agignore
+  fi
+
+
+
 }
 
 which git > /dev/null
