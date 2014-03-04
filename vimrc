@@ -305,6 +305,10 @@ map <Leader>n :call RenameFile()<cr>
 set nocompatible
 
 
+"=========================================================================
+" CUSTOM LIGHTLINE CONFIG
+" ========================================================================
+
 let g:lightline = {
       \ 'colorscheme': 'powerline',
       \ 'mode_map': { 'c': 'NORMAL' },
@@ -367,7 +371,6 @@ function! MyFileencoding()
   return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
 endfunction
 
-
 function! MyMode()
   let fname = expand('%:t')
   return fname == '__Tagbar__' ? 'Tagbar' :
@@ -380,7 +383,6 @@ function! MyMode()
         \ &ft == 'vimshell' ? 'VimShell' :
         \ winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
-
 
 function! CtrlPMark()
   if expand('%:t') =~ 'ControlP'
@@ -409,9 +411,7 @@ function! CtrlPStatusFunc_2(str)
   return lightline#statusline(0)
 endfunction
 
-
 " function! MyMode()
 "   return winwidth(0) > 60 ? lightline#mode() : ''
 " endfunction
 "
-
