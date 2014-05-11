@@ -93,15 +93,16 @@ NeoBundle 'tpope/vim-fireplace'
 NeoBundle 'kovisoft/paredit'
 
 "Python
-"NeoBundle 'klen/python-mode'
-"NeoBundle 'python.vim'
-"NeoBundle 'python_match.vim'
-"NeoBundle 'pythoncomplete'
+NeoBundle 'klen/python-mode'
+NeoBundle 'python.vim'
+NeoBundle 'python_match.vim'
+NeoBundle 'pythoncomplete'
 
 "Coding
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'junkblocker/patchreview-vim'
 NeoBundle 'codegram/vim-codereview'
+NeoBundle 'FredKSchott/CoVim'
 
 NeoBundleCheck

@@ -24,7 +24,12 @@ install htop-osx
 install hub
 install icu4c
 install imagemagick
+install ilmbase
+install imagemagick
+install jasper
 install jpeg
+install libffi
+install libssh2
 install leiningen
 install libxslt
 install libyaml
@@ -38,6 +43,7 @@ install macvim
 install mercurial
 install mongodb
 install newt
+install opencv
 install openssl
 install ossp-uuid
 install phantomjs
