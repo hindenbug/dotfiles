@@ -42,7 +42,10 @@ create_symlinks () {
     ln -sfn $INSTALLDIR/dotfiles/agignore ~/.agignore
   fi
 
-
+  if [ ! -f ~/.tmux.conf ]; then
+    echo "Now, we will create ~/.tmux.conf"
+    ln -sfn $INSTALLDIR/dotfiles/tmux.conf ~/.tmux.conf
+  fi
 
 }
 

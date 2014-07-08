@@ -281,6 +281,7 @@ vnoremap k gk
 
 " format the entire file
 nmap <leader>fef ggVG=
+nmap <leader>h :nohlsearch<cr>
 
 nnoremap ; :
 
