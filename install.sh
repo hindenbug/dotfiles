@@ -68,7 +68,7 @@ if [ ! -d "$INSTALLDIR/dotfiles" ]; then
   cd $INSTALLDIR/dotfiles
 
 else
-  echo "Seems like you already are one of ours, so let's update dotfiles to be as awesome as possible."
+  echo "updating dotfiles"
   cd $INSTALLDIR/dotfiles
   git pull origin master
   create_symlinks
