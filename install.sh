@@ -47,6 +47,12 @@ create_symlinks () {
     ln -sfn $INSTALLDIR/dotfiles/tmux.conf ~/.tmux.conf
   fi
 
+  if [ ! -f ~/.pryrc ]; then
+    echo "Now, we will create ~/.pryrc"
+    ln -sfn $INSTALLDIR/dotfiles/pryrc ~/.pryrc
+  fi
+
+
 }
 
 which git > /dev/null
