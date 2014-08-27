@@ -86,10 +86,10 @@ if [ ! -d "bundle" ]; then
   mkdir -p vim/tmp/backup vim/tmp/swap vim/tmp/undo
 fi
 
-if [ ! -d "bundle/vundle" ]; then
-  echo "Then, we install Vundle (https://github.com/gmarik/vundle)."
-  git clone https://github.com/gmarik/vundle.git vim/bundle/vundle
-fi
+#if [ ! -d "bundle/vundle" ]; then
+#  echo "Then, we install Vundle (https://github.com/gmarik/vundle)."
+#  git clone https://github.com/gmarik/vundle.git vim/bundle/vundle
+#fi
 
 if [ ! -d "bundle/neobundle.vim" ]; then
   echo "Then, we install NeoBundle."

@@ -1,7 +1,7 @@
 "General
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-speeddating'
+"NeoBundle 'tpope/vim-endwise'
+"NeoBundle 'tpope/vim-repeat'
+"NeoBundle 'tpope/vim-speeddating'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
 "NeoBundle 'Shougo/neocomplete.vim.git'
@@ -9,20 +9,18 @@ NeoBundle 'honza/vim-snippets'
 NeoBundle 'Spaceghost/vim-matchit'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle "Raimondi/delimitMate"
-NeoBundle "godlygeek/tabular"
+"NeoBundle "godlygeek/tabular"
 NeoBundle "skwp/vim-easymotion"
 NeoBundle "tomtom/tcomment_vim.git"
-NeoBundle "tpope/vim-bundler"
 "NeoBundle "mattn/webapi-vim.git"
-NeoBundle "sjbach/lusty.git"
 NeoBundle "tpope/vim-ragtag"
 NeoBundle "vim-scripts/AnsiEsc.vim.git"
-NeoBundle "vim-scripts/AutoTag.git"
-NeoBundle 'vim-scripts/YankRing.vim'
+"NeoBundle "vim-scripts/AutoTag.git"
+"NeoBundle 'vim-scripts/YankRing.vim'
 NeoBundle 'michaeljsmith/vim-indent-object'
-NeoBundle 'scrooloose/nerdtree'
+NeoBundle "troydm/easytree.vim"
 NeoBundle 'rking/ag.vim'
-"NeoBundle 'bling/vim-airline'
+NeoBundle 'tacahiroy/ctrlp-funky'
 
 "NeoBundle "bootleq/vim-textobj-rubysymbol"
 "NeoBundle "coderifous/textobj-word-column.vim"
@@ -39,7 +37,7 @@ NeoBundle 'itchyny/lightline.vim'
 "NeoBundle "chrisbra/color_highlight.git"
 "NeoBundle 'flazz/vim-colorschemes'
 "NeoBundle "nelstrom/vim-visual-star-search"
-NeoBundle "itspriddle/vim-jquery.git"
+"NeoBundle "itspriddle/vim-jquery.git"
 "NeoBundle 'tpope/vim-rbenv.git'
 "NeoBundle 'zhaocai/GoldenView.Vim'
 "NeoBundle 'altercation/vim-colors-solarized'
@@ -59,12 +57,10 @@ NeoBundle 'chriskempson/base16-vim'
 "NeoBundle 'edkolev/tmuxline.vim'
 
 " Ruby, Rails, Rake...
-NeoBundle 'tpope/vim-rake'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'tpope/vim-rails'
 "NeoBundle 'nelstrom/vim-textobj-rubyblock'
 NeoBundle 'ecomba/vim-ruby-refactoring'
-NeoBundle 'thoughtbot/vim-rspec'
 
 "HTML
 NeoBundle 'tpope/vim-markdown'
@@ -100,9 +96,9 @@ NeoBundle 'pythoncomplete'
 
 "Coding
 NeoBundle 'majutsushi/tagbar'
-NeoBundle 'scrooloose/syntastic'
+"NeoBundle 'scrooloose/syntastic'
 NeoBundle 'junkblocker/patchreview-vim'
 NeoBundle 'codegram/vim-codereview'
-NeoBundle 'FredKSchott/CoVim'
+"NeoBundle 'FredKSchott/CoVim'
 
 NeoBundleCheck

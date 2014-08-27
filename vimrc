@@ -117,17 +117,8 @@ set showmatch
 set lazyredraw
 set iskeyword-=_
 
-let g:nerdtree_tabs_open_on_gui_startup = 0  " Auto open nerd tree on startup
-let g:nerdtree_tabs_focus_on_files = 1       " Focus in the main content window
-
-let g:syntastic_check_on_open=0
-let g:syntastic_echo_current_error=0
-let g:syntastic_auto_jump=0
-let g:syntastic_auto_loc_list=0
-
-" Make nerdtree look nice
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
+let g:easytree_use_plus_and_minus = 1
+let g:easytree_show_line_numbers = 0
 
 let g:ctrlp_working_path_mode = 0  " Search from current directory instead of project root
 let g:ctrlp_max_files = 0          " Set no max file limit
@@ -139,9 +130,11 @@ let g:indent_guides_enable_on_vim_startup = 0
 let g:LargeFile=5
 let g:ruby_path = system('echo $HOME/.rbenv/shims')
 
-"let g:calendar_google_calendar = 1
-"let g:calendar_google_task = 1
 let g:gitgutter_enabled = 1
+let g:ctrlp_extensions = ['funky']
+let g:ctrlp_funky_syntax_highlight = 1
+
+nnoremap <Leader>m :CtrlPFunky<Cr>
 
 " Adjust viewports to the same size
 map <Leader>= <C-w>=
@@ -149,8 +142,11 @@ map <Leader>= <C-w>=
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
+set guicursor=n-v-c:ver20
+set guicursor+=i:hor10
+
 if has("gui_running")
-    set guifont=Monaco\ for\ Powerline
+    set guifont=Monaco\ for\ Powerline:h11
     set guioptions-=T " no toolbar
     set guioptions-=m " no menus
     set guioptions-=r " no scrollbar on the right
@@ -158,7 +154,7 @@ if has("gui_running")
     set guioptions-=l " no scrollbar on the left
     set guioptions-=b " no scrollbar on the bottom
     set guioptions=aiA
-    set mouse=v
+   set mouse=v
 endif
 
 if !has('gui_running')
@@ -212,12 +208,11 @@ endif
 "Ack / ag (the_silver_searcher)
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
-
 "====================================================================================================
 " CUSTOM BIDINGS
 "====================================================================================================
 
-nmap <C-e> :NERDTreeToggle<CR>
+nmap <C-e> :EasyTreeToggle<CR>
 " Keep NERDTree window fixed between multiple toggles
 
 " stop arrow keys.
@@ -326,7 +321,7 @@ let g:lightline = {
       \   'fileencoding': 'MyFileencoding',
       \   'mode': 'MyMode',
       \ },
-      \ 'separator': { 'left': '⮀', 'right': '⮂' },
+      \ 'separator': {'left': '⮀', 'right': '⮂' } ,
       \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
       \ }
 
