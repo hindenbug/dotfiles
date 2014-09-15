@@ -31,26 +31,22 @@ NeoBundle 'tacahiroy/ctrlp-funky'
 "NeoBundle "lucapette/vim-textobj-underscore"
 "NeoBundle "nathanaelkane/vim-indent-guides"
 "NeoBundle "vim-scripts/argtextobj.vim"
+NeoBundle 'christoomey/vim-tmux-navigator'
 
 "Fancy
 NeoBundle 'itchyny/lightline.vim'
 "NeoBundle "chrisbra/color_highlight.git"
-"NeoBundle 'flazz/vim-colorschemes'
 "NeoBundle "nelstrom/vim-visual-star-search"
 "NeoBundle "itspriddle/vim-jquery.git"
-"NeoBundle 'tpope/vim-rbenv.git'
 "NeoBundle 'zhaocai/GoldenView.Vim'
-"NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'quanganhdo/grb256'
 "NeoBundle 'bling/vim-bufferline'
 NeoBundle 'myusuf3/numbers.vim'
 NeoBundle 'mhinz/vim-signify'
 NeoBundle 'ervandew/supertab'
-NeoBundle 'kien/rainbow_parentheses.vim'
+"NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'vim-scripts/Reindent'
-"NeoBundle 'itchyny/calendar.vim'
-NeoBundle 'chriskempson/base16-vim'
 
 "OS
 "NeoBundle 'zaiste/tmux.vim'
@@ -96,9 +92,7 @@ NeoBundle 'pythoncomplete'
 
 "Coding
 NeoBundle 'majutsushi/tagbar'
-"NeoBundle 'scrooloose/syntastic'
 NeoBundle 'junkblocker/patchreview-vim'
 NeoBundle 'codegram/vim-codereview'
-"NeoBundle 'FredKSchott/CoVim'
 
 NeoBundleCheck
