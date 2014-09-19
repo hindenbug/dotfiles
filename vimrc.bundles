@@ -1,6 +1,6 @@
 "General
 "NeoBundle 'tpope/vim-endwise'
-"NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-repeat'
 "NeoBundle 'tpope/vim-speeddating'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
@@ -82,7 +82,9 @@ NeoBundle 'alfredodeza/jacinto.vim'
 NeoBundle 'tpope/vim-classpath'
 NeoBundle 'guns/vim-clojure-static'
 NeoBundle 'tpope/vim-fireplace'
-NeoBundle 'kovisoft/paredit'
+"NeoBundle 'kovisoft/paredit'
+NeoBundle 'guns/vim-sexp'
+NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
 
 "Python
 NeoBundle 'klen/python-mode'
