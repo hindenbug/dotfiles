@@ -21,6 +21,7 @@ NeoBundle 'michaeljsmith/vim-indent-object'
 NeoBundle "troydm/easytree.vim"
 NeoBundle 'rking/ag.vim'
 NeoBundle 'tacahiroy/ctrlp-funky'
+NeoBundle 'scrooloose/nerdtree'
 
 "NeoBundle "bootleq/vim-textobj-rubysymbol"
 "NeoBundle "coderifous/textobj-word-column.vim"
@@ -44,7 +45,6 @@ NeoBundle 'quanganhdo/grb256'
 NeoBundle 'myusuf3/numbers.vim'
 NeoBundle 'mhinz/vim-signify'
 NeoBundle 'ervandew/supertab'
-"NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'vim-scripts/Reindent'
 
