@@ -63,6 +63,7 @@ NeoBundle 'tpope/vim-markdown'
 NeoBundle 'tpope/vim-haml'
 NeoBundle 'amirh/HTML-AutoCloseTag'
 NeoBundle 'slim-template/vim-slim'
+NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 
 " Git related...
 NeoBundle "gregsexton/gitv"
