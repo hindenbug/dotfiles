@@ -212,7 +212,7 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 " CUSTOM BIDINGS
 "====================================================================================================
 
-nmap <C-h> :EasyTreeToggle<CR>
+nmap <C-e> :EasyTreeToggle<CR>
 
 " Keep NERDTree window fixed between multiple toggles
 
@@ -280,7 +280,7 @@ nmap <leader>fef ggVG=
 nmap <leader>h :nohlsearch<cr>
 
 nnoremap ; :
-nnoremap <C-e> :Eval<CR>
+nnoremap <leader>\ :Eval<CR>
 
 "==================================================================================================
 " FORMATTING
