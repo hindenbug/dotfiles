@@ -21,7 +21,7 @@ NeoBundle 'michaeljsmith/vim-indent-object'
 NeoBundle "troydm/easytree.vim"
 NeoBundle 'rking/ag.vim'
 NeoBundle 'tacahiroy/ctrlp-funky'
-NeoBundle 'scrooloose/nerdtree'
+"NeoBundle 'scrooloose/nerdtree'
 
 "NeoBundle "bootleq/vim-textobj-rubysymbol"
 "NeoBundle "coderifous/textobj-word-column.vim"
