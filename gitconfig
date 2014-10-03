@@ -16,6 +16,11 @@
   old = red
   new = green
 
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+
 [alias]
   br = branch
   ci = commit
@@ -28,6 +33,8 @@
   f = fetch
   st = status
   conflicts = !git ls-files -u | cut -f 2 | sort -u
+  amend = commit --amend --reuse-message=HEAD
+  credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
 
 [format]
   #pretty = format:%C(yellow)%h%Creset %Cgreen(%cr) %Cred%d%Creset- %C(blue)%s %C(magenta)[%an]
@@ -44,9 +51,10 @@
   summary = true
   verbosity = 1
   tool = mvimdiff
+  log = true
 
 [apply]
-  whitespace = nowarn
+  whitespace = fix
 
 [branch]
   autosetupmerge = true
@@ -60,6 +68,9 @@
 [core]
   autocrlf = false
   editor = vim
+  excludesfile = ~/.gitignore
+  whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+  trustctime = false
 
 [advice]
   statusHints = false
@@ -69,6 +80,7 @@
   # instead of a/b/c/d as prefixes for patches
   mnemonicprefix = true
   algorithm = patience
+  renames = copies
 
 [rerere]
   # Remember my merges
@@ -78,7 +90,6 @@
 [include]
   path = .gitconfig.user
 
-[color "status"]
-  added = green
-  modified = red
-  untracked = blue
+[help]
+  autocorrect = 1
+

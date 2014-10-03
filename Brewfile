@@ -1,6 +1,9 @@
+;; brew bundle Brewfile
+
 tap homebrew/versions
 update
 tap phinze/cask
+
 install ack
 install autoconf
 install automake
@@ -89,4 +92,8 @@ install zsh-history-substring-search
 install zsh-lovers
 install zsh-syntax-highlighting
 install vim --override-system-vi
+install homebrew/versions/lua52
+
+cleanup
+
 doctor
