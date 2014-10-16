@@ -92,6 +92,7 @@ NeoBundle 'klen/python-mode'
 NeoBundle 'python.vim'
 NeoBundle 'python_match.vim'
 NeoBundle 'pythoncomplete'
+NeoBundle 'octol/vim-cpp-enhanced-highlight'
 
 "Coding
 NeoBundle 'majutsushi/tagbar'
