@@ -1,5 +1,5 @@
 [user]
-  name = railsaholic
+  name = hindenbug
   email = manoj.mk27@gmail.com
 
 [color]
@@ -38,8 +38,7 @@
 
 [format]
   #pretty = format:%C(yellow)%h%Creset %Cgreen(%cr) %Cred%d%Creset- %C(blue)%s %C(magenta)[%an]
-  pretty = format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%cr) %C(bold magenta)[%aN]%Creset
-
+  pretty = format:%C(yellow)%h%Creset - %Cgreen(%cr)%Creset - %C(bold magenta)(%aN)%Creset %s %C(red)%d%Creset
 [mergetool]
   prompt = false
 

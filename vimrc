@@ -1,19 +1,19 @@
-set nocompatible
-set encoding=utf-8 " Use the only sane encoding choice
-
 " Load external configuration before anything else
 "==============================================================
 " VUNDLE STUFF
 "==============================================================
 
 if has('vim_starting')
+   set nocompatible
+   set encoding=utf-8 " Use the only sane encoding choice
+
    set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
 
- " Let NeoBundle manage NeoBundle
- NeoBundleFetch 'Shougo/neobundle.vim'
+" Let NeoBundle manage NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim'
 "==============================================================
 
 " Bundle Config
@@ -21,11 +21,11 @@ if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif
 
+call neobundle#end()
+
 " load indent file for the current filetype
 syntax on             " Enable syntax highlighting
 filetype plugin indent on
-
-call neobundle#end()
 
 "==================================================================================================
 " THEME SETTINGS

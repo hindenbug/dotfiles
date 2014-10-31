@@ -16,12 +16,10 @@ NeoBundle "tomtom/tcomment_vim.git"
 NeoBundle "tpope/vim-ragtag"
 NeoBundle "vim-scripts/AnsiEsc.vim.git"
 "NeoBundle "vim-scripts/AutoTag.git"
-"NeoBundle 'vim-scripts/YankRing.vim'
 NeoBundle 'michaeljsmith/vim-indent-object'
 NeoBundle "troydm/easytree.vim"
 NeoBundle 'rking/ag.vim'
 NeoBundle 'tacahiroy/ctrlp-funky'
-"NeoBundle 'scrooloose/nerdtree'
 
 "NeoBundle "bootleq/vim-textobj-rubysymbol"
 "NeoBundle "coderifous/textobj-word-column.vim"
@@ -39,7 +37,6 @@ NeoBundle 'itchyny/lightline.vim'
 "NeoBundle "chrisbra/color_highlight.git"
 "NeoBundle "nelstrom/vim-visual-star-search"
 "NeoBundle "itspriddle/vim-jquery.git"
-"NeoBundle 'zhaocai/GoldenView.Vim'
 NeoBundle 'quanganhdo/grb256'
 "NeoBundle 'bling/vim-bufferline'
 NeoBundle 'myusuf3/numbers.vim'
@@ -47,10 +44,6 @@ NeoBundle 'mhinz/vim-signify'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'vim-scripts/Reindent'
-
-"OS
-"NeoBundle 'zaiste/tmux.vim'
-"NeoBundle 'edkolev/tmuxline.vim'
 
 " Ruby, Rails, Rake...
 NeoBundle 'vim-ruby/vim-ruby'
@@ -78,12 +71,10 @@ NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'alfredodeza/jacinto.vim'
 
-
 " Clojure
 NeoBundle 'tpope/vim-classpath'
 NeoBundle 'guns/vim-clojure-static'
 NeoBundle 'tpope/vim-fireplace'
-"NeoBundle 'kovisoft/paredit'
 NeoBundle 'guns/vim-sexp'
 NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
 
@@ -98,5 +89,6 @@ NeoBundle 'octol/vim-cpp-enhanced-highlight'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'junkblocker/patchreview-vim'
 NeoBundle 'codegram/vim-codereview'
+NeoBundle 'solarnz/thrift.vim'
 
 NeoBundleCheck

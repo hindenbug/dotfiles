@@ -204,9 +204,9 @@ Pry.config.ls.private_method_color = :bright_black
 begin
   require 'awesome_print'
   # Enables Awesome Print and auto paging for all Pry output.
-  Pry.config.print = lambda do |output, value|
-    Pry::Helpers::BaseHelpers.stagger_output("=> #{value.ai}", output)
-  end
+  #Pry.config.print = lambda do |output, value|
+  #  Pry::Helpers::BaseHelpers.stagger_output("=> #{value.ai}", output)
+  #end
 
   # Disable auto paging.
   # Pry.config.print = lambda do |output, value|
