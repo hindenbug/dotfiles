@@ -9,7 +9,6 @@ NeoBundle 'honza/vim-snippets'
 NeoBundle 'Spaceghost/vim-matchit'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle "Raimondi/delimitMate"
-"NeoBundle "godlygeek/tabular"
 NeoBundle "skwp/vim-easymotion"
 NeoBundle "tomtom/tcomment_vim.git"
 "NeoBundle "mattn/webapi-vim.git"
