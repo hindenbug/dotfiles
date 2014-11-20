@@ -41,6 +41,7 @@ NeoBundle 'mhinz/vim-signify'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'vim-scripts/Reindent'
+NeoBundle 'chriskempson/base16-vim'
 
 " Ruby, Rails, Rake...
 NeoBundle 'vim-ruby/vim-ruby'
@@ -85,7 +86,14 @@ NeoBundle 'octol/vim-cpp-enhanced-highlight'
 "Coding
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'junkblocker/patchreview-vim'
-NeoBundle 'codegram/vim-codereview'
+"NeoBundle 'codegram/vim-codereview'
 NeoBundle 'solarnz/thrift.vim'
+
+"NeoBundle 'shougo/vimshell'
+"NeoBundle 'Shougo/vimproc.vim', {
+"\ 'build' : {
+"\     'mac' : 'make -f make_mac.mak',
+"#\    },
+"#\ }
 
 NeoBundleCheck

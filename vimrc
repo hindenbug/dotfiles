@@ -21,6 +21,11 @@ if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif
 
+augroup reload_vimrc " {
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END " }
+
 call neobundle#end()
 
 " load indent file for the current filetype
@@ -30,9 +35,25 @@ filetype plugin indent on
 "==================================================================================================
 " THEME SETTINGS
 "==================================================================================================
-colorscheme grb256
+colorscheme base16-railscasts
 set background=dark
 let base16colorspace=256  " Access colors present in 256 colorspace
+
+highlight clear SignColumn
+highlight VertSplit    ctermbg=236
+highlight ColorColumn  ctermbg=237
+highlight LineNr       ctermbg=236 ctermfg=240
+highlight CursorLineNr ctermbg=236 ctermfg=240
+highlight CursorLine   ctermbg=236
+highlight StatusLineNC ctermbg=238 ctermfg=0
+highlight StatusLine   ctermbg=240 ctermfg=12
+highlight IncSearch    ctermbg=3   ctermfg=1
+highlight Search       ctermbg=1   ctermfg=3
+highlight Visual       ctermbg=3   ctermfg=0
+highlight Pmenu        ctermbg=240 ctermfg=12
+highlight PmenuSel     ctermbg=3   ctermfg=1
+highlight SpellBad     ctermbg=0   ctermfg=1
+
 let mapleader = ","
 let maplocalleader = "\\"
 
@@ -141,6 +162,9 @@ nnoremap <Leader>m :CtrlPFunky<Cr>
 " Adjust viewports to the same size
 map <Leader>= <C-w>=
 
+" Leave Ex Mode
+nnoremap Q <nop>
+
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
@@ -172,12 +196,41 @@ endif
 " FORMATTING
 " =================================================================================================
 
+" Set up a keymapping from <Leader>df to a function call.
+" (Note the function doesn't need to be defined beforehand.)
+" Run this mapping silently. That is, when I call this mapping,
+" don't bother showing "call DiffToggle()" on the command line.
+nnoremap <silent> <Leader>df :call DiffToggle()<CR>
+
+" Define a function called DiffToggle.
+" The ! overwrites any existing definition by this name.
+function! DiffToggle()
+    " Test the setting 'diff', to see if it's on or off.
+    " (Any :set option can be tested with &name.
+    " See :help expr-option.)
+    if &diff
+        diffoff
+    else
+        diffthis
+    endif
+:endfunction
+
+
+" Removes trailing spaces
+function! TrimWhiteSpace()
+    %s/\s\+$//e
+endfunction
+
 "autocmd!
 autocmd FileType ruby,haml,slim,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
 autocmd FileType python set sw=4 sts=4 et
 autocmd BufRead *.md set ai formatoptions=tcroqn2 comments=n:&gt;
 autocmd BufRead *.markdown set ai formatoptions=tcroqn2 comments=n:&gt;
-autocmd BufWritePre * :%s/\s\+$//e " strip trailing whitespace
+autocmd FileWritePre    * :call TrimWhiteSpace()
+autocmd FileAppendPre   * :call TrimWhiteSpace()
+autocmd FilterWritePre  * :call TrimWhiteSpace()
+autocmd BufWritePre * :call TrimWhiteSpace() " strip trailing whitespace
+
 
 " augroup trailing
 "     au!

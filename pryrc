@@ -203,18 +203,39 @@ Pry.config.ls.private_method_color = :bright_black
 # ------------------------------------------------------------------------------
 begin
   require 'awesome_print'
-  # Enables Awesome Print and auto paging for all Pry output.
-  #Pry.config.print = lambda do |output, value|
-  #  Pry::Helpers::BaseHelpers.stagger_output("=> #{value.ai}", output)
-  #end
+  # Pry.config.print = proc { |output, value| Pry::Helpers::BaseHelpers.stagger_output("=> #{value.ai}", output) }
+  AwesomePrint.pry!
+rescue LoadError
+  puts "no awesome_print :("
+end
 
-  # Disable auto paging.
-  # Pry.config.print = lambda do |output, value|
-  #  output.puts value.ai
-  # end
-rescue LoadError => err
-  puts "Awesome Print is missing, please install it:"
-  puts "  gem install awesome_print"
+if defined? Hirb
+  # Slightly dirty hack to fully support in-session Hirb.disable/enable toggling
+  Hirb::View.instance_eval do
+    def enable_output_method
+      @output_method = true
+      @old_print = Pry.config.print
+      Pry.config.print = proc do |output, value|
+        # Old line
+        Hirb::View.view_or_page_output(value) || @old_print.call(output, value)
+
+        # Changed by me
+        # formatted_output = Hirb::View.formatter.format_output(value)
+        # inspect_mode = false
+        # Hirb::View.pager.page(formatted_output, inspect_mode) || @old_print.call(output, value)
+      end
+    end
+
+    def disable_output_method
+      Pry.config.print = @old_print
+      @output_method = nil
+    end
+  end
+end
+if defined? Hirb
+  # Gives me more space to visualize horizontally
+  Hirb.enable
+  Hirb::View.config[:width] = 1200
 end
 
 
