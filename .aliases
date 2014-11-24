@@ -1,2 +1,10 @@
 # lock screen
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+alias rails='bundle exec rails'
+alias rake='bundle exec rake'
+alias rspec='bundle exec rspec'
+alias rake="noglob rake"
+alias e="vim ."
+alias vim="mvim -v"
+alias clj="java -jar ~/.m2/repository/org/clojure/clojure/1.6.0/clojure-1.6.0.jar"
+alias tmux="TERM=screen-256color-bce tmux"

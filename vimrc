@@ -140,6 +140,11 @@ set showmatch
 set lazyredraw
 set iskeyword-=_
 
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
 let g:easytree_use_plus_and_minus = 1
 let g:easytree_show_line_numbers = 0
 

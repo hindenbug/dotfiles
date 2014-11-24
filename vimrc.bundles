@@ -73,8 +73,13 @@ NeoBundle 'alfredodeza/jacinto.vim'
 NeoBundle 'tpope/vim-classpath'
 NeoBundle 'guns/vim-clojure-static'
 NeoBundle 'tpope/vim-fireplace'
+NeoBundle 'tpope/vim-leiningen'
+NeoBundle 'tpope/vim-projectionist.git'
+NeoBundle 'tpope/vim-dispatch.git'
+NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundle 'guns/vim-sexp'
 NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
+NeoBundle 'guns/vim-clojure-highlight'
 
 "Python
 NeoBundle 'klen/python-mode'
