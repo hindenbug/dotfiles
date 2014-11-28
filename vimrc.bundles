@@ -88,6 +88,9 @@ NeoBundle 'python_match.vim'
 NeoBundle 'pythoncomplete'
 NeoBundle 'octol/vim-cpp-enhanced-highlight'
 
+"Erlang
+NeoBundle "jimenezrick/vimerl"
+
 "Coding
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'junkblocker/patchreview-vim'
