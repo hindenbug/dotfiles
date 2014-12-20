@@ -472,4 +472,15 @@ endfunction
 " function! MyMode()
 "   return winwidth(0) > 60 ? lightline#mode() : ''
 " endfunction
-"
+
+function! RSpecFile()
+  execute("!clear && rspec " . expand("%p"))
+endfunction
+map <leader>R :call RSpecFile() <CR>
+command! RSpecFile call RSpecFile()
+
+function! RSpecCurrent()
+  execute("!clear && rspec " . expand("%p") . ":" . line("."))
+endfunction
+map <leader>r :call RSpecCurrent() <CR>
+command! RSpecCurrent call RSpecCurrent()
