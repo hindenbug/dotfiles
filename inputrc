@@ -1,11 +1,14 @@
 # Make Tab autocomplete regardless of filename case
 set completion-ignore-case on
-
+set edit-mode vi
+set keymap vi
 
 set mark-symlinked-directories on
 
-"\e[B": history-search-forward
-"\e[A": history-search-backward
+$if Bash
+  "\e[B": history-search-forward
+  "\e[A": history-search-backward
+$endif
 
 set match-hidden-files off
 

@@ -153,16 +153,17 @@ let g:ctrlp_max_files = 0          " Set no max file limit
 
 "let g:indentobject_meaningful_indentation = ["haml", "sass", "python", "yaml", "markdown", "ruby"]
 let g:indent_guides_enable_on_vim_startup = 0
-"let g:rubycomplete_buffer_loading = 1
-"let g:rubycomplete_classes_in_global = 1
 let g:LargeFile=5
 let g:ruby_path = system('echo $HOME/.rbenv/shims')
 
 let g:gitgutter_enabled = 1
-let g:ctrlp_extensions = ['funky']
-let g:ctrlp_funky_syntax_highlight = 1
 
-nnoremap <Leader>m :CtrlPFunky<Cr>
+"Ack / ag (the_silver_searcher)
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" bind \ (backward slash) to grep shortcut
+command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+nnoremap \ :Ag<SPACE>
 
 " Adjust viewports to the same size
 map <Leader>= <C-w>=
@@ -236,13 +237,6 @@ autocmd FileAppendPre   * :call TrimWhiteSpace()
 autocmd FilterWritePre  * :call TrimWhiteSpace()
 autocmd BufWritePre * :call TrimWhiteSpace() " strip trailing whitespace
 
-
-" augroup trailing
-"     au!
-"     au InsertEnter * :set listchars-=trail:·
-"     au InsertLeave * :set listchars+=trail:·
-" augroup END
-
 "Format xml files
 "au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
 autocmd BufNewFile,BufRead *.slim set syntax=slim
@@ -259,14 +253,11 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  "let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
-
-"Ack / ag (the_silver_searcher)
-let g:ackprg = 'ag --nogroup --nocolor --column'
 
 "====================================================================================================
 " CUSTOM BIDINGS
@@ -288,10 +279,6 @@ command! W :w
 " Emacs bindings in command line mode
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
-
-" Fast saving and closing current buffer without closing windows displaying the
-" buffer
-"nmap <leader>wq :w!<cr>:Bclose<cr>
 
 " bind L to grep word under cursor
 nnoremap L :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
@@ -441,37 +428,6 @@ function! MyMode()
         \ &ft == 'vimshell' ? 'VimShell' :
         \ winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
-
-function! CtrlPMark()
-  if expand('%:t') =~ 'ControlP'
-    call lightline#link('iR'[g:lightline.ctrlp_regex])
-    return lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
-          \ , g:lightline.ctrlp_next], 0)
-  else
-    return ''
-  endif
-endfunction
-
-let g:ctrlp_status_func = {
-  \ 'main': 'CtrlPStatusFunc_1',
-  \ 'prog': 'CtrlPStatusFunc_2',
-  \ }
-
-function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
-  let g:lightline.ctrlp_regex = a:regex
-  let g:lightline.ctrlp_prev = a:prev
-  let g:lightline.ctrlp_item = a:item
-  let g:lightline.ctrlp_next = a:next
-  return lightline#statusline(0)
-endfunction
-
-function! CtrlPStatusFunc_2(str)
-  return lightline#statusline(0)
-endfunction
-
-" function! MyMode()
-"   return winwidth(0) > 60 ? lightline#mode() : ''
-" endfunction
 
 function! RSpecFile()
   execute("!clear && rspec " . expand("%p"))

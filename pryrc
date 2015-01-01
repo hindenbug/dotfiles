@@ -69,7 +69,6 @@ if File.exist?(rails) && ENV['SKIP_RAILS'].nil?
   end
 
   # returns a collection of the methods that Rails added to the given class
-  # http://lucapette.com/irb/rails-core-ext-and-irb/
   class Class
     def core_ext
       self.instance_methods.map {|m| [m, self.instance_method(m).source_location] }.select {|m| m[1] && m[1][0] =~/activesupport/}.map {|m| m[0]}.sort
@@ -275,6 +274,13 @@ default_command_set = Pry::CommandSet.new do
 end
 
 Pry.config.commands.import default_command_set
+
+if defined?(PryDebugger) || defined?(PryByebug)
+  Pry.commands.alias_command 'c', 'continue'
+  Pry.commands.alias_command 's', 'step'
+  Pry.commands.alias_command 'n', 'next'
+  Pry.commands.alias_command 'f', 'finish'
+end
 
 
 # ------------------------------------------------------------------------------

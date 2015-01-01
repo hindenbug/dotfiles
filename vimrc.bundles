@@ -15,7 +15,6 @@ NeoBundle "vim-scripts/AnsiEsc.vim.git"
 NeoBundle 'michaeljsmith/vim-indent-object'
 NeoBundle "troydm/easytree.vim"
 NeoBundle 'rking/ag.vim'
-NeoBundle 'tacahiroy/ctrlp-funky'
 
 "NeoBundle "bootleq/vim-textobj-rubysymbol"
 "NeoBundle "coderifous/textobj-word-column.vim"
@@ -30,9 +29,6 @@ NeoBundle 'christoomey/vim-tmux-navigator'
 
 "Fancy
 NeoBundle 'itchyny/lightline.vim'
-"NeoBundle "chrisbra/color_highlight.git"
-"NeoBundle "nelstrom/vim-visual-star-search"
-NeoBundle 'quanganhdo/grb256'
 NeoBundle 'myusuf3/numbers.vim'
 NeoBundle 'mhinz/vim-signify'
 NeoBundle 'ervandew/supertab'
@@ -92,6 +88,5 @@ NeoBundle "jimenezrick/vimerl"
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'junkblocker/patchreview-vim'
 "NeoBundle 'codegram/vim-codereview'
-NeoBundle 'solarnz/thrift.vim'
 
 NeoBundleCheck
