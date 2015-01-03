@@ -1,18 +1,11 @@
 "General
-"NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'honza/vim-snippets'
-NeoBundle 'Spaceghost/vim-matchit'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle "Raimondi/delimitMate"
 NeoBundle "skwp/vim-easymotion"
 NeoBundle "tomtom/tcomment_vim.git"
-"NeoBundle "mattn/webapi-vim.git"
-NeoBundle "tpope/vim-ragtag"
 NeoBundle "vim-scripts/AnsiEsc.vim.git"
-NeoBundle 'michaeljsmith/vim-indent-object'
 NeoBundle "troydm/easytree.vim"
 NeoBundle 'rking/ag.vim'
 
@@ -30,10 +23,8 @@ NeoBundle 'christoomey/vim-tmux-navigator'
 "Fancy
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'myusuf3/numbers.vim'
-NeoBundle 'mhinz/vim-signify'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'vim-scripts/Reindent'
 NeoBundle 'chriskempson/base16-vim'
 
 " Ruby, Rails, Rake...
@@ -52,7 +43,6 @@ NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascr
 " Git related...
 NeoBundle "gregsexton/gitv"
 NeoBundle "mattn/gist-vim"
-NeoBundle "tpope/vim-git"
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'airblade/vim-gitgutter'
 
@@ -73,6 +63,7 @@ NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundle 'guns/vim-sexp'
 NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
 NeoBundle 'guns/vim-clojure-highlight'
+NeoBundle 'dgrnbrg/vim-redl'
 
 "Python
 NeoBundle 'klen/python-mode'
