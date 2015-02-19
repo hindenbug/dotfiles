@@ -141,9 +141,16 @@ set lazyredraw
 set iskeyword-=_
 
 au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+augroup rainbow_parentheses
+  autocmd Syntax clojure RainbowParenthesesActivate
+  autocmd Syntax clojure RainbowParenthesesLoadRound
+  autocmd Syntax clojure RainbowParenthesesLoadSquare
+  autocmd Syntax clojure RainbowParenthesesLoadBraces
+augroup END
+
+let g:clojure_fuzzy_indent = 1
+let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^fnk', '^dfnk']
+let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
 
 let g:easytree_use_plus_and_minus = 1
 let g:easytree_show_line_numbers = 0
@@ -167,6 +174,7 @@ nnoremap \ :Ag<SPACE>
 
 " Adjust viewports to the same size
 map <Leader>= <C-w>=
+nmap <Tab> <C-w>w
 
 " Leave Ex Mode
 nnoremap Q <nop>
@@ -428,15 +436,3 @@ function! MyMode()
         \ &ft == 'vimshell' ? 'VimShell' :
         \ winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
-
-function! RSpecFile()
-  execute("!clear && rspec " . expand("%p"))
-endfunction
-map <leader>R :call RSpecFile() <CR>
-command! RSpecFile call RSpecFile()
-
-function! RSpecCurrent()
-  execute("!clear && rspec " . expand("%p") . ":" . line("."))
-endfunction
-map <leader>r :call RSpecCurrent() <CR>
-command! RSpecCurrent call RSpecCurrent()
