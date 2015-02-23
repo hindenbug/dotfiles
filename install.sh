@@ -10,10 +10,12 @@ create_symlinks () {
   fi
 
   if [ ! -f ~/.vimrc ]; then
+    echo "Now, we will create ~/.vimrc"
     ln -sfn $INSTALLDIR/dotfiles/vimrc ~/.vimrc
   fi
 
   if [ ! -f ~/.vimrc.bundles ]; then
+    echo "Now, we will create ~/.vimrc.bundles"
     ln -sfn $INSTALLDIR/dotfiles/vimrc.bundles ~/.vimrc.bundles
   fi
 
@@ -69,7 +71,7 @@ fi
 
 if [ ! -d "$INSTALLDIR/dotfiles" ]; then
   echo "As we can't find dotfiles in the current directory, we will create it."
-  git clone git://github.com/railsaholic/dotfiles.git
+  git clone git://github.com/hindenbug/dotfiles.git
   create_symlinks
   cd $INSTALLDIR/dotfiles
 
@@ -96,5 +98,5 @@ if [ ! -d "bundle/neobundle.vim" ]; then
   git clone https://github.com/Shougo/neobundle.vim vim/bundle/neobundle.vim
 fi
 
-echo "There you are! Enjoy!"
+echo "Done!"
 
