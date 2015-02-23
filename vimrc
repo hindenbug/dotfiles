@@ -79,6 +79,8 @@ if has('persistent_undo')
   set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
 endif
 
+hi CursorLine term=bold cterm=bold guibg=Grey40 ctermfg=grey
+
 set splitright     " Puts new vsplit windows to the right of the current
 set splitbelow     " Puts new split windows to the bottom of the current
 set modelines=2    " Check 2 lines of files for commands
@@ -87,7 +89,6 @@ set showmode       " Show mode in last line
 set showcmd        " Show visual selection size in last line
 set hidden         " Don't unload abandoned buffers
 set cursorline     " Highlight the entire line the cursor is on
-hi CursorLine term=bold cterm=bold guibg=Grey40 ctermfg=grey
 set ttyfast        " Assume a fast terminal connection
 set backspace=indent,eol,start " Sane edge case behavior for Backspace key
 set relativenumber " Use relative line numbering
@@ -103,6 +104,8 @@ set copyindent     " copy the previous indentation on autoindenting
 set nowritebackup
 set noswapfile
 set nobackup
+set backupdir=~/.vim-tmp
+set directory=~/.vim-tmp
 set guioptions+=LlRrb
 set guioptions-=T
 set t_Co=256
@@ -140,47 +143,6 @@ set showmatch
 set lazyredraw
 set iskeyword-=_
 
-au VimEnter * RainbowParenthesesToggle
-augroup rainbow_parentheses
-  autocmd Syntax clojure RainbowParenthesesActivate
-  autocmd Syntax clojure RainbowParenthesesLoadRound
-  autocmd Syntax clojure RainbowParenthesesLoadSquare
-  autocmd Syntax clojure RainbowParenthesesLoadBraces
-augroup END
-
-let g:clojure_fuzzy_indent = 1
-let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^fnk', '^dfnk']
-let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
-
-let g:easytree_use_plus_and_minus = 1
-let g:easytree_show_line_numbers = 0
-
-let g:ctrlp_working_path_mode = 0  " Search from current directory instead of project root
-let g:ctrlp_max_files = 0          " Set no max file limit
-
-"let g:indentobject_meaningful_indentation = ["haml", "sass", "python", "yaml", "markdown", "ruby"]
-let g:indent_guides_enable_on_vim_startup = 0
-let g:LargeFile=5
-let g:ruby_path = system('echo $HOME/.rbenv/shims')
-
-let g:gitgutter_enabled = 1
-
-"Ack / ag (the_silver_searcher)
-let g:ackprg = 'ag --nogroup --nocolor --column'
-
-" bind \ (backward slash) to grep shortcut
-command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-nnoremap \ :Ag<SPACE>
-
-" Adjust viewports to the same size
-map <Leader>= <C-w>=
-nmap <Tab> <C-w>w
-
-" Leave Ex Mode
-nnoremap Q <nop>
-
-" Highlight VCS conflict markers
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 set guicursor=n-v-c:ver20
 set guicursor+=i:hor10
@@ -206,6 +168,31 @@ if !has('gui_running')
     augroup END
 endif
 
+au VimEnter * RainbowParenthesesToggle
+augroup rainbow_parentheses
+  autocmd Syntax clojure RainbowParenthesesActivate
+  autocmd Syntax clojure RainbowParenthesesLoadRound
+  autocmd Syntax clojure RainbowParenthesesLoadSquare
+  autocmd Syntax clojure RainbowParenthesesLoadBraces
+augroup END
+
+let g:clojure_fuzzy_indent = 1
+let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^fnk', '^dfnk']
+let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
+
+let g:easytree_use_plus_and_minus = 1
+let g:easytree_show_line_numbers = 0
+
+let g:ctrlp_working_path_mode = 0  " Search from current directory instead of project root
+let g:ctrlp_max_files = 0          " Set no max file limit
+
+"let g:indentobject_meaningful_indentation = ["haml", "sass", "python", "yaml", "markdown", "ruby"]
+let g:indent_guides_enable_on_vim_startup = 0
+let g:LargeFile=5
+let g:ruby_path = system('echo $HOME/.rbenv/shims')
+let g:gitgutter_enabled = 1
+
+
 " =================================================================================================
 " FORMATTING
 " =================================================================================================
@@ -229,7 +216,6 @@ function! DiffToggle()
     endif
 :endfunction
 
-
 " Removes trailing spaces
 function! TrimWhiteSpace()
     %s/\s\+$//e
@@ -248,13 +234,19 @@ autocmd BufWritePre * :call TrimWhiteSpace() " strip trailing whitespace
 "Format xml files
 "au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
 autocmd BufNewFile,BufRead *.slim set syntax=slim
-
 au BufNewFile * set noeol
 
 
 " ==================================================================================================
 " The Silver Searcher
 " ==================================================================================================
+
+" bind \ (backward slash) to grep shortcut
+command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+nnoremap \ :Ag<SPACE>
+
+"Ack / ag (the_silver_searcher)
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 if executable('ag')
   " Use ag over grep
@@ -271,9 +263,16 @@ endif
 " CUSTOM BIDINGS
 "====================================================================================================
 
-nmap <C-e> :EasyTreeToggle<CR>
+" Adjust viewports to the same size
+map <Leader>= <C-w>=
+nmap <Tab> <C-w>w
 
+" Highlight VCS conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
+nmap <C-e> :EasyTreeToggle<CR>
 " Keep NERDTree window fixed between multiple toggles
+set winfixwidth
 
 " stop arrow keys.
 "noremap <left> <nop>
@@ -291,7 +290,6 @@ cnoremap <c-e> <end>
 " bind L to grep word under cursor
 nnoremap L :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-nmap <Leader>bi :source ~/.vimrc<cr>:NeoBundleInstall<cr>
 map <Leader>rs :vsp <C-r>#<cr><C-w>w
 nmap <space> i_<esc>r
 
@@ -310,11 +308,9 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 command! Q q " Bind :Q to :q
 command! Qall qall
-
 " Disable Ex mode
 map Q <Nop>
 
-" Let's be reasonable, shall we?
 nmap k gk
 nmap j gj
 
@@ -335,6 +331,8 @@ nmap <leader>fef ggVG=
 nmap <leader>h :nohlsearch<cr>
 
 nnoremap ; :
+
+" clojure eval
 nnoremap <leader>\ :Eval<CR>
 
 "==================================================================================================
