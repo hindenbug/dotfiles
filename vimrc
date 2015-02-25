@@ -38,22 +38,6 @@ filetype plugin indent on
 colorscheme base16-railscasts
 set background=dark
 let base16colorspace=256  " Access colors present in 256 colorspace
-
-highlight clear SignColumn
-highlight VertSplit    ctermbg=236
-highlight ColorColumn  ctermbg=237
-highlight LineNr       ctermbg=236 ctermfg=240
-highlight CursorLineNr ctermbg=236 ctermfg=240
-highlight CursorLine   ctermbg=236
-highlight StatusLineNC ctermbg=238 ctermfg=0
-highlight StatusLine   ctermbg=240 ctermfg=12
-highlight IncSearch    ctermbg=3   ctermfg=1
-highlight Search       ctermbg=1   ctermfg=3
-highlight Visual       ctermbg=3   ctermfg=0
-highlight Pmenu        ctermbg=240 ctermfg=12
-highlight PmenuSel     ctermbg=3   ctermfg=1
-highlight SpellBad     ctermbg=0   ctermfg=1
-
 let mapleader = ","
 let maplocalleader = "\\"
 
@@ -72,12 +56,6 @@ set textwidth=100
 "set ofu=syntaxcomplete#Complete
 set clipboard+=unnamed
 set history=1000
-
-if has('persistent_undo')
-  set undofile                " So is persistent undo ...
-  set undolevels=1000         " Maximum number of changes that can be undone
-  set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
-endif
 
 hi CursorLine term=bold cterm=bold guibg=Grey40 ctermfg=grey
 
@@ -122,14 +100,11 @@ set ttimeoutlen=-1
 set timeoutlen=1000
 set visualbell t_vb=    " Turn off flashing
 
-" Command line completion:
 set wildchar=<TAB>      " Character to start command line completion
-
 " First list the possible completions.
 " Then complete to longest matching string.
 " Finally start cycling between completions (starts wildmenu mode).
 set wildmode=list,longest,full
-
 " Ignore these directories
 set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc,tmp,*.scssc
 set wildmenu            " Enhanced command line completion mode
@@ -142,10 +117,15 @@ set smartcase
 set showmatch
 set lazyredraw
 set iskeyword-=_
-
-
 set guicursor=n-v-c:ver20
 set guicursor+=i:hor10
+set winfixwidth
+
+if has('persistent_undo')
+  set undofile                " So is persistent undo ...
+  set undolevels=1000         " Maximum number of changes that can be undone
+  set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
+endif
 
 if has("gui_running")
     set guifont=Monaco\ for\ Powerline:h11
@@ -176,18 +156,15 @@ augroup rainbow_parentheses
   autocmd Syntax clojure RainbowParenthesesLoadBraces
 augroup END
 
+
+let g:clj_fmt_autosave = 0
 let g:clojure_fuzzy_indent = 1
 let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^fnk', '^dfnk']
 let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
-
 let g:easytree_use_plus_and_minus = 1
 let g:easytree_show_line_numbers = 0
-
 let g:ctrlp_working_path_mode = 0  " Search from current directory instead of project root
 let g:ctrlp_max_files = 0          " Set no max file limit
-
-"let g:indentobject_meaningful_indentation = ["haml", "sass", "python", "yaml", "markdown", "ruby"]
-let g:indent_guides_enable_on_vim_startup = 0
 let g:LargeFile=5
 let g:ruby_path = system('echo $HOME/.rbenv/shims')
 let g:gitgutter_enabled = 1
@@ -230,9 +207,6 @@ autocmd FileWritePre    * :call TrimWhiteSpace()
 autocmd FileAppendPre   * :call TrimWhiteSpace()
 autocmd FilterWritePre  * :call TrimWhiteSpace()
 autocmd BufWritePre * :call TrimWhiteSpace() " strip trailing whitespace
-
-"Format xml files
-"au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
 autocmd BufNewFile,BufRead *.slim set syntax=slim
 au BufNewFile * set noeol
 
@@ -272,7 +246,6 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 nmap <C-e> :EasyTreeToggle<CR>
 " Keep NERDTree window fixed between multiple toggles
-set winfixwidth
 
 " stop arrow keys.
 "noremap <left> <nop>
@@ -302,9 +275,6 @@ map <Leader>v :vnew <C-R>=expand("%:p:h") . '/'<CR>
 " Emacs-like beginning and end of line.
 imap <c-e> <c-o>$
 imap <c-a> <c-o>^
-
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 command! Q q " Bind :Q to :q
 command! Qall qall
@@ -336,12 +306,9 @@ nnoremap ; :
 nnoremap <leader>\ :Eval<CR>
 
 "==================================================================================================
-" FORMATTING
+" RENAME CURRENT FILE (thanks Gary Bernhardt)
 "==================================================================================================
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" RENAME CURRENT FILE (thanks Gary Bernhardt)
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! RenameFile()
   let old_name = expand('%')
   let new_name = input('New file name: ', expand('%'), 'file')
@@ -354,7 +321,6 @@ endfunction
 map <Leader>n :call RenameFile()<cr>
 
 set nocompatible
-
 
 "=========================================================================
 " CUSTOM LIGHTLINE CONFIG

@@ -16,7 +16,6 @@ NeoBundle 'rking/ag.vim'
 "NeoBundle "kana/vim-textobj-function"
 "NeoBundle "kana/vim-textobj-user"
 "NeoBundle "lucapette/vim-textobj-underscore"
-"NeoBundle "nathanaelkane/vim-indent-guides"
 "NeoBundle "vim-scripts/argtextobj.vim"
 "NeoBundle 'christoomey/vim-tmux-navigator'
 
@@ -64,6 +63,7 @@ NeoBundle 'guns/vim-sexp'
 NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
 NeoBundle 'guns/vim-clojure-highlight'
 NeoBundle 'dgrnbrg/vim-redl'
+NeoBundle 'venantius/vim-cljfmt'
 "NeoBundle 'amdt/vim-niji'
 
 "Python
