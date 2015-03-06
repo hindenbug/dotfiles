@@ -28,7 +28,7 @@ NeoBundle 'chriskempson/base16-vim'
 
 " Ruby, Rails, Rake...
 NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'tpope/vim-rails'
+"NeoBundle 'tpope/vim-rails'
 "NeoBundle 'nelstrom/vim-textobj-rubyblock'
 NeoBundle 'ecomba/vim-ruby-refactoring'
 
@@ -69,13 +69,13 @@ NeoBundle 'venantius/vim-cljfmt'
 "Python
 NeoBundle 'klen/python-mode'
 NeoBundle 'python.vim'
-NeoBundle 'python_match.vim'
-NeoBundle 'pythoncomplete'
+
+"C++
 NeoBundle 'octol/vim-cpp-enhanced-highlight'
 
 "Erlang
-NeoBundle "jimenezrick/vimerl"
-NeoBundle "elixir-lang/vim-elixir"
+"NeoBundle "jimenezrick/vimerl"
+"NeoBundle "elixir-lang/vim-elixir"
 
 "Coding
 NeoBundle 'majutsushi/tagbar'

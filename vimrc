@@ -37,9 +37,24 @@ filetype plugin indent on
 "==================================================================================================
 colorscheme base16-railscasts
 set background=dark
-let base16colorspace=256  " Access colors present in 256 colorspace
+"let base16colorspace=256  " Access colors present in 256 colorspace
 let mapleader = ","
 let maplocalleader = "\\"
+
+highlight clear SignColumn
+highlight VertSplit    ctermbg=236
+highlight ColorColumn  ctermbg=237
+highlight LineNr       ctermbg=236 ctermfg=240
+highlight CursorLineNr ctermbg=236 ctermfg=240
+highlight CursorLine   ctermbg=236
+highlight StatusLineNC ctermbg=238 ctermfg=0
+highlight StatusLine   ctermbg=240 ctermfg=12
+highlight IncSearch    ctermbg=3   ctermfg=1
+highlight Search       ctermbg=1   ctermfg=3
+highlight Visual       ctermbg=3   ctermfg=0
+highlight Pmenu        ctermbg=240 ctermfg=12
+highlight PmenuSel     ctermbg=3   ctermfg=1
+highlight SpellBad     ctermbg=0   ctermfg=1
 
 set mouse=a
 set autoread
@@ -47,7 +62,7 @@ set binary
 set cinoptions=:0,(s,u0,U1,g0,t0
 "set completeopt=menuone,preview
 set list
-set listchars=tab:▸\ ,extends:❯,precedes:❮,trail:·
+set listchars=tab:>.,extends:❯,precedes:❮,trail:·
 set notimeout
 set noeol
 set numberwidth=3
@@ -56,6 +71,7 @@ set textwidth=100
 "set ofu=syntaxcomplete#Complete
 set clipboard+=unnamed
 set history=1000
+set nofoldenable    " disable folding
 
 hi CursorLine term=bold cterm=bold guibg=Grey40 ctermfg=grey
 
@@ -153,9 +169,8 @@ augroup rainbow_parentheses
   autocmd Syntax clojure RainbowParenthesesActivate
   autocmd Syntax clojure RainbowParenthesesLoadRound
   autocmd Syntax clojure RainbowParenthesesLoadSquare
-  autocmd Syntax clojure RainbowParenthesesLoadBraces
+  autocmd Syntax clojure RainbowParenthesesLoadBracesA
 augroup END
-
 
 let g:clj_fmt_autosave = 0
 let g:clojure_fuzzy_indent = 1
@@ -165,10 +180,10 @@ let g:easytree_use_plus_and_minus = 1
 let g:easytree_show_line_numbers = 0
 let g:ctrlp_working_path_mode = 0  " Search from current directory instead of project root
 let g:ctrlp_max_files = 0          " Set no max file limit
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 let g:LargeFile=5
 let g:ruby_path = system('echo $HOME/.rbenv/shims')
 let g:gitgutter_enabled = 1
-
 
 " =================================================================================================
 " FORMATTING
@@ -209,6 +224,9 @@ autocmd FilterWritePre  * :call TrimWhiteSpace()
 autocmd BufWritePre * :call TrimWhiteSpace() " strip trailing whitespace
 autocmd BufNewFile,BufRead *.slim set syntax=slim
 au BufNewFile * set noeol
+au FileType py set autoindent
+au FileType py set smartindent
+"au FileType py set textwidth=79 " PEP-8 Friendly
 
 
 " ==================================================================================================
@@ -216,7 +234,7 @@ au BufNewFile * set noeol
 " ==================================================================================================
 
 " bind \ (backward slash) to grep shortcut
-command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+"command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag<SPACE>
 
 "Ack / ag (the_silver_searcher)
