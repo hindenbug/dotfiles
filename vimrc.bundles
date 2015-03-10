@@ -69,6 +69,8 @@ NeoBundle 'venantius/vim-cljfmt'
 "Python
 NeoBundle 'klen/python-mode'
 NeoBundle 'python.vim'
+NeoBundle 'FelikZ/ctrlp-py-matcher'
+NeoBundle 'hynek/vim-python-pep8-indent'
 
 "C++
 NeoBundle 'octol/vim-cpp-enhanced-highlight'

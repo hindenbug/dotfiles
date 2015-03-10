@@ -23,17 +23,18 @@
 
 [alias]
   br = branch
-  ci = commit
+  cm = commit
   co = checkout
   df = diff
   g = grep -I
   rb = rbranch
   rv = review
-  st = status
   f = fetch
-  st = status
+  s = status
+  cp = cheery-pick
   conflicts = !git ls-files -u | cut -f 2 | sort -u
-  amend = commit --amend --reuse-message=HEAD
+  amend = commit -a --amend
+  sync = "!f() { echo Syncing this branch with master && git checkout master && git pull && git checkout – && git rebase master; }; f"
   credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
 
 [format]

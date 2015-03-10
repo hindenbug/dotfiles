@@ -38,6 +38,7 @@ filetype plugin indent on
 colorscheme base16-railscasts
 set background=dark
 "let base16colorspace=256  " Access colors present in 256 colorspace
+"
 let mapleader = ","
 let maplocalleader = "\\"
 
@@ -61,8 +62,9 @@ set autoread
 set binary
 set cinoptions=:0,(s,u0,U1,g0,t0
 "set completeopt=menuone,preview
-set list
-set listchars=tab:>.,extends:❯,precedes:❮,trail:·
+set completeopt=menu
+"set listchars=tab:>.,extends:❯,precedes:❮,trail:·
+set list listchars=tab:▷⋅,trail:·,nbsp:·
 set notimeout
 set noeol
 set numberwidth=3
@@ -74,7 +76,10 @@ set history=1000
 set nofoldenable    " disable folding
 
 hi CursorLine term=bold cterm=bold guibg=Grey40 ctermfg=grey
-
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+set expandtab      " Expand TABs to spaces
 set splitright     " Puts new vsplit windows to the right of the current
 set splitbelow     " Puts new split windows to the bottom of the current
 set modelines=2    " Check 2 lines of files for commands
@@ -95,11 +100,6 @@ set linebreak      " Break lines at opportune characters
 set nospell
 set smartindent
 set copyindent     " copy the previous indentation on autoindenting
-set nowritebackup
-set noswapfile
-set nobackup
-set backupdir=~/.vim-tmp
-set directory=~/.vim-tmp
 set guioptions+=LlRrb
 set guioptions-=T
 set t_Co=256
@@ -108,6 +108,11 @@ set sidescrolloff=15
 set sidescroll=0
 set hlsearch       " highlight search terms
 set incsearch      " show search matches as you type
+set nowritebackup
+set noswapfile
+set nobackup
+set backupdir=~/.vim-tmp
+set directory=~/.vim-tmp
 
 " (Hopefully) removes the delay when hitting esc in insert mode
 set noesckeys
@@ -115,7 +120,6 @@ set ttimeout
 set ttimeoutlen=-1
 set timeoutlen=1000
 set visualbell t_vb=    " Turn off flashing
-
 set wildchar=<TAB>      " Character to start command line completion
 " First list the possible completions.
 " Then complete to longest matching string.
@@ -136,6 +140,7 @@ set iskeyword-=_
 set guicursor=n-v-c:ver20
 set guicursor+=i:hor10
 set winfixwidth
+set fileformat=unix
 
 if has('persistent_undo')
   set undofile                " So is persistent undo ...
@@ -152,7 +157,7 @@ if has("gui_running")
     set guioptions-=l " no scrollbar on the left
     set guioptions-=b " no scrollbar on the bottom
     set guioptions=aiA
-   set mouse=v
+    set mouse=v
 endif
 
 if !has('gui_running')
@@ -164,14 +169,6 @@ if !has('gui_running')
     augroup END
 endif
 
-au VimEnter * RainbowParenthesesToggle
-augroup rainbow_parentheses
-  autocmd Syntax clojure RainbowParenthesesActivate
-  autocmd Syntax clojure RainbowParenthesesLoadRound
-  autocmd Syntax clojure RainbowParenthesesLoadSquare
-  autocmd Syntax clojure RainbowParenthesesLoadBracesA
-augroup END
-
 let g:clj_fmt_autosave = 0
 let g:clojure_fuzzy_indent = 1
 let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^fnk', '^dfnk']
@@ -180,20 +177,49 @@ let g:easytree_use_plus_and_minus = 1
 let g:easytree_show_line_numbers = 0
 let g:ctrlp_working_path_mode = 0  " Search from current directory instead of project root
 let g:ctrlp_max_files = 0          " Set no max file limit
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 let g:LargeFile=5
-let g:ruby_path = system('echo $HOME/.rbenv/shims')
 let g:gitgutter_enabled = 1
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+let g:pymode_rope_lookup_project = 0
+let g:pymode_rope = 0
+let g:pymode_lint = 0
+let g:pymode_lint_ignore="E501,W601"
+let g:pep8_ignore="E501,W601"
+let g:pymode_doc = 0
+let g:pymode_options_max_line_length = 120
 
 " =================================================================================================
 " FORMATTING
 " =================================================================================================
 
 " Set up a keymapping from <Leader>df to a function call.
-" (Note the function doesn't need to be defined beforehand.)
-" Run this mapping silently. That is, when I call this mapping,
-" don't bother showing "call DiffToggle()" on the command line.
 nnoremap <silent> <Leader>df :call DiffToggle()<CR>
+
+"autocmd!
+au VimEnter * RainbowParenthesesToggle
+augroup rainbow_parentheses
+	autocmd Syntax clojure RainbowParenthesesActivate
+	autocmd Syntax clojure RainbowParenthesesLoadRound
+	autocmd Syntax clojure RainbowParenthesesLoadSquare
+	autocmd Syntax clojure RainbowParenthesesLoadBraces
+augroup END
+autocmd FileType ruby,haml,slim,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
+autocmd FileType python set sw=4 sts=4 et
+autocmd BufRead *.md set ai formatoptions=tcroqn2 comments=n:&gt;
+autocmd BufRead *.markdown set ai formatoptions=tcroqn2 comments=n:&gt;A
+autocmd FileWritePre    * :call TrimWhiteSpace()
+autocmd FileAppendPre   * :call TrimWhiteSpace()
+autocmd FilterWritePre  * :call TrimWhiteSpace()
+autocmd BufWritePre * :call TrimWhiteSpace() " strip trailing whitespace
+autocmd BufNewFile,BufRead *.slim set syntax=slim
+autocmd FileType ruby setlocal commentstring=#\ %s
+autocmd FileType python setlocal commentstring=#\ %s
+autocmd BufEnter *.sh setlocal tabstop=2
+autocmd BufEnter *.sh setlocal shiftwidth=2
+autocmd BufEnter *.sh setlocal softtabstop=2
+au BufNewFile * set noeol
+au FileType py set autoindent
+au FileType py set smartindent
 
 " Define a function called DiffToggle.
 " The ! overwrites any existing definition by this name.
@@ -213,22 +239,6 @@ function! TrimWhiteSpace()
     %s/\s\+$//e
 endfunction
 
-"autocmd!
-autocmd FileType ruby,haml,slim,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
-autocmd FileType python set sw=4 sts=4 et
-autocmd BufRead *.md set ai formatoptions=tcroqn2 comments=n:&gt;
-autocmd BufRead *.markdown set ai formatoptions=tcroqn2 comments=n:&gt;
-autocmd FileWritePre    * :call TrimWhiteSpace()
-autocmd FileAppendPre   * :call TrimWhiteSpace()
-autocmd FilterWritePre  * :call TrimWhiteSpace()
-autocmd BufWritePre * :call TrimWhiteSpace() " strip trailing whitespace
-autocmd BufNewFile,BufRead *.slim set syntax=slim
-au BufNewFile * set noeol
-au FileType py set autoindent
-au FileType py set smartindent
-"au FileType py set textwidth=79 " PEP-8 Friendly
-
-
 " ==================================================================================================
 " The Silver Searcher
 " ==================================================================================================
@@ -245,7 +255,10 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_user_command = 'ag %s -l --nocolor --nogroup --hidden --ignore .git
+			  \ --ignore .DS_Store
+			  \ --ignore "**/*.pyc"
+			  \ -g ""'
 
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
@@ -263,7 +276,6 @@ nmap <Tab> <C-w>w
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 nmap <C-e> :EasyTreeToggle<CR>
-" Keep NERDTree window fixed between multiple toggles
 
 " stop arrow keys.
 "noremap <left> <nop>
@@ -273,10 +285,6 @@ nmap <C-e> :EasyTreeToggle<CR>
 
 " :W is bound to :w.
 command! W :w
-
-" Emacs bindings in command line mode
-cnoremap <c-a> <home>
-cnoremap <c-e> <end>
 
 " bind L to grep word under cursor
 nnoremap L :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
