@@ -75,7 +75,7 @@ set clipboard+=unnamed
 set history=1000
 set nofoldenable    " disable folding
 
-hi CursorLine term=bold cterm=bold guibg=Grey40 ctermfg=grey
+hi CursorLine term=bold cterm=NONE guibg=Grey40 ctermfg=NONE guifg=NONE ctermbg=234
 set shiftwidth=2
 set softtabstop=2
 set tabstop=2
@@ -187,6 +187,7 @@ let g:pymode_lint_ignore="E501,W601"
 let g:pep8_ignore="E501,W601"
 let g:pymode_doc = 0
 let g:pymode_options_max_line_length = 120
+let g:easytree_ignore_files = ['*.pyc']
 
 " =================================================================================================
 " FORMATTING
@@ -194,6 +195,9 @@ let g:pymode_options_max_line_length = 120
 
 " Set up a keymapping from <Leader>df to a function call.
 nnoremap <silent> <Leader>df :call DiffToggle()<CR>
+nnoremap <silent> <Leader>t :TagbarToggle<CR>
+nnoremap <Leader>b :bp<CR>
+nnoremap <Leader>f :bn<CR>
 
 "autocmd!
 au VimEnter * RainbowParenthesesToggle

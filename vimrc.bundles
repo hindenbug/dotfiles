@@ -9,6 +9,11 @@ NeoBundle "vim-scripts/AnsiEsc.vim.git"
 NeoBundle "troydm/easytree.vim"
 NeoBundle 'rking/ag.vim'
 
+"Vim
+NeoBundle 'ap/vim-buftabline'
+"NeoBundle 'fholgado/minibufexpl.vim'
+NeoBundle 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+
 "NeoBundle "bootleq/vim-textobj-rubysymbol"
 "NeoBundle "coderifous/textobj-word-column.vim"
 "NeoBundle "kana/vim-textobj-datetime"
@@ -30,13 +35,13 @@ NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'vim-ruby/vim-ruby'
 "NeoBundle 'tpope/vim-rails'
 "NeoBundle 'nelstrom/vim-textobj-rubyblock'
-NeoBundle 'ecomba/vim-ruby-refactoring'
+"NeoBundle 'ecomba/vim-ruby-refactoring'
 
 "HTML
 NeoBundle 'tpope/vim-markdown'
-NeoBundle 'tpope/vim-haml'
+"NeoBundle 'tpope/vim-haml'
 NeoBundle 'amirh/HTML-AutoCloseTag'
-NeoBundle 'slim-template/vim-slim'
+"NeoBundle 'slim-template/vim-slim'
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 
 " Git related...
@@ -71,6 +76,7 @@ NeoBundle 'klen/python-mode'
 NeoBundle 'python.vim'
 NeoBundle 'FelikZ/ctrlp-py-matcher'
 NeoBundle 'hynek/vim-python-pep8-indent'
+NeoBundle 'davidhalter/jedi-vim'
 
 "C++
 NeoBundle 'octol/vim-cpp-enhanced-highlight'
