@@ -10,8 +10,8 @@ NeoBundle "troydm/easytree.vim"
 NeoBundle 'rking/ag.vim'
 
 "Vim
-NeoBundle 'ap/vim-buftabline'
-"NeoBundle 'fholgado/minibufexpl.vim'
+"NeoBundle 'ap/vim-buftabline'
+NeoBundle 'fholgado/minibufexpl.vim'
 NeoBundle 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 
 "NeoBundle "bootleq/vim-textobj-rubysymbol"

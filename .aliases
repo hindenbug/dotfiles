@@ -8,3 +8,20 @@ alias e="vim ."
 alias vim="mvim -v"
 alias clj="java -jar ~/.m2/repository/org/clojure/clojure/1.6.0/clojure-1.6.0.jar"
 alias tmux="TERM=screen-256color-bce tmux"
+
+if ls --color > /dev/null 2>&1; then # GNU `ls`
+	colorflag="--color"
+else # OS X `ls`
+	colorflag="-G"
+fi
+
+alias la="ls -laF ${colorflag}"
+alias ls="command ls ${colorflag}"
+
+alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+
+# Reload the shell (i.e. invoke as a login shell)
+alias reload="exec $SHELL -l"
+
+
