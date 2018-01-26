@@ -17,9 +17,9 @@
   new = green
 
 [color "status"]
-  added = yellow
-  changed = green
-  untracked = cyan
+  added = yellow bold
+  changed = green bold
+  untracked = cyan bold
 
 [alias]
   br = branch
@@ -31,20 +31,22 @@
   rv = review
   f = fetch
   s = status
+  pr = pull --rebase
   cp = cheery-pick
   conflicts = !git ls-files -u | cut -f 2 | sort -u
   amend = commit -a --amend
   sync = "!f() { echo Syncing this branch with master && git checkout master && git pull && git checkout – && git rebase master; }; f"
   credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
+	pushf = push --force-with-lease
 
 [format]
   #pretty = format:%C(yellow)%h%Creset %Cgreen(%cr) %Cred%d%Creset- %C(blue)%s %C(magenta)[%an]
-  pretty = format:%C(yellow)%h%Creset - %Cgreen(%cr)%Creset - %C(bold magenta)(%aN)%Creset %s %C(red)%d%Creset
+  pretty = format:%C(yellow bold)%h%Creset - %C(green bold)[%cr]%Creset - %C(blue)(%aN)%Creset %s %C(red)%d%Creset
+
 [mergetool]
   prompt = false
 
 [mergetool "mvimdiff"]
-  cmd="mvim -c 'Gdiff' $MERGED" # use fugitive.vim for 3-way merge
   keepbackup=false
 
 [merge]
@@ -71,6 +73,8 @@
   excludesfile = ~/.gitignore
   whitespace = space-before-tab,-indent-with-non-tab,trailing-space
   trustctime = false
+  pager ="diff-so-fancy | less --tabs=4 -RFX"
+
 
 [advice]
   statusHints = false
@@ -81,6 +85,7 @@
   mnemonicprefix = true
   algorithm = patience
   renames = copies
+  compactionHeuristic = true
 
 [rerere]
   # Remember my merges
@@ -94,3 +99,7 @@
   autocorrect = 1
 [credential]
 	helper = osxkeychain
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true

@@ -8,13 +8,18 @@ NeoBundle "tomtom/tcomment_vim.git"
 NeoBundle "vim-scripts/AnsiEsc.vim.git"
 NeoBundle "troydm/easytree.vim"
 NeoBundle 'rking/ag.vim'
+NeoBundle 'niklasl/vim-rdf'
+NeoBundle 'rodjek/vim-puppet'
+"NeoBundle 'scrooloose/nerdtree.git'
+NeoBundle 'ctjhoa/spacevim'
+"NeoBundle 'Yggdroot/indentLine'
 
 "Vim
 "NeoBundle 'ap/vim-buftabline'
-NeoBundle 'fholgado/minibufexpl.vim'
+"NeoBundle 'fholgado/minibufexpl.vim'
 NeoBundle 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+NeoBundle 'junegunn/fzf.vim'
 
-"NeoBundle "bootleq/vim-textobj-rubysymbol"
 "NeoBundle "coderifous/textobj-word-column.vim"
 "NeoBundle "kana/vim-textobj-datetime"
 "NeoBundle "kana/vim-textobj-entire"
@@ -28,8 +33,8 @@ NeoBundle 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'myusuf3/numbers.vim'
 NeoBundle 'ervandew/supertab'
-NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'chriskempson/base16-vim'
+NeoBundle 'junegunn/limelight.vim'
 
 " Ruby, Rails, Rake...
 NeoBundle 'vim-ruby/vim-ruby'
@@ -60,7 +65,7 @@ NeoBundle 'alfredodeza/jacinto.vim'
 NeoBundle 'tpope/vim-classpath'
 NeoBundle 'guns/vim-clojure-static'
 NeoBundle 'tpope/vim-fireplace'
-NeoBundle 'tpope/vim-leiningen'
+NeoBundle 'tpope/vim-salve'
 NeoBundle 'tpope/vim-projectionist.git'
 NeoBundle 'tpope/vim-dispatch.git'
 NeoBundle 'kien/rainbow_parentheses.vim'
@@ -70,12 +75,13 @@ NeoBundle 'guns/vim-clojure-highlight'
 NeoBundle 'dgrnbrg/vim-redl'
 NeoBundle 'venantius/vim-cljfmt'
 "NeoBundle 'amdt/vim-niji'
+NeoBundle 'calebsmith/vim-lambdify'
 
 "Python
 NeoBundle 'klen/python-mode'
-NeoBundle 'python.vim'
+"NeoBundle 'python.vim'
 NeoBundle 'FelikZ/ctrlp-py-matcher'
-NeoBundle 'hynek/vim-python-pep8-indent'
+"NeoBundle 'hynek/vim-python-pep8-indent'
 NeoBundle 'davidhalter/jedi-vim'
 
 "C++
@@ -84,6 +90,10 @@ NeoBundle 'octol/vim-cpp-enhanced-highlight'
 "Erlang
 "NeoBundle "jimenezrick/vimerl"
 "NeoBundle "elixir-lang/vim-elixir"
+
+
+"R
+NeoBundle 'vim-scripts/Vim-R-plugin'
 
 "Coding
 NeoBundle 'majutsushi/tagbar'

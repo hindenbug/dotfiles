@@ -1,12 +1,12 @@
 # lock screen
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
-alias rails='bundle exec rails'
-alias rake='bundle exec rake'
+#alias rails='bundle exec rails'
+#alias rake='bundle exec rake'
 alias rspec='bundle exec rspec'
 alias rake="noglob rake"
 alias e="vim ."
 alias vim="mvim -v"
-alias clj="java -jar ~/.m2/repository/org/clojure/clojure/1.6.0/clojure-1.6.0.jar"
+alias clj="java -jar ~/.m2/repository/org/clojure/clojure/1.8.0/clojure-1.8.0.jar"
 alias tmux="TERM=screen-256color-bce tmux"
 
 if ls --color > /dev/null 2>&1; then # GNU `ls`
@@ -23,5 +23,11 @@ alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && kil
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
+alias e='emacsclient --no-wait'
 
+#alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs"
+#alias spacemacs="export USE_SPACEMACS=t; emacs --insecure"
 
+#alias open-pull-request='git pull-request -h \
+#  `git remote -v | grep -oE -m1 "github.com:([^/]*)" \
+#  | sed "s/github.com://"`:`git rev-parse --abbrev-ref HEAD`'
