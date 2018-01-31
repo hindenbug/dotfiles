@@ -37,7 +37,7 @@
   amend = commit -a --amend
   sync = "!f() { echo Syncing this branch with master && git checkout master && git pull && git checkout – && git rebase master; }; f"
   credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
-	pushf = push --force-with-lease
+  pushf = push --force-with-lease
 
 [format]
   #pretty = format:%C(yellow)%h%Creset %Cgreen(%cr) %Cred%d%Creset- %C(blue)%s %C(magenta)[%an]
@@ -98,10 +98,10 @@
 [help]
   autocorrect = 1
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge %f
+  required = true
 [commit]
-	gpgsign = true
+  gpgsign = true
