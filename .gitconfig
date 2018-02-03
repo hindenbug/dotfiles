@@ -22,21 +22,18 @@
   untracked = cyan bold
 
 [alias]
-  br = branch
-  cm = commit
-  co = checkout
-  df = diff
+  #br = branch
+  #cm = commit
+  #co = checkout
   g = grep -I
   rb = rbranch
   rv = review
-  f = fetch
-  s = status
   pr = pull --rebase
-  cp = cheery-pick
+  cp = cherry-pick
   conflicts = !git ls-files -u | cut -f 2 | sort -u
   amend = commit -a --amend
-  sync = "!f() { echo Syncing this branch with master && git checkout master && git pull && git checkout – && git rebase master; }; f"
-  credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
+  #sync = "!f() { echo Syncing this branch with master && git checkout master && git pull && git checkout – && git rebase master; }; f"
+  #credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
   pushf = push --force-with-lease
 
 [format]
@@ -70,11 +67,10 @@
 [core]
   autocrlf = false
   editor = vim
-  excludesfile = ~/.gitignore
+  excludesfile = /Users/manoj/.gitignore_global
   whitespace = space-before-tab,-indent-with-non-tab,trailing-space
   trustctime = false
   pager ="diff-so-fancy | less --tabs=4 -RFX"
-
 
 [advice]
   statusHints = false
@@ -88,7 +84,6 @@
   compactionHeuristic = true
 
 [rerere]
-  # Remember my merges
   # http://gitfu.wordpress.com/2008/04/20/git-rerere-rereremember-what-you-did-last-time/
   enabled = true
 
@@ -97,11 +92,14 @@
 
 [help]
   autocorrect = 1
+
 [credential]
   helper = osxkeychain
+
 [filter "lfs"]
   clean = git-lfs clean %f
   smudge = git-lfs smudge %f
   required = true
+
 [commit]
   gpgsign = true
