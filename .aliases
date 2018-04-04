@@ -31,3 +31,5 @@ alias e='emacsclient --no-wait'
 #alias open-pull-request='git pull-request -h \
 #  `git remote -v | grep -oE -m1 "github.com:([^/]*)" \
 #  | sed "s/github.com://"`:`git rev-parse --abbrev-ref HEAD`'
+#
+alias loadnvm='[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"'
