@@ -191,3 +191,4 @@
 (add-hook 'before-save-hook 'whitespace-cleanup)
 (require 'doom-modeline)
 (doom-modeline-init)
+(require 'writeroom-mode)
