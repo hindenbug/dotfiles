@@ -4,7 +4,8 @@
 (doom! :feature
        ;;debugger          ; FIXME stepping through code, to help you add bugs
        eval              ; run code, run (also, repls)
-       (evil +everywhere); come to the dark side, we have cookies
+       (evil
+        +everywhere); come to the dark side, we have cookies
        file-templates    ; auto-snippets for empty files
        (lookup           ; helps you navigate your code and documentation
         +docsets)        ; ...or in Dash docsets locally
@@ -20,22 +21,23 @@
        ;;(helm             ; the *other* search engine for love and life
        ;;+fuzzy)          ; enable fuzzy search backend for helm
        ;;ido               ; the other *other* search engine...
-       (ivy              ; a search engine for love and life
-         +fuzzy)          ; enable fuzzy search backend for ivy
+       (ivy
+         +fuzzy
+         +childframe)    ; enable fuzzy search backend for ivy
 
        :ui
-       ;;deft              ; notational velocity for Emacs
+       ;deft             ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
-       ;;doom-modeline     ; a snazzy Atom-inspired mode-line
+       doom-modeline     ; a snazzy Atom-inspired mode-line
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        evil-goggles      ; display visual hints when editing in evil
-       ;;fci               ; a `fill-column' indicator
+       ;fci               ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
-       ;;modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink the current line after jumping
        neotree           ; a project drawer, like NERDTree for vim
-       ;;treemacs          ; a project drawer, like neotree but cooler
+       postframe
+       ;treemacs          ; a project drawer, like neotree but cooler
        (popup            ; tame sudden yet inevitable temporary windows
         +all             ; catch all popups that start with an asterix
         +defaults)       ; default popup rules
@@ -53,10 +55,11 @@
        rotate-text       ; cycle region at point between text candidates
 
        :emacs
-       dired             ; making dired pretty [functional]
+       (dired +ranger
+              +icons)    ; making dired pretty [functional]
        ediff             ; comparing files in Emacs
        electric          ; smarter, keyword-based electric-indent
-       eshell            ; a consistent, cross-platform shell (WIP)
+       ;;eshell            ; a consistent, cross-platform shell (WIP)
        hideshow          ; basic code-folding support
        imenu             ; an imenu sidebar and searchable code index
        term              ; terminals in Emacs
@@ -64,7 +67,7 @@
 
        :tools
        ;;ansible
-       docker
+       ;;docker
        editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        ;;gist              ; interacting with github gists
@@ -94,11 +97,11 @@
        emacs-lisp        ; drown in parentheses
        ;;ess               ; emacs speaks statistics
        go                ; the hipster dialect
-       ;;(haskell +intero) ; a language that's lazier than I am
+       (haskell +intero) ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
        ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
-       javascript        ; all(hope(abandon(ye(who(enter(here))))))
+       ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
        julia             ; a better, faster MATLAB
        ;;latex             ; writing papers in Emacs has never been so fun
        ;;ledger            ; an accounting system in Emacs
@@ -124,7 +127,7 @@
        ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
-       (sh +fish)        ; she sells (ba|z|fi)sh shells on the C xor
+       (sh +zsh)        ; she sells (ba|z|fi)sh shells on the C xor
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        ;;web               ; the tubes
@@ -173,7 +176,8 @@
             "/sbin/"
             (concat (getenv "HOME") "/.nix-profile/bin")
             (concat (getenv "HOME") "/.cargo/bin")
-            (concat (getenv "HOME") "/.local/bin")))
+            (concat (getenv "HOME") "/.local/bin")
+            (concat (getenv "HOME") "/.asdf/shims")))
 
 (setenv "PATH" (string-join exec-path ":"))
 
@@ -192,3 +196,67 @@
 (require 'doom-modeline)
 (doom-modeline-init)
 (require 'writeroom-mode)
+
+(require 'solaire-mode)
+;; Enable solaire-mode anywhere it can be enabled
+(solaire-global-mode +1)
+;; To enable solaire-mode unconditionally for certain modes:
+(add-hook 'ediff-prepare-buffer-hook #'solaire-mode)
+
+;; ...if you use auto-revert-mode, this prevents solaire-mode from turning
+;; itself off every time Emacs reverts the file
+(add-hook 'after-revert-hook #'turn-on-solaire-mode)
+
+;; highlight the minibuffer when it is activated:
+(add-hook 'minibuffer-setup-hook #'solaire-mode-in-minibuffer)
+
+;; if the bright and dark background colors are the wrong way around, use this
+;; to switch the backgrounds of the `default` and `solaire-default-face` faces.
+;; This should be used *after* you load the active theme!
+;;
+;; NOTE: This is necessary for themes in the doom-themes package!
+(solaire-mode-swap-bg)
+
+;; An alternative for `use-package' users:
+(use-package solaire-mode
+  :hook ((change-major-mode after-revert ediff-prepare-buffer) . turn-on-solaire-mode)
+  :config
+  (add-hook 'minibuffer-setup-hook #'solaire-mode-in-minibuffer)
+  (solaire-mode-swap-bg))
+
+
+;; Elixir
+(setq alchemist-iex-program-name (concat (getenv "HOME") "/.asdf/shims/iex")) ;;default: iex
+
+;; Create a buffer-local hook to run elixir-format on save, only when we enable elixir-mode.
+(add-hook 'elixir-mode-hook
+          (lambda () (add-hook 'before-save-hook 'elixir-format nil t)))
+(setq confirm-kill-processes nil)
+
+(add-hook 'after-init-hook (lambda ()
+                             (require 'server)
+                             (unless (server-running-p)
+                               (server-start))))
+
+;;(use-package no-littering               ; Keep .emacs.d clean
+;;  :ensure t
+;;  :config
+;;  (require 'recentf)
+;;  (add-to-list 'recentf-exclude no-littering-var-directory)
+;;  (add-to-list 'recentf-exclude no-littering-etc-directory)
+
+;;  (setq create-lockfiles nil
+;;        delete-old-versions t
+;;        kept-new-versions 6
+;;        kept-old-versions 2
+;;        version-control t)
+
+;;  (setq auto-save-file-name-transforms
+;;        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))
+;;        backup-directory-alist
+;;        `((".*" . ,(no-littering-expand-var-file-name "backup/")))))
+
+(after! which-key
+  (setq which-key-idle-delay 0.5
+        which-key-idle-secondary-delay 0.01
+        which-key-sort-order 'which-key-key-order-alpha))

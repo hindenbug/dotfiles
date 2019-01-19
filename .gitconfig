@@ -1,6 +1,7 @@
 [user]
   name = hindenbug
   email = manoj.mk27@gmail.com
+	signingkey = 4C7235F09B79D34D
 
 [color]
   ui = auto
