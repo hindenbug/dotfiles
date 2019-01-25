@@ -35,13 +35,13 @@
        ;fci               ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
        nav-flash         ; blink the current line after jumping
+       ;posframe
        neotree           ; a project drawer, like NERDTree for vim
-       postframe
        ;treemacs          ; a project drawer, like neotree but cooler
        (popup            ; tame sudden yet inevitable temporary windows
         +all             ; catch all popups that start with an asterix
         +defaults)       ; default popup rules
-       pretty-code       ; replace bits of code with pretty symbols
+       ;pretty-code       ; replace bits of code with pretty symbols
        ;;tabbar            ; FIXME an (incomplete) tab bar for Emacs
        ;;unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
@@ -49,7 +49,7 @@
        window-select     ; visually switch windows
 
        :editor
-       ;;(format +onsave)  ; automated prettiness
+       (format +onsave)  ; automated prettiness
        multiple-cursors  ; editing in many places at once
        ;;parinfer          ; turn lisp into python, sort of
        rotate-text       ; cycle region at point between text candidates
@@ -59,8 +59,8 @@
               +icons)    ; making dired pretty [functional]
        ediff             ; comparing files in Emacs
        electric          ; smarter, keyword-based electric-indent
-       ;;eshell            ; a consistent, cross-platform shell (WIP)
-       hideshow          ; basic code-folding support
+       ;eshell            ; a consistent, cross-platform shell (WIP)
+       ;hideshow          ; basic code-folding support
        imenu             ; an imenu sidebar and searchable code index
        term              ; terminals in Emacs
        vc                ; version-control and Emacs, sitting in a tree
@@ -73,7 +73,7 @@
        ;;gist              ; interacting with github gists
        ;;macos             ; MacOS-specific commands
        ;;make              ; run make tasks from Emacs
-       ;;magit             ; a git porcelain for Emacs
+       magit             ; a git porcelain for Emacs
        ;;password-store    ; password manager for nerds
        ;;pdf               ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
@@ -85,7 +85,7 @@
        :lang
        ;;assembly          ; assembly for fun or debugging
        ;;(cc +irony +rtags); C/C++/Obj-C madness
-       clojure           ; java with a lisp
+       ;;clojure           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
@@ -193,9 +193,9 @@
 (setq-default truncate-lines 1)
 
 (add-hook 'before-save-hook 'whitespace-cleanup)
-(require 'doom-modeline)
-(doom-modeline-init)
-(require 'writeroom-mode)
+;;(require 'doom-modeline)
+;;(doom-modeline-init)
+;;(require 'writeroom-mode)
 
 (require 'solaire-mode)
 ;; Enable solaire-mode anywhere it can be enabled
@@ -231,6 +231,11 @@
 ;; Create a buffer-local hook to run elixir-format on save, only when we enable elixir-mode.
 (add-hook 'elixir-mode-hook
           (lambda () (add-hook 'before-save-hook 'elixir-format nil t)))
+
+;;(require 'quickrun)
+;;(add-hook 'elixir-mode-hook #'lsp)
+;;(add-hook 'lsp-mode-hook 'lsp-ui-mode)
+
 (setq confirm-kill-processes nil)
 
 (add-hook 'after-init-hook (lambda ()
