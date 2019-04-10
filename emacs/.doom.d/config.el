@@ -15,6 +15,7 @@
 (doom-themes-neotree-config)
 ;; or for treemacs users
 (doom-themes-treemacs-config)
+
 ;; Corrects (and improves) org-mode's native fontification.
 (doom-themes-org-config)
 
@@ -76,15 +77,28 @@
   :hook
   (rust-mode . lsp-rust-enable))
 
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
-(add-to-list 'default-frame-alist '(height . 80))
-(add-to-list 'default-frame-alist '(width . 200))
+(def-package! dockerfile-mode
+   :mode "Dockerfile$")
+
+(def-package! flycheck-mix
+  :after elixir-mode
+  :config
+  (add-hook 'flycheck-mode-hook #'flycheck-mix-setup))
+
+(def-package! erlang
+  :mode "\\.erl$"
+  :config
+  (erlang-mode))
+
+;;(add-to-list 'default-frame-alist '(fullscreen . maximized))
+;;(add-to-list 'default-frame-alist '(height . 80))
+;;(add-to-list 'default-frame-alist '(width . 200))
 
 ;; Fancy titlebar for MacOS
-(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-(add-to-list 'default-frame-alist '(ns-appearance . dark))
-(setq ns-use-proxy-icon  nil)
-(setq frame-title-format nil)
+;;(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+;;(add-to-list 'default-frame-alist '(ns-appearance . dark))
+;;(setq ns-use-proxy-icon  nil)
+;;(setq frame-title-format nil)
 
 ;; Show matching parens
 (setq show-paren-delay 0)
@@ -123,3 +137,7 @@
 (define-key evil-multiedit-state-map (kbd "C-p") 'evil-multiedit-prev)
 (define-key evil-multiedit-insert-state-map (kbd "C-n") 'evil-multiedit-next)
 (define-key evil-multiedit-insert-state-map (kbd "C-p") 'evil-multiedit-prev)
+
+(setq +ivy-buffer-icons t)
+
+(load! "bindings")

@@ -10,38 +10,31 @@
        (lookup           ; helps you navigate your code and documentation
         +docsets)        ; ...or in Dash docsets locally
        snippets          ; my elves. They type so I don't have to
-       spellcheck        ; tasing you for misspelling mispelling
-       (syntax-checker   ; tasing you for every semicolon you forget
-        +childframe)     ; use childframes for error popups (Emacs 26+ only)
        workspaces        ; tab emulation, persistence & separate workspaces
 
        :completion
        (company          ; the ultimate code completion backend
         +auto)           ; as-you-type code completion
-       ;;(helm             ; the *other* search engine for love and life
-       ;;+fuzzy)          ; enable fuzzy search backend for helm
-       ;;ido               ; the other *other* search engine...
        (ivy
          +fuzzy
          +childframe)    ; enable fuzzy search backend for ivy
 
        :ui
+       modeline
        ;deft             ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
-       doom-modeline     ; a snazzy Atom-inspired mode-line
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        evil-goggles      ; display visual hints when editing in evil
        ;fci               ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
        nav-flash         ; blink the current line after jumping
-       ;posframe
-       neotree           ; a project drawer, like NERDTree for vim
-       ;treemacs          ; a project drawer, like neotree but cooler
+       ;;neotree           ; a project drawer, like NERDTree for vim
+       treemacs          ; a project drawer, like neotree but cooler
        (popup            ; tame sudden yet inevitable temporary windows
         +all             ; catch all popups that start with an asterix
         +defaults)       ; default popup rules
-       ;pretty-code       ; replace bits of code with pretty symbols
+       pretty-code       ; replace bits of code with pretty symbols
        ;;tabbar            ; FIXME an (incomplete) tab bar for Emacs
        ;;unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
@@ -55,9 +48,8 @@
        rotate-text       ; cycle region at point between text candidates
 
        :emacs
-       (dired +ranger
-              +icons)    ; making dired pretty [functional]
-       ediff             ; comparing files in Emacs
+       (dired +icons)    ; making dired pretty [functional]
+       ;;ediff             ; comparing files in Emacs
        electric          ; smarter, keyword-based electric-indent
        ;eshell            ; a consistent, cross-platform shell (WIP)
        ;hideshow          ; basic code-folding support
@@ -68,7 +60,10 @@
        :tools
        ;;ansible
        ;;docker
-       editorconfig      ; let someone else argue about tabs vs spaces
+       flyspell
+       (flycheck
+         +childframe)
+       ;;editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        ;;gist              ; interacting with github gists
        ;;macos             ; MacOS-specific commands
@@ -183,19 +178,28 @@
 
 ;;(global-auto-revert-mode t)
 
+(setq show-trailing-whitespace t)
+
 (setq
  whitespace-line-column 80
  whitespace-style
- '(face trailing lines-tail))
+ '(face trailing lines-tail tabs))
+
 (global-whitespace-mode)
+
+(custom-set-faces
+ '(whitespace-tab ((t (:background "red")))))
+
+;;(add-hook 'after-make-frame-functions
+;;          (lambda (frame)
+;;            (global-whitespace-mode)
+;;            ))
 
 ;; Turn off line wrapping
 (setq-default truncate-lines 1)
 
 (add-hook 'before-save-hook 'whitespace-cleanup)
-;;(require 'doom-modeline)
-;;(doom-modeline-init)
-;;(require 'writeroom-mode)
+(add-hook 'before-save-hook #'delete-trailing-whitespace)
 
 (require 'solaire-mode)
 ;; Enable solaire-mode anywhere it can be enabled
@@ -217,14 +221,6 @@
 ;; NOTE: This is necessary for themes in the doom-themes package!
 (solaire-mode-swap-bg)
 
-;; An alternative for `use-package' users:
-(use-package solaire-mode
-  :hook ((change-major-mode after-revert ediff-prepare-buffer) . turn-on-solaire-mode)
-  :config
-  (add-hook 'minibuffer-setup-hook #'solaire-mode-in-minibuffer)
-  (solaire-mode-swap-bg))
-
-
 ;; Elixir
 (setq alchemist-iex-program-name (concat (getenv "HOME") "/.asdf/shims/iex")) ;;default: iex
 
@@ -243,25 +239,7 @@
                              (unless (server-running-p)
                                (server-start))))
 
-;;(use-package no-littering               ; Keep .emacs.d clean
-;;  :ensure t
-;;  :config
-;;  (require 'recentf)
-;;  (add-to-list 'recentf-exclude no-littering-var-directory)
-;;  (add-to-list 'recentf-exclude no-littering-etc-directory)
-
-;;  (setq create-lockfiles nil
-;;        delete-old-versions t
-;;        kept-new-versions 6
-;;        kept-old-versions 2
-;;        version-control t)
-
-;;  (setq auto-save-file-name-transforms
-;;        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))
-;;        backup-directory-alist
-;;        `((".*" . ,(no-littering-expand-var-file-name "backup/")))))
-
 (after! which-key
-  (setq which-key-idle-delay 0.5
+  (setq which-key-idle-delay 0.1
         which-key-idle-secondary-delay 0.01
         which-key-sort-order 'which-key-key-order-alpha))
