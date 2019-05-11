@@ -23,3 +23,4 @@
 (package! dockerfile-mode)
 (package! paxedit)
 (package! aggressive-indent)
+(package! fill-column-indicator)
