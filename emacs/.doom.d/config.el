@@ -1,35 +1,51 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 
-(setq doom-font (font-spec :family "Fira Code Retina" :size 15))
+(def-package! direnv)
+(direnv-mode)
+
+(setq doom-font (font-spec :family "Fira Code Retina" :size 17))
 (setq which-key-idle-delay 0)
 (toggle-frame-maximized)
 
-(def-package! fci-mode
-  :after-call doom-before-switch-buffer-hook
-  :config
-  (defun company-turn-off-fci (&rest ignore)
-    (setq company-fci-mode-on-p fci-mode)
-    (when fci-mode (fci-mode -1)))
+;; (def-package! fci-mode
+;;   :after-call doom-before-switch-buffer-hook
+;;   :config
+;;   (defun company-turn-off-fci (&rest ignore)
+;;     (setq company-fci-mode-on-p fci-mode)
+;;     (when fci-mode (fci-mode -1)))
 
-  (defun company-maybe-turn-on-fci (&rest ignore)
-    (when company-fci-mode-on-p (fci-mode 1)))
+;;   (defun company-maybe-turn-on-fci (&rest ignore)
+;;     (when company-fci-mode-on-p (fci-mode 1)))
 
-  (add-hook 'company-completion-started-hook #'company-turn-off-fci)
-  (add-hook 'company-completion-finished-hook #'company-maybe-turn-on-fci)
-  (add-hook 'company-completion-cancelled-hook #'company-maybe-turn-on-fci))
+;;   (add-hook 'company-completion-started-hook #'company-turn-off-fci)
+;;   (add-hook 'company-completion-finished-hook #'company-maybe-turn-on-fci)
+;;   (add-hook 'company-completion-cancelled-hook #'company-maybe-turn-on-fci))
+
+(ranger-override-dired-mode t)
+
+;; Global settings (defaults)
 
 (require 'doom-themes)
-;; Global settings (defaults)
 (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
       doom-themes-enable-italic t) ; if nil, italics is universally disabled
 (load-theme 'doom-dracula t)
+
 ;; Enable flashing mode-line on errors
 (doom-themes-visual-bell-config)
 ;; Enable custom neotree theme (all-the-icons must be installed!)
 (doom-themes-neotree-config)
 
+;; or for treemacs users
+;; (doom-themes-treemacs-config)
+
 ;; Corrects (and improves) org-mode's native fontification.
 (doom-themes-org-config)
+
+
+(add-to-list 'auto-mode-alist '("\\.ejs\\'" . web-mode))
+
+(after! treemacs
+  (advice-add '+treemacs--init :after #'balance-windows))
 
 (after! neotree
   (setq neo-theme 'icons))
@@ -48,34 +64,22 @@
   (projectile-mode)
   (projectile-load-known-projects))
 
+(setq projectile-completion-system 'ivy)
+
 (add-hook! elixir-mode
   (flycheck-mode)
   (rainbow-delimiters-mode))
 
-;;(def-package! alchemist
-;;  :after elixir-mode
-;;  :config
-;;  (defun rm/alchemist-project-toggle-file-and-tests ()
-;;    "Toggle between a file and its tests in the current window."
-;;    (interactive)
-;;    (if (alchemist-utils-test-file-p)
-;;        (alchemist-project-open-file-for-current-tests 'find-file)
-;;      (rm/alchemist-project-open-tests-for-current-file 'find-file)))
-;;
-;;  (defun rm/alchemist-project-open-tests-for-current-file (opener)
-;;    "Visit the test file for the current buffer with OPENER."
-;;    (let* ((filename (file-relative-name (buffer-file-name) (alchemist-project-root)))
-;;           (filename (replace-regexp-in-string "^lib/" "test/" filename))
-;;           (filename (replace-regexp-in-string "^web/" "test/" filename))
-;;           (filename (replace-regexp-in-string "^apps/\\(.*\\)/lib/" "apps/\\1/test/" filename))
-;;           (filename (replace-regexp-in-string "\.ex$" "_test\.exs" filename))
-;;           (filename (format "%s/%s" (alchemist-project-root) filename)))
-;;      (if (file-exists-p filename)
-;;          (funcall opener filename)
-;;       (if (y-or-n-p "No test file found; create one now?")
-;;            (alchemist-project--create-test-for-current-file
-;;             filename (current-buffer))
-;;          (message "No test file found."))))))
+(setq counsel-grep-base-command
+ "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
+
+(set-face-background 'solaire-hl-line-face "Cyan")
+(set-face-foreground 'solaire-hl-line-face "dark slate grey")
+
+(setq solaire-mode-remap-line-numbers t)
+
+(add-hook 'emacs-lisp-mode-hook (lambda ()
+    (fci-mode 1)))
 
 (def-package! rust-mode
   :mode "\\.rs$"

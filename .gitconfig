@@ -39,8 +39,7 @@
 
 [format]
   #pretty = format:%C(yellow)%h%Creset %Cgreen(%cr) %Cred%d%Creset- %C(blue)%s %C(magenta)[%an]
-  pretty = format:%C(yellow bold)%h%Creset - %C(green bold)[%cr]%Creset - %C(blue)(%aN)%Creset %s %C(red)%d%Creset
-
+  pretty = format:%C(yellow bold)%h%Creset - %C(green bold)[%cr]%Creset - %C(blue)(%aN)%C(red)%d%Creset %s
 [mergetool]
   prompt = false
 

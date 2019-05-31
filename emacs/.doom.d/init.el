@@ -6,18 +6,18 @@
 
        :completion
        (company          ; the ultimate code completion backend
-        +auto)           ; as-you-type code completion
+        +auto
+        +childframe)     ; as-you-type code completion
        (ivy
-         +fuzzy
+         +counsel-fzf
          +childframe)    ; enable fuzzy search backend for ivy
 
        :ui
-       workspaces        ; tab emulation, persistence & separate workspaces
-       ophints
-       modeline
+       ophints           ; display visual hints when editing in evil
        deft              ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
+       modeline          ; a snazzy Atom-inspired mode-line
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        fill-column       ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
@@ -33,6 +33,7 @@
        vc-gutter         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        window-select     ; visually switch windows
+       workspaces        ; tab emulation, persistence & separate workspaces
 
        :editor
        snippets          ; my elves. They type so I don't have to
@@ -43,29 +44,32 @@
        multiple-cursors  ; editing in many places at once
        ;;parinfer          ; turn lisp into python, sort of
        rotate-text       ; cycle region at point between text candidates
+       file-templates    ; auto-snippets for empty files
+       snippets          ; my elves. They type so I don't have to
+       (evil
+        +everywhere); come to the dark side, we have cookies
 
        :emacs
        (dired +ranger
-        +icons)    ; making dired pretty [functional]
+              +icons)    ; making dired pretty [functional]
        ;;ediff             ; comparing files in Emacs
        electric          ; smarter, keyword-based electric-indent
        ;eshell            ; a consistent, cross-platform shell (WIP)
-       ;hideshow          ; basic code-folding support
        vc                ; version-control and Emacs, sitting in a tree
 
        :term
-       term
+       term              ; terminals in Emacs
 
        :tools
+       eval              ; run code, run (also, repls)
        (lookup           ; helps you navigate your code and documentation
         +docsets)        ; ...or in Dash docsets locally
-       eval              ; run code, run (also, repls)
-       ;;ansible
-       ;;docker
        flyspell
-       (flycheck
-         +childframe)
-       ;;editorconfig      ; let someone else argue about tabs vs spaces
+       ;;ansible
+       docker
+       lsp
+       flyspell
+       editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        ;;gist              ; interacting with github gists
        ;;macos             ; MacOS-specific commands
@@ -74,7 +78,7 @@
        ;;password-store    ; password manager for nerds
        ;;pdf               ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
-       ;;rgb               ; creating color strings
+       rgb               ; creating color strings
        tmux              ; an API for interacting with tmux
        ;;upload            ; map local to remote projects via ssh/ftp
        ;;wakatime
@@ -90,8 +94,12 @@
        go                ; the hipster dialect
        (haskell +intero) ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
-       ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
-       julia             ; a better, faster MATLAB
+       ;;idris             ;
+       javascript        ; all(hope(abandon(ye(who(enter(here))))))
+       ;;julia             ; a better, faster MATLAB
+       ;;latex             ; writing papers in Emacs has never been so fun
+       ;;ledger            ; an accounting system in Emacs
+       ;;lua               ; one-based indices? one-based indices
        markdown          ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
@@ -100,14 +108,20 @@
         +babel           ; running code in org
         +capture         ; org-capture in and outside of Emacs
         +export          ; Exporting org to whatever you want
-        +present)        ; Emacs for presentations
-       ;;plantuml          ; diagrams for confusing people more
+        +present
+        +protocol)        ; Emacs for presentations
+       ;;perl              ; write code no one else can comprehend
+       ;;php               ; perl's insecure younger brother
+       plantuml          ; diagrams for confusing people more
+       ;;purescript        ; javascript, but functional
        ;;python            ; beautiful is better than ugly
        rest              ; Emacs as a REST client
        ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        (sh +zsh)        ; she sells (ba|z|fi)sh shells on the C xor
-       ;;web               ; the tubes
+       ;;solidity          ; do you need a blockchain? No.
+       ;;swift             ; who asked for emoji variables?
+       web               ; the tubes
 
        ;; Applications are complex and opinionated modules that transform Emacs
        ;; toward a specific purpose. They may have additional dependencies and
@@ -134,7 +148,7 @@
        ;; provides a Spacemacs-inspired keybinding scheme, a custom yasnippet
        ;; library, and additional ex commands for evil-mode. Use it as a
        ;; reference for your own modules.
-       (default +bindings +snippets +evil-commands))
+       (default +bindings +snippets +evil-commands +smartparens))
 
 (global-set-key (kbd "C-z") 'undo)
 ;; Basic Config
@@ -186,6 +200,7 @@
 (require 'solaire-mode)
 ;; Enable solaire-mode anywhere it can be enabled
 (solaire-global-mode +1)
+
 ;; To enable solaire-mode unconditionally for certain modes:
 (add-hook 'ediff-prepare-buffer-hook #'solaire-mode)
 
