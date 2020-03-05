@@ -68,6 +68,7 @@
   autocrlf = false
   editor = vim
   excludesfile = /Users/manoj/.gitignore_global
+  #excludesfile = /home/manoj/.gitignore_global # mac: /Users/manoj/.git**
   whitespace = space-before-tab,-indent-with-non-tab,trailing-space
   trustctime = false
   pager ="diff-so-fancy | less --tabs=4 -RFX"
@@ -95,6 +96,7 @@
 
 [credential]
   helper = osxkeychain
+  #helper = /usr/lib/git-core/git-credential-libsecret
 
 [filter "lfs"]
   clean = git-lfs clean %f

@@ -7,20 +7,6 @@
 (setq which-key-idle-delay 0)
 (toggle-frame-maximized)
 
-;; (def-package! fci-mode
-;;   :after-call doom-before-switch-buffer-hook
-;;   :config
-;;   (defun company-turn-off-fci (&rest ignore)
-;;     (setq company-fci-mode-on-p fci-mode)
-;;     (when fci-mode (fci-mode -1)))
-
-;;   (defun company-maybe-turn-on-fci (&rest ignore)
-;;     (when company-fci-mode-on-p (fci-mode 1)))
-
-;;   (add-hook 'company-completion-started-hook #'company-turn-off-fci)
-;;   (add-hook 'company-completion-finished-hook #'company-maybe-turn-on-fci)
-;;   (add-hook 'company-completion-cancelled-hook #'company-maybe-turn-on-fci))
-
 (ranger-override-dired-mode t)
 
 ;; Global settings (defaults)
@@ -119,6 +105,7 @@
 ;; Show matching parens
 (setq show-paren-delay 0)
 (show-paren-mode 1)
+(fci-mode 1)
 
 (require 'evil-multiedit)
 ;; Highlights all matches of the selection in the buffer.

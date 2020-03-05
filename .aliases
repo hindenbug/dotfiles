@@ -33,3 +33,4 @@ alias e='emacsclient --no-wait'
 #  | sed "s/github.com://"`:`git rev-parse --abbrev-ref HEAD`'
 #
 alias loadnvm='[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"'
+alias z=zd
