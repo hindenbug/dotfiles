@@ -16,6 +16,3 @@
 ;;         (:leader
 ;;           :desc "Lookup documentation at point"   :n "d" #'racer-describe
 ;;           :desc "Jump to definition at point"     :n "l" #'racer-find-definition))
-
-
-

@@ -42,9 +42,9 @@
         +everywhere); come to the dark side, we have cookies
        (format +onsave)  ; automated prettiness
        multiple-cursors  ; editing in many places at once
+       fold
        ;;parinfer          ; turn lisp into python, sort of
        rotate-text       ; cycle region at point between text candidates
-       file-templates    ; auto-snippets for empty files
        snippets          ; my elves. They type so I don't have to
        (evil
         +everywhere); come to the dark side, we have cookies
@@ -60,15 +60,18 @@
        :term
        term              ; terminals in Emacs
 
+       :checkers
+       spell
+       ;;flyspell
+
        :tools
        eval              ; run code, run (also, repls)
        (lookup           ; helps you navigate your code and documentation
         +docsets)        ; ...or in Dash docsets locally
-       flyspell
        ;;ansible
        docker
+       terraform
        lsp
-       flyspell
        editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        ;;gist              ; interacting with github gists
@@ -84,7 +87,7 @@
        ;;wakatime
 
        :lang
-       ;;clojure           ; java with a lisp
+       clojure           ; java with a lisp
        ;;coq               ; proofs-as-programs
        data              ; config/data formats
        erlang            ; an elegant language for a more civilized age
@@ -122,6 +125,7 @@
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        web               ; the tubes
+       nix
 
        ;; Applications are complex and opinionated modules that transform Emacs
        ;; toward a specific purpose. They may have additional dependencies and
@@ -183,7 +187,21 @@
 
 (global-whitespace-mode)
 
+(setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+(setq evil-want-keybinding nil)
+(require 'evil)
+(when (require 'evil-collection nil t)
+  (evil-collection-init))
+
+(require 'evil-multiedit)
+(require 'evil-commentary)
+(evil-commentary-mode)
+
 (custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(whitespace-tab ((t (:background "red")))))
 
 ;;(add-hook 'after-make-frame-functions
@@ -240,3 +258,11 @@
   (setq which-key-idle-delay 0.1
         which-key-idle-secondary-delay 0.01
         which-key-sort-order 'which-key-key-order-alpha))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("e47c0abe03e0484ddadf2ae57d32b0f29f0b2ddfe7ec810bd6d558765d9a6a6c" "1897b97f63e91a792e8540c06402f29d5edcbfb0aafd64b1b14270663d6868ee" "bc99493670a29023f99e88054c9b8676332dda83a37adb583d6f1e4c13be62b8" "32fd809c28baa5813b6ca639e736946579159098d7768af6c68d78ffa32063f4" "669e05b25859b9e5b6b9809aa513d76dd35bf21c0f16d8cbb80fb0727dc8f842" default))))
