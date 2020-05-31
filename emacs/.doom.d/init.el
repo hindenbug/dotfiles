@@ -45,8 +45,9 @@
        rotate-text       ; cycle region at point between text candidates
 
        :emacs
-       (dired +ranger
-        +icons)    ; making dired pretty [functional]
+       (dired
+        +ranger
+        +icons)            ; making dired pretty [functional]
        ;;ediff             ; comparing files in Emacs
        electric          ; smarter, keyword-based electric-indent
        ;eshell            ; a consistent, cross-platform shell (WIP)
@@ -56,15 +57,17 @@
        :term
        term
 
+       :checkers
+       (syntax
+         +childframe)
+
        :tools
        (lookup           ; helps you navigate your code and documentation
         +docsets)        ; ...or in Dash docsets locally
        eval              ; run code, run (also, repls)
        ;;ansible
        ;;docker
-       flyspell
-       (flycheck
-         +childframe)
+       ;;flyspell
        ;;editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        ;;gist              ; interacting with github gists
@@ -88,10 +91,10 @@
        emacs-lisp        ; drown in parentheses
        ;;ess               ; emacs speaks statistics
        go                ; the hipster dialect
-       (haskell +intero) ; a language that's lazier than I am
+       ;;(haskell +intero) ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
-       julia             ; a better, faster MATLAB
+       ;;julia             ; a better, faster MATLAB
        markdown          ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
@@ -104,7 +107,7 @@
        ;;plantuml          ; diagrams for confusing people more
        ;;python            ; beautiful is better than ugly
        rest              ; Emacs as a REST client
-       ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
+       ;;ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        (sh +zsh)        ; she sells (ba|z|fi)sh shells on the C xor
        ;;web               ; the tubes
@@ -114,9 +117,9 @@
        ;; should be loaded late.
        :app
        ;;(email +gmail)    ; emacs as an email client
-       irc               ; how neckbeards socialize
+       ;; irc               ; how neckbeards socialize
        ;;(rss +org)        ; emacs as an RSS reader
-       twitter           ; twitter client https://twitter.com/vnought
+       ;; twitter           ; twitter client https://twitter.com/vnought
        ;;(write            ; emacs as a word processor (latex + org + markdown)
        ;; +wordnut         ; wordnet (wn) search
        ;; +langtool)       ; a proofreader (grammar/style check) for Emacs
@@ -135,93 +138,3 @@
        ;; library, and additional ex commands for evil-mode. Use it as a
        ;; reference for your own modules.
        (default +bindings +snippets +evil-commands))
-
-(global-set-key (kbd "C-z") 'undo)
-;; Basic Config
-(setq backup-directory-alist `(("." . "~/.emacs-tmp/")))
-(setq auto-save-file-name-transforms `((".*" "~/.emacs-tmp/" t)))
-
-;; Spaces over tabs
-(setq tab-width 2)
-(setq-default indent-tabs-mode nil)
-
-(setq exec-path
-      (list "/usr/local/bin/"
-            "/usr/bin/"
-            "/bin/"
-            "/usr/sbin/"
-            "/sbin/"
-            (concat (getenv "HOME") "/.nix-profile/bin")
-            (concat (getenv "HOME") "/.cargo/bin")
-            (concat (getenv "HOME") "/.local/bin")
-            (concat (getenv "HOME") "/.asdf/shims")))
-
-(setenv "PATH" (string-join exec-path ":"))
-
-;;(global-auto-revert-mode t)
-
-(setq show-trailing-whitespace t)
-
-(setq
- whitespace-line-column 80
- whitespace-style
- '(face trailing lines-tail tabs))
-
-(global-whitespace-mode)
-
-(custom-set-faces
- '(whitespace-tab ((t (:background "red")))))
-
-;;(add-hook 'after-make-frame-functions
-;;          (lambda (frame)
-;;            (global-whitespace-mode)
-;;            ))
-
-;; Turn off line wrapping
-(setq-default truncate-lines 1)
-
-(add-hook 'before-save-hook 'whitespace-cleanup)
-(add-hook 'before-save-hook #'delete-trailing-whitespace)
-
-(require 'solaire-mode)
-;; Enable solaire-mode anywhere it can be enabled
-(solaire-global-mode +1)
-;; To enable solaire-mode unconditionally for certain modes:
-(add-hook 'ediff-prepare-buffer-hook #'solaire-mode)
-
-;; ...if you use auto-revert-mode, this prevents solaire-mode from turning
-;; itself off every time Emacs reverts the file
-(add-hook 'after-revert-hook #'turn-on-solaire-mode)
-
-;; highlight the minibuffer when it is activated:
-(add-hook 'minibuffer-setup-hook #'solaire-mode-in-minibuffer)
-
-;; if the bright and dark background colors are the wrong way around, use this
-;; to switch the backgrounds of the `default` and `solaire-default-face` faces.
-;; This should be used *after* you load the active theme!
-;;
-;; NOTE: This is necessary for themes in the doom-themes package!
-(solaire-mode-swap-bg)
-
-;; Elixir
-(setq alchemist-iex-program-name (concat (getenv "HOME") "/.asdf/shims/iex")) ;;default: iex
-
-;; Create a buffer-local hook to run elixir-format on save, only when we enable elixir-mode.
-(add-hook 'elixir-mode-hook
-          (lambda () (add-hook 'before-save-hook 'elixir-format nil t)))
-
-;;(require 'quickrun)
-;;(add-hook 'elixir-mode-hook #'lsp)
-;;(add-hook 'lsp-mode-hook 'lsp-ui-mode)
-
-(setq confirm-kill-processes nil)
-
-(add-hook 'after-init-hook (lambda ()
-                             (require 'server)
-                             (unless (server-running-p)
-                               (server-start))))
-
-(after! which-key
-  (setq which-key-idle-delay 0.1
-        which-key-idle-secondary-delay 0.01
-        which-key-sort-order 'which-key-key-order-alpha))

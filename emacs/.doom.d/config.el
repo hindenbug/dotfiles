@@ -1,22 +1,63 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+
+(global-set-key (kbd "C-z") 'undo)
+;; Basic Config
+(setq backup-directory-alist `(("." . "~/.emacs-tmp/")))
+(setq auto-save-file-name-transforms `((".*" "~/.emacs-tmp/" t)))
+(setq +ivy-buffer-icons t)
+
+;; Spaces over tabs
+(setq tab-width 2)
+(setq-default indent-tabs-mode nil)
+
+(setq exec-path
+      (list "/usr/local/bin/"
+            "/usr/bin/"
+            "/bin/"
+            "/usr/sbin/"
+            "/sbin/"
+            (concat (getenv "HOME") "/.nix-profile/bin")
+            (concat (getenv "HOME") "/.cargo/bin")
+            (concat (getenv "HOME") "/.local/bin")
+            (concat (getenv "HOME") "/.asdf/shims")))
+
+(setenv "PATH" (string-join exec-path ":"))
+
+;;(global-auto-revert-mode t)
+
+(setq show-trailing-whitespace t)
+
+;; Show matching parens
+(setq show-paren-delay 0)
+(show-paren-mode 1)
+
+(setq
+ whitespace-line-column 80
+ whitespace-style
+ '(face trailing lines-tail tabs))
+
+(global-whitespace-mode)
+
+(custom-set-faces
+ '(whitespace-tab ((t (:background "red")))))
+
+;; Turn off line wrapping
+(setq-default truncate-lines 1)
+
+(add-hook 'before-save-hook 'whitespace-cleanup)
+(add-hook 'before-save-hook #'delete-trailing-whitespace)
+
+(require 'solaire-mode)
+;; Enable solaire-mode anywhere it can be enabled
+(solaire-global-mode +1)
+
 (setq doom-font (font-spec :family "Fira Code Retina" :size 15))
 (setq which-key-idle-delay 0)
-(toggle-frame-maximized)
 
-(def-package! fci-mode
-  :after-call doom-before-switch-buffer-hook
-  :config
-  (defun company-turn-off-fci (&rest ignore)
-    (setq company-fci-mode-on-p fci-mode)
-    (when fci-mode (fci-mode -1)))
-
-  (defun company-maybe-turn-on-fci (&rest ignore)
-    (when company-fci-mode-on-p (fci-mode 1)))
-
-  (add-hook 'company-completion-started-hook #'company-turn-off-fci)
-  (add-hook 'company-completion-finished-hook #'company-maybe-turn-on-fci)
-  (add-hook 'company-completion-cancelled-hook #'company-maybe-turn-on-fci))
+;;(setq 'solaire-hl-line-face "#fbffbf")
+;;(setq 'solaire-hl-line-face nil)
 
 (require 'doom-themes)
 ;; Global settings (defaults)
@@ -48,73 +89,34 @@
   (projectile-mode)
   (projectile-load-known-projects))
 
-(add-hook! elixir-mode
-  (flycheck-mode)
-  (rainbow-delimiters-mode))
+(load! "elixir")
 
-;;(def-package! alchemist
-;;  :after elixir-mode
-;;  :config
-;;  (defun rm/alchemist-project-toggle-file-and-tests ()
-;;    "Toggle between a file and its tests in the current window."
-;;    (interactive)
-;;    (if (alchemist-utils-test-file-p)
-;;        (alchemist-project-open-file-for-current-tests 'find-file)
-;;      (rm/alchemist-project-open-tests-for-current-file 'find-file)))
-;;
-;;  (defun rm/alchemist-project-open-tests-for-current-file (opener)
-;;    "Visit the test file for the current buffer with OPENER."
-;;    (let* ((filename (file-relative-name (buffer-file-name) (alchemist-project-root)))
-;;           (filename (replace-regexp-in-string "^lib/" "test/" filename))
-;;           (filename (replace-regexp-in-string "^web/" "test/" filename))
-;;           (filename (replace-regexp-in-string "^apps/\\(.*\\)/lib/" "apps/\\1/test/" filename))
-;;           (filename (replace-regexp-in-string "\.ex$" "_test\.exs" filename))
-;;           (filename (format "%s/%s" (alchemist-project-root) filename)))
-;;      (if (file-exists-p filename)
-;;          (funcall opener filename)
-;;       (if (y-or-n-p "No test file found; create one now?")
-;;            (alchemist-project--create-test-for-current-file
-;;             filename (current-buffer))
-;;          (message "No test file found."))))))
+(use-package! fci-mode
+  :after-call doom-before-switch-buffer-hook
+  :config
+  (defun company-turn-off-fci (&rest ignore)
+    (setq company-fci-mode-on-p fci-mode)
+    (when fci-mode (fci-mode -1)))
 
-(def-package! rust-mode
+  (defun company-maybe-turn-on-fci (&rest ignore)
+    (when company-fci-mode-on-p (fci-mode 1)))
+
+  (add-hook 'company-completion-started-hook #'company-turn-off-fci)
+  (add-hook 'company-completion-finished-hook #'company-maybe-turn-on-fci)
+  (add-hook 'company-completion-cancelled-hook #'company-maybe-turn-on-fci))
+
+(use-package! rust-mode
   :mode "\\.rs$"
   :config
   (flycheck-mode))
 
-(def-package! lsp-rust
-  :after (lsp-mode lsp-ui rust-mode)
-  :config
-  (setq lsp-rust-rls-command '("rustup" "run" "stable" "rls"))
-  :hook
-  (rust-mode . lsp-rust-enable))
-
-(def-package! dockerfile-mode
+(use-package! dockerfile-mode
    :mode "Dockerfile$")
 
-(def-package! flycheck-mix
-  :after elixir-mode
-  :config
-  (add-hook 'flycheck-mode-hook #'flycheck-mix-setup))
-
-(def-package! erlang
+(use-package! erlang
   :mode "\\.erl$"
   :config
   (erlang-mode))
-
-;;(add-to-list 'default-frame-alist '(fullscreen . maximized))
-;;(add-to-list 'default-frame-alist '(height . 80))
-;;(add-to-list 'default-frame-alist '(width . 200))
-
-;; Fancy titlebar for MacOS
-;;(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-;;(add-to-list 'default-frame-alist '(ns-appearance . dark))
-;;(setq ns-use-proxy-icon  nil)
-;;(setq frame-title-format nil)
-
-;; Show matching parens
-(setq show-paren-delay 0)
-(show-paren-mode 1)
 
 (require 'evil-multiedit)
 ;; Highlights all matches of the selection in the buffer.
@@ -149,7 +151,5 @@
 (define-key evil-multiedit-state-map (kbd "C-p") 'evil-multiedit-prev)
 (define-key evil-multiedit-insert-state-map (kbd "C-n") 'evil-multiedit-next)
 (define-key evil-multiedit-insert-state-map (kbd "C-p") 'evil-multiedit-prev)
-
-(setq +ivy-buffer-icons t)
 
 (load! "bindings")
