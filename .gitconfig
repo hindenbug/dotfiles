@@ -1,6 +1,6 @@
 [user]
   name = hindenbug
-  email = manoj.mk27@gmail.com
+	email = 304184+hindenbug@users.noreply.github.com
 	signingkey = 4C7235F09B79D34D
 
 [color]
@@ -97,10 +97,26 @@
 [credential]
   helper = osxkeychain
 
-[filter "lfs"]
-  clean = git-lfs clean %f
-  smudge = git-lfs smudge %f
-  required = true
+#[filter "lfs"]
+#	clean = git clean -- %f
+#	smudge = git smudge -- %f
+#  required = true
+#	process = git filter-process
 
 [commit]
-  gpgsign = true
+	gpgsign = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[init]
+  defaultBranch = master
+
+# Enforce SSH
+[url "ssh://git@github.com/"]
+  insteadOf = https://github.com/
+[url "ssh://git@gitlab.com/"]
+  insteadOf = https://gitlab.com/
+[url "ssh://git@bitbucket.org/"]
+  insteadOf = https://bitbucket.org/
