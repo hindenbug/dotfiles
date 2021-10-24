@@ -75,16 +75,16 @@
       (flycheck-add-next-checker 'lsp-ui 'elixir-credo)))
 
 ;; Enable format and iex reload on save
-(after! lsp
-  (add-hook 'elixir-mode-hook
-            (lambda ()
-              (add-hook 'before-save-hook 'elixir-format nil t)
-              (add-hook 'after-save-hook 'alchemist-iex-reload-module))))
+;; (after! lsp
+;;   (add-hook 'elixir-mode-hook
+;;             (lambda ()
+;;               (add-hook 'before-save-hook 'elixir-format nil t)
+;;               (add-hook 'after-save-hook 'alchemist-iex-reload-module))))
 
-(map! :mode elixir-mode
-        :leader
-        :desc "iMenu" :nve  "c/"    #'lsp-ui-imenu
-        :desc "Run all tests"   :nve  "ctt"   #'exunit-verify-all
-        :desc "Run all in umbrella"   :nve  "ctT"   #'exunit-verify-all-in-umbrella
-        :desc "Re-run tests"   :nve  "ctx"   #'exunit-rerun
-        :desc "Run single test"   :nve  "cts"   #'exunit-verify-single)
+;; (map! :mode elixir-mode
+;;         :leader
+;;         :desc "iMenu" :nve  "c/"    #'lsp-ui-imenu
+;;         :desc "Run all tests"   :nve  "ctt"   #'exunit-verify-all
+;;         :desc "Run all in umbrella"   :nve  "ctT"   #'exunit-verify-all-in-umbrella
+;;         :desc "Re-run tests"   :nve  "ctx"   #'exunit-rerun
+;;         :desc "Run single test"   :nve  "cts"   #'exunit-verify-single)
